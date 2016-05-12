@@ -1,0 +1,1003 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AABB	.\intpoint.h	/^    AABB()$/;"	f	class:AABB
+AABB	.\intpoint.h	/^    AABB(Polygons polys)$/;"	f	class:AABB
+AABB	.\intpoint.h	/^class AABB$/;"	c
+AXIS_COUNT	.\PhraseManager.h	17;"	d
+Abs	.\clipper.cpp	/^inline long64 Abs(long64 val)$/;"	f	namespace:ClipperLib
+AddBoundsToLML	.\clipper.cpp	/^TEdge* ClipperBase::AddBoundsToLML(TEdge *e)$/;"	f	class:ClipperLib::ClipperBase
+AddChild	.\clipper.cpp	/^void PolyNode::AddChild(PolyNode& child)$/;"	f	class:ClipperLib::PolyNode
+AddEdgeToSEL	.\clipper.cpp	/^void Clipper::AddEdgeToSEL(TEdge *edge)$/;"	f	class:ClipperLib::Clipper
+AddHorzJoin	.\clipper.cpp	/^void Clipper::AddHorzJoin(TEdge *e, int idx)$/;"	f	class:ClipperLib::Clipper
+AddJoin	.\clipper.cpp	/^void Clipper::AddJoin(TEdge *e1, TEdge *e2, int e1OutIdx, int e2OutIdx)$/;"	f	class:ClipperLib::Clipper
+AddKey	.\inifile.cpp	/^CIniKeyA* CIniSectionA::AddKey( std::string sKeyName )$/;"	f	class:CIniSectionA
+AddKey	.\inifile.cpp	/^CIniKeyW* CIniSectionW::AddKey( std::wstring sKeyName )$/;"	f	class:CIniSectionW
+AddLocalMaxPoly	.\clipper.cpp	/^void Clipper::AddLocalMaxPoly(TEdge *e1, TEdge *e2, const IntPoint &pt)$/;"	f	class:ClipperLib::Clipper
+AddLocalMinPoly	.\clipper.cpp	/^void Clipper::AddLocalMinPoly(TEdge *e1, TEdge *e2, const IntPoint &pt)$/;"	f	class:ClipperLib::Clipper
+AddOutPt	.\clipper.cpp	/^void Clipper::AddOutPt(TEdge *e, const IntPoint &pt)$/;"	f	class:ClipperLib::Clipper
+AddPoint	.\clipper.cpp	/^void AddPoint(const IntPoint& pt)$/;"	f	class:ClipperLib::OffsetBuilder	file:
+AddPolyNodeToPolygons	.\clipper.cpp	/^void AddPolyNodeToPolygons(const PolyNode& polynode, Polygons& polygons)$/;"	f	namespace:ClipperLib
+AddPolygon	.\clipper.cpp	/^bool ClipperBase::AddPolygon(const Polygon &pg, PolyType polyType)$/;"	f	class:ClipperLib::ClipperBase
+AddPolygons	.\clipper.cpp	/^bool ClipperBase::AddPolygons(const Polygons &ppg, PolyType polyType)$/;"	f	class:ClipperLib::ClipperBase
+AddSection	.\inifile.cpp	/^CIniSectionA* CIniFileA::AddSection( std::string sSection )$/;"	f	class:CIniFileA
+AddSection	.\inifile.cpp	/^CIniSectionW* CIniFileW::AddSection( std::wstring sSection )$/;"	f	class:CIniFileW
+AllNodes	.\clipper.hpp	/^    PolyNodes AllNodes;$/;"	m	class:ClipperLib::PolyTree
+AppendPolygon	.\clipper.cpp	/^void Clipper::AppendPolygon(TEdge *e1, TEdge *e2)$/;"	f	class:ClipperLib::Clipper
+Area	.\clipper.cpp	/^double Area(const OutRec &outRec, bool UseFullInt64Range)$/;"	f	namespace:ClipperLib
+Area	.\clipper.cpp	/^double Area(const Polygon &poly)$/;"	f	namespace:ClipperLib
+ArrayEqualIDs	.\BinaryTree.h	/^	vector<int> *ArrayEqualIDs;$/;"	m	class:CBinaryTreeNode
+AsDouble	.\clipper.cpp	/^    double AsDouble() const$/;"	f	class:ClipperLib::Int128
+AssertValid	.\CarpetControlDoc.cpp	/^void CCarpetControlDoc::AssertValid() const$/;"	f	class:CCarpetControlDoc
+AssertValid	.\CarpetControlView.cpp	/^void CCarpetControlView::AssertValid() const$/;"	f	class:CCarpetControlView
+AssertValid	.\ChildFrm.cpp	/^void CChildFrame::AssertValid() const$/;"	f	class:CChildFrame
+AssertValid	.\MainFrm.cpp	/^void CMainFrame::AssertValid() const$/;"	f	class:CMainFrame
+AssertValid	.\PhraseFrame.cpp	/^void CPhraseFrame::AssertValid() const$/;"	f	class:CPhraseFrame
+AxisFlg	.\ControlManager.h	/^enum AxisFlg$/;"	g
+AxisRunTest	.\PhraseFrame.cpp	/^void CPhraseFrame::AxisRunTest(int nMaxPID, int nAccessID, int nMovID, int nCheckID, AxisFlg flg)$/;"	f	class:CPhraseFrame
+BUFFER_COUNT	.\PhraseManager.h	18;"	d
+BuildArc	.\clipper.cpp	/^Polygon BuildArc(const IntPoint &pt,$/;"	f	namespace:ClipperLib
+BuildIntersectList	.\clipper.cpp	/^void Clipper::BuildIntersectList(const long64 botY, const long64 topY)$/;"	f	class:ClipperLib::Clipper
+BuildResult	.\clipper.cpp	/^void Clipper::BuildResult(Polygons &polys)$/;"	f	class:ClipperLib::Clipper
+BuildResult2	.\clipper.cpp	/^void Clipper::BuildResult2(PolyTree& polytree)$/;"	f	class:ClipperLib::Clipper
+CAboutDlg	.\CarpetControl.cpp	/^CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)$/;"	f	class:CAboutDlg
+CAboutDlg	.\CarpetControl.cpp	/^class CAboutDlg : public CDialogEx$/;"	c	file:
+CBinaryTree	.\BinaryTree.h	/^	CBinaryTree()$/;"	f	class:CBinaryTree
+CBinaryTree	.\BinaryTree.h	/^template <class KEY, class ARG_KEY, class DATA, class ARG_DATA> class CBinaryTree$/;"	c
+CBinaryTreeNode	.\BinaryTree.h	/^	CBinaryTreeNode()$/;"	f	class:CBinaryTreeNode
+CBinaryTreeNode	.\BinaryTree.h	/^template <class KEY, class DATA> class CBinaryTreeNode$/;"	c
+CCarpetControlApp	.\CarpetControl.cpp	/^CCarpetControlApp::CCarpetControlApp()$/;"	f	class:CCarpetControlApp
+CCarpetControlApp	.\CarpetControl.h	/^class CCarpetControlApp : public CWinAppEx$/;"	c
+CCarpetControlDoc	.\CarpetControlDoc.cpp	/^CCarpetControlDoc::CCarpetControlDoc()$/;"	f	class:CCarpetControlDoc
+CCarpetControlDoc	.\CarpetControlDoc.h	/^class CCarpetControlDoc : public CDocument$/;"	c
+CCarpetControlView	.\CarpetControlView.cpp	/^CCarpetControlView::CCarpetControlView()$/;"	f	class:CCarpetControlView
+CCarpetControlView	.\CarpetControlView.h	/^class CCarpetControlView : public CView$/;"	c
+CChildFrame	.\ChildFrm.cpp	/^CChildFrame::CChildFrame()$/;"	f	class:CChildFrame
+CChildFrame	.\ChildFrm.h	/^class CChildFrame : public CMDIChildWndEx$/;"	c
+CIniFile	.\inifile.h	/^typedef CIniFileA CIniFile;$/;"	t
+CIniFile	.\inifile.h	/^typedef CIniFileW CIniFile;$/;"	t
+CIniFileA	.\inifile.cpp	/^CIniFileA::CIniFileA()$/;"	f	class:CIniFileA
+CIniFileA	.\inifile.h	/^class CIniFileA$/;"	c
+CIniFileW	.\inifile.cpp	/^CIniFileW::CIniFileW()$/;"	f	class:CIniFileW
+CIniFileW	.\inifile.h	/^class CIniFileW$/;"	c
+CIniKey	.\inifile.h	/^typedef CIniKeyA CIniKey;$/;"	t
+CIniKey	.\inifile.h	/^typedef CIniKeyW CIniKey;$/;"	t
+CIniKeyA	.\inifile.cpp	/^CIniKeyA::CIniKeyA( CIniSectionA* pSection , const std::string& sKeyName ) : m_pSection(pSection) , m_sKeyName(sKeyName)$/;"	f	class:CIniKeyA
+CIniKeyA	.\inifile.h	/^        class CIniKeyA$/;"	c	class:CIniFileA::CIniSectionA
+CIniKeyA	.\inifile.h	/^typedef CIniSectionA::CIniKeyA CIniKeyA;$/;"	t
+CIniKeyW	.\inifile.cpp	/^CIniKeyW::CIniKeyW( CIniSectionW* pSection , const std::wstring& sKeyName ) : m_pSection(pSection) , m_sKeyName(sKeyName)$/;"	f	class:CIniKeyW
+CIniKeyW	.\inifile.h	/^        class CIniKeyW$/;"	c	class:CIniFileW::CIniSectionW
+CIniKeyW	.\inifile.h	/^typedef CIniSectionW::CIniKeyW CIniKeyW;$/;"	t
+CIniMerge	.\inifile.h	/^typedef CIniMergeA CIniMerge;$/;"	t
+CIniMerge	.\inifile.h	/^typedef CIniMergeW CIniMerge;$/;"	t
+CIniMergeA	.\inifile.h	/^        explicit CIniMergeA(CIniFileA& ini):_ini(ini) {}$/;"	f	class:CIniFileA::CIniMergeA
+CIniMergeA	.\inifile.h	/^    class CIniMergeA$/;"	c	class:CIniFileA
+CIniMergeA	.\inifile.h	/^typedef CIniFileA::CIniMergeA CIniMergeA;$/;"	t
+CIniMergeW	.\inifile.h	/^        explicit CIniMergeW(CIniFileW& ini):_ini(ini) {}$/;"	f	class:CIniFileW::CIniMergeW
+CIniMergeW	.\inifile.h	/^    class CIniMergeW$/;"	c	class:CIniFileW
+CIniMergeW	.\inifile.h	/^typedef CIniFileW::CIniMergeW CIniMergeW;$/;"	t
+CIniSection	.\inifile.h	/^typedef CIniSectionA CIniSection;$/;"	t
+CIniSection	.\inifile.h	/^typedef CIniSectionW CIniSection;$/;"	t
+CIniSectionA	.\inifile.cpp	/^CIniSectionA::CIniSectionA( CIniFileA* pIniFile , const std::string& sSectionName ) : m_pIniFile(pIniFile) , m_sSectionName(sSectionName)$/;"	f	class:CIniSectionA
+CIniSectionA	.\inifile.h	/^    class CIniSectionA$/;"	c	class:CIniFileA
+CIniSectionA	.\inifile.h	/^typedef CIniFileA::CIniSectionA CIniSectionA;$/;"	t
+CIniSectionW	.\inifile.cpp	/^CIniSectionW::CIniSectionW( CIniFileW* pIniFile , const std::wstring& sSectionName ) : m_pIniFile(pIniFile) , m_sSectionName(sSectionName)$/;"	f	class:CIniSectionW
+CIniSectionW	.\inifile.h	/^    class CIniSectionW$/;"	c	class:CIniFileW
+CIniSectionW	.\inifile.h	/^typedef CIniFileW::CIniSectionW CIniSectionW;$/;"	t
+CInt	.\BinaryTree.h	/^class CInt$/;"	c
+CMainFrame	.\MainFrm.cpp	/^CMainFrame::CMainFrame()$/;"	f	class:CMainFrame
+CMainFrame	.\MainFrm.h	/^class CMainFrame : public CMDIFrameWndEx$/;"	c
+CPhraseFrame	.\PhraseFrame.cpp	/^CPhraseFrame::CPhraseFrame()$/;"	f	class:CPhraseFrame
+CPhraseFrame	.\PhraseFrame.h	/^class CPhraseFrame : public CFormView$/;"	c
+CTestDlgEx	.\TestDlgEx.cpp	/^CTestDlgEx::CTestDlgEx(CWnd* pParent \/*=NULL*\/)$/;"	f	class:CTestDlgEx
+CTestDlgEx	.\TestDlgEx.h	/^class CTestDlgEx : public CDialogEx$/;"	c
+CV_On_Mouse	.\PhraseFrame.cpp	/^void CPhraseFrame::CV_On_Mouse(int nevent,int x,int y,int flags,void *ustc) $/;"	f	class:CPhraseFrame
+ChangeSpeedProcess	.\PhraseFrame.cpp	/^DWORD WINAPI ChangeSpeedProcess(LPVOID fDegree)$/;"	f
+ChildCount	.\clipper.cpp	/^int PolyNode::ChildCount() const$/;"	f	class:ClipperLib::PolyNode
+Childs	.\BinaryTree.h	/^	TREENODE *Parent, *Childs[2];$/;"	m	class:CBinaryTreeNode
+Childs	.\clipper.hpp	/^    PolyNodes Childs;$/;"	m	class:ClipperLib::PolyNode
+CleanPolygon	.\clipper.cpp	/^void CleanPolygon(const Polygon& in_poly, Polygon& out_poly, double distance)$/;"	f	namespace:ClipperLib
+CleanPolygons	.\clipper.cpp	/^void CleanPolygons(const Polygons& in_polys, Polygons& out_polys, double distance)$/;"	f	namespace:ClipperLib
+Clear	.\clipper.cpp	/^void Clipper::Clear()$/;"	f	class:ClipperLib::Clipper
+Clear	.\clipper.cpp	/^void ClipperBase::Clear()$/;"	f	class:ClipperLib::ClipperBase
+Clear	.\clipper.cpp	/^void PolyTree::Clear()$/;"	f	class:ClipperLib::PolyTree
+ClearDMPosition	.\ControlManager.cpp	/^void ClearDMPosition(void)$/;"	f
+ClearHorzJoins	.\clipper.cpp	/^void Clipper::ClearHorzJoins()$/;"	f	class:ClipperLib::Clipper
+ClearJoins	.\clipper.cpp	/^void Clipper::ClearJoins()$/;"	f	class:ClipperLib::Clipper
+ClipType	.\clipper.hpp	/^enum ClipType { ctIntersection, ctUnion, ctDifference, ctXor };$/;"	g	namespace:ClipperLib
+Clipper	.\clipper.cpp	/^Clipper::Clipper() : ClipperBase() \/\/constructor$/;"	f	class:ClipperLib::Clipper
+Clipper	.\clipper.hpp	/^class Clipper : public virtual ClipperBase$/;"	c	namespace:ClipperLib
+ClipperBase	.\clipper.cpp	/^ClipperBase::ClipperBase() \/\/constructor$/;"	f	class:ClipperLib::ClipperBase
+ClipperBase	.\clipper.hpp	/^class ClipperBase$/;"	c	namespace:ClipperLib
+ClipperLib	.\clipper.cpp	/^namespace ClipperLib {$/;"	n	file:
+ClipperLib	.\clipper.hpp	/^namespace ClipperLib {$/;"	n
+ClosestPointOnLine	.\clipper.cpp	/^DoublePoint ClosestPointOnLine(const IntPoint& pt, const IntPoint& linePt1, const IntPoint& linePt2)$/;"	f	namespace:ClipperLib
+Contour	.\clipper.hpp	/^    Polygon Contour;$/;"	m	class:ClipperLib::PolyNode
+CopyAELToSEL	.\clipper.cpp	/^void Clipper::CopyAELToSEL()$/;"	f	class:ClipperLib::Clipper
+Count	.\BinaryTree.h	/^	int Count, Serial;$/;"	m	class:CBinaryTree
+Count	.\BinaryTree.h	/^	int Count;$/;"	m	class:CBinaryTreeNode
+CreateOutRec	.\clipper.cpp	/^OutRec* Clipper::CreateOutRec()$/;"	f	class:ClipperLib::Clipper
+CutProcess	.\ControlManager.cpp	/^DWORD WINAPI CutProcess(LPVOID lpParamter)$/;"	f
+D	.\ControlManager.h	/^	D=0,$/;"	e	enum:AxisFlg
+Data	.\BinaryTree.h	/^	DATA Data;$/;"	m	class:CBinaryTreeNode
+Delete	.\BinaryTree.h	/^	void Delete(TREENODE* node)$/;"	f	class:CBinaryTree
+DeleteFromAEL	.\clipper.cpp	/^void Clipper::DeleteFromAEL(TEdge *e)$/;"	f	class:ClipperLib::Clipper
+DeleteFromSEL	.\clipper.cpp	/^void Clipper::DeleteFromSEL(TEdge *e)$/;"	f	class:ClipperLib::Clipper
+DestroyWindow	.\PhraseFrame.cpp	/^BOOL CPhraseFrame::DestroyWindow()$/;"	f	class:CPhraseFrame
+Direction	.\clipper.cpp	/^enum Direction { dRightToLeft, dLeftToRight };$/;"	g	namespace:ClipperLib	file:
+DisposeAllPolyPts	.\clipper.cpp	/^void Clipper::DisposeAllPolyPts(){$/;"	f	class:ClipperLib::Clipper
+DisposeIntersectNodes	.\clipper.cpp	/^void Clipper::DisposeIntersectNodes()$/;"	f	class:ClipperLib::Clipper
+DisposeLocalMinimaList	.\clipper.cpp	/^void ClipperBase::DisposeLocalMinimaList()$/;"	f	class:ClipperLib::ClipperBase
+DisposeOutPts	.\clipper.cpp	/^void DisposeOutPts(OutPt*& pp)$/;"	f	namespace:ClipperLib
+DisposeOutRec	.\clipper.cpp	/^void Clipper::DisposeOutRec(PolyOutList::size_type index)$/;"	f	class:ClipperLib::Clipper
+DisposeScanbeamList	.\clipper.cpp	/^void Clipper::DisposeScanbeamList()$/;"	f	class:ClipperLib::Clipper
+DistanceSqrd	.\clipper.cpp	/^inline double DistanceSqrd(const IntPoint& pt1, const IntPoint& pt2)$/;"	f	namespace:ClipperLib
+DoDataExchange	.\CarpetControl.cpp	/^void CAboutDlg::DoDataExchange(CDataExchange* pDX)$/;"	f	class:CAboutDlg
+DoDataExchange	.\PhraseFrame.cpp	/^void CPhraseFrame::DoDataExchange(CDataExchange* pDX)$/;"	f	class:CPhraseFrame
+DoDataExchange	.\TestDlgEx.cpp	/^void CTestDlgEx::DoDataExchange(CDataExchange* pDX)$/;"	f	class:CTestDlgEx
+DoMaxima	.\clipper.cpp	/^void Clipper::DoMaxima(TEdge *e, long64 topY)$/;"	f	class:ClipperLib::Clipper
+DoMiter	.\clipper.cpp	/^void DoMiter()$/;"	f	class:ClipperLib::OffsetBuilder	file:
+DoRound	.\clipper.cpp	/^void DoRound(double limit)$/;"	f	class:ClipperLib::OffsetBuilder	file:
+DoSimplePolygons	.\clipper.cpp	/^void Clipper::DoSimplePolygons()$/;"	f	class:ClipperLib::Clipper
+DoSquare	.\clipper.cpp	/^void DoSquare()$/;"	f	class:ClipperLib::OffsetBuilder	file:
+DoublePoint	.\clipper.cpp	/^  DoublePoint(double x = 0, double y = 0) : X(x), Y(y) {}$/;"	f	struct:ClipperLib::DoublePoint
+DoublePoint	.\clipper.cpp	/^struct DoublePoint$/;"	s	namespace:ClipperLib	file:
+DrawM2Path	.\PhraseManager.cpp	/^void DrawM2Path()$/;"	f
+Dump	.\CarpetControlDoc.cpp	/^void CCarpetControlDoc::Dump(CDumpContext& dc) const$/;"	f	class:CCarpetControlDoc
+Dump	.\CarpetControlView.cpp	/^void CCarpetControlView::Dump(CDumpContext& dc) const$/;"	f	class:CCarpetControlView
+Dump	.\ChildFrm.cpp	/^void CChildFrame::Dump(CDumpContext& dc) const$/;"	f	class:CChildFrame
+Dump	.\MainFrm.cpp	/^void CMainFrame::Dump(CDumpContext& dc) const$/;"	f	class:CMainFrame
+Dump	.\PhraseFrame.cpp	/^void CPhraseFrame::Dump(CDumpContext& dc) const$/;"	f	class:CPhraseFrame
+E2InsertsBeforeE1	.\clipper.cpp	/^inline bool E2InsertsBeforeE1(TEdge &e1, TEdge &e2)$/;"	f	namespace:ClipperLib
+EdgeList	.\clipper.hpp	/^typedef std::vector < TEdge* > EdgeList;$/;"	t	namespace:ClipperLib
+EdgeSide	.\clipper.hpp	/^enum EdgeSide { esLeft = 1, esRight = 2};$/;"	g	namespace:ClipperLib
+EdgesAdjacent	.\clipper.cpp	/^inline bool EdgesAdjacent(const IntersectNode &inode)$/;"	f	namespace:ClipperLib
+EndType	.\clipper.hpp	/^enum EndType { etClosed, etButt, etSquare, etRound};$/;"	g	namespace:ClipperLib
+Execute	.\clipper.cpp	/^bool Clipper::Execute(ClipType clipType, PolyTree& polytree,$/;"	f	class:ClipperLib::Clipper
+Execute	.\clipper.cpp	/^bool Clipper::Execute(ClipType clipType, Polygons &solution,$/;"	f	class:ClipperLib::Clipper
+ExecuteInternal	.\clipper.cpp	/^bool Clipper::ExecuteInternal()$/;"	f	class:ClipperLib::Clipper
+ExitInstance	.\CarpetControl.cpp	/^int CCarpetControlApp::ExitInstance()$/;"	f	class:CCarpetControlApp
+FindSegment	.\clipper.cpp	/^bool FindSegment(OutPt* &pp, bool UseFullInt64Range, $/;"	f	namespace:ClipperLib
+FirstIsBottomPt	.\clipper.cpp	/^bool FirstIsBottomPt(const OutPt* btmPt1, const OutPt* btmPt2)$/;"	f	namespace:ClipperLib
+FirstLeft	.\clipper.hpp	/^  OutRec *FirstLeft;  \/\/see comments in clipper.pas$/;"	m	struct:ClipperLib::OutRec
+FixHoleLinkage	.\clipper.cpp	/^void Clipper::FixHoleLinkage(OutRec &outrec)$/;"	f	class:ClipperLib::Clipper
+FixupFirstLefts1	.\clipper.cpp	/^void Clipper::FixupFirstLefts1(OutRec* OldOutRec, OutRec* NewOutRec)$/;"	f	class:ClipperLib::Clipper
+FixupFirstLefts2	.\clipper.cpp	/^void Clipper::FixupFirstLefts2(OutRec* OldOutRec, OutRec* NewOutRec)$/;"	f	class:ClipperLib::Clipper
+FixupIntersectionOrder	.\clipper.cpp	/^bool Clipper::FixupIntersectionOrder()$/;"	f	class:ClipperLib::Clipper
+FixupJoinRecs	.\clipper.cpp	/^void Clipper::FixupJoinRecs(JoinRec *j, OutPt *pt, unsigned startIdx)$/;"	f	class:ClipperLib::Clipper
+FixupOutPolygon	.\clipper.cpp	/^void Clipper::FixupOutPolygon(OutRec &outrec)$/;"	f	class:ClipperLib::Clipper
+ForceSimple	.\clipper.hpp	/^  bool ForceSimple() {return m_ForceSimple;};$/;"	f	class:ClipperLib::Clipper
+ForceSimple	.\clipper.hpp	/^  void ForceSimple(bool value) {m_ForceSimple = value;};$/;"	f	class:ClipperLib::Clipper
+FullRangeNeeded	.\clipper.cpp	/^bool FullRangeNeeded(const Polygon &pts)$/;"	f	namespace:ClipperLib
+GetBottomPt	.\clipper.cpp	/^OutPt* GetBottomPt(OutPt *pp)$/;"	f	namespace:ClipperLib
+GetBounds	.\clipper.cpp	/^IntRect ClipperBase::GetBounds()$/;"	f	class:ClipperLib::ClipperBase
+GetCount	.\BinaryTree.h	/^	inline int GetCount() const	{	return Count;	}$/;"	f	class:CBinaryTree
+GetDiffdegree	.\ControlManager.cpp	/^double GetDiffdegree( cv::Point2f pOt2, cv::Point2f pOt1)$/;"	f
+GetDocument	.\CarpetControlView.cpp	/^CCarpetControlDoc* CCarpetControlView::GetDocument() const \/\/ 非调试版本是内联的$/;"	f	class:CCarpetControlView
+GetDocument	.\CarpetControlView.h	/^inline CCarpetControlDoc* CCarpetControlView::GetDocument() const$/;"	f	class:CCarpetControlView
+GetDx	.\clipper.cpp	/^double GetDx(const IntPoint pt1, const IntPoint pt2)$/;"	f	namespace:ClipperLib
+GetFirst	.\clipper.cpp	/^PolyNode* PolyTree::GetFirst() const$/;"	f	class:ClipperLib::PolyTree
+GetKey	.\inifile.cpp	/^CIniKeyA* CIniSectionA::GetKey( std::string sKeyName ) const$/;"	f	class:CIniSectionA
+GetKey	.\inifile.cpp	/^CIniKeyW* CIniSectionW::GetKey( std::wstring sKeyName ) const$/;"	f	class:CIniSectionW
+GetKeyName	.\inifile.cpp	/^std::string CIniKeyA::GetKeyName() const$/;"	f	class:CIniKeyA
+GetKeyName	.\inifile.cpp	/^std::wstring CIniKeyW::GetKeyName() const$/;"	f	class:CIniKeyW
+GetKeyValue	.\inifile.cpp	/^std::string CIniFileA::GetKeyValue( const std::string& sSection, const std::string& sKey ) const$/;"	f	class:CIniFileA
+GetKeyValue	.\inifile.cpp	/^std::string CIniSectionA::GetKeyValue( std::string sKey ) const$/;"	f	class:CIniSectionA
+GetKeyValue	.\inifile.cpp	/^std::wstring CIniFileW::GetKeyValue( const std::wstring& sSection, const std::wstring& sKey ) const$/;"	f	class:CIniFileW
+GetKeyValue	.\inifile.cpp	/^std::wstring CIniSectionW::GetKeyValue( std::wstring sKey ) const$/;"	f	class:CIniSectionW
+GetKeys	.\inifile.cpp	/^const KeyIndexA& CIniSectionA::GetKeys() const$/;"	f	class:CIniSectionA
+GetKeys	.\inifile.cpp	/^const KeyIndexW& CIniSectionW::GetKeys() const$/;"	f	class:CIniSectionW
+GetLowermostRec	.\clipper.cpp	/^OutRec* GetLowermostRec(OutRec *outRec1, OutRec *outRec2)$/;"	f	namespace:ClipperLib
+GetMaximaPair	.\clipper.cpp	/^TEdge *GetMaximaPair(TEdge *e)$/;"	f	namespace:ClipperLib
+GetNext	.\clipper.cpp	/^PolyNode* PolyNode::GetNext() const$/;"	f	class:ClipperLib::PolyNode
+GetNextInAEL	.\clipper.cpp	/^TEdge* GetNextInAEL(TEdge *e, Direction dir)$/;"	f	namespace:ClipperLib
+GetNextSiblingUp	.\clipper.cpp	/^PolyNode* PolyNode::GetNextSiblingUp() const$/;"	f	class:ClipperLib::PolyNode
+GetOutRec	.\clipper.cpp	/^OutRec* Clipper::GetOutRec(int idx)$/;"	f	class:ClipperLib::Clipper
+GetOverlapSegment	.\clipper.cpp	/^bool GetOverlapSegment(IntPoint pt1a, IntPoint pt1b, IntPoint pt2a,$/;"	f	namespace:ClipperLib
+GetSection	.\inifile.cpp	/^CIniSectionA* CIniFileA::GetSection( std::string sSection ) const$/;"	f	class:CIniFileA
+GetSection	.\inifile.cpp	/^CIniSectionW* CIniFileW::GetSection( std::wstring sSection ) const$/;"	f	class:CIniFileW
+GetSectionName	.\inifile.cpp	/^std::string CIniSectionA::GetSectionName() const$/;"	f	class:CIniSectionA
+GetSectionName	.\inifile.cpp	/^std::wstring CIniSectionW::GetSectionName() const$/;"	f	class:CIniSectionW
+GetSections	.\inifile.cpp	/^const SecIndexA& CIniFileA::GetSections() const$/;"	f	class:CIniFileA
+GetSections	.\inifile.cpp	/^const SecIndexW& CIniFileW::GetSections() const$/;"	f	class:CIniFileW
+GetUnitNormal	.\clipper.cpp	/^DoublePoint GetUnitNormal(const IntPoint &pt1, const IntPoint &pt2)$/;"	f	namespace:ClipperLib
+GetValue	.\inifile.cpp	/^std::string CIniKeyA::GetValue() const$/;"	f	class:CIniKeyA
+GetValue	.\inifile.cpp	/^std::wstring CIniKeyW::GetValue() const$/;"	f	class:CIniKeyW
+HORIZONTAL	.\clipper.cpp	57;"	d	file:
+HorzJoinList	.\clipper.hpp	/^typedef std::vector < HorzJoinRec* > HorzJoinList;$/;"	t	namespace:ClipperLib
+HorzJoinRec	.\clipper.hpp	/^struct HorzJoinRec {$/;"	s	namespace:ClipperLib
+ID	.\BinaryTree.h	/^	int ID;$/;"	m	class:CBinaryTreeNode
+IDB_BITMAP1	.\Resource.h	35;"	d
+IDB_BITMAP2	.\Resource.h	36;"	d
+IDC_BUTTON1	.\Resource.h	46;"	d
+IDC_BUTTON2	.\Resource.h	97;"	d
+IDC_BUTTON3	.\Resource.h	100;"	d
+IDC_BUTTON4	.\Resource.h	87;"	d
+IDC_BUTTON5	.\Resource.h	103;"	d
+IDC_BUTTON6	.\Resource.h	106;"	d
+IDC_BUTTON7	.\Resource.h	109;"	d
+IDC_BUTTON_CHANGESPEED_V	.\Resource.h	111;"	d
+IDC_BUTTON_CLEAR_RECODE_POS	.\Resource.h	89;"	d
+IDC_BUTTON_IMLOAD	.\Resource.h	38;"	d
+IDC_BUTTON_LOADDATA	.\Resource.h	49;"	d
+IDC_BUTTON_RELOADPOS	.\Resource.h	99;"	d
+IDC_BUTTON_RUN_V	.\Resource.h	108;"	d
+IDC_BUTTON_SHUTDOWN	.\Resource.h	45;"	d
+IDC_BUTTON_SRVOFF	.\Resource.h	86;"	d
+IDC_BUTTON_SRVON	.\Resource.h	75;"	d
+IDC_BUTTON_STANDART_RUN_ANGLE	.\Resource.h	104;"	d
+IDC_BUTTON_STANDART_RUN_GUN	.\Resource.h	110;"	d
+IDC_BUTTON_STANDART_RUN_THREAD	.\Resource.h	107;"	d
+IDC_BUTTON_STANDART_RUN_X	.\Resource.h	48;"	d
+IDC_BUTTON_STANDART_RUN_Y	.\Resource.h	98;"	d
+IDC_BUTTON_STANDART_RUN_Z	.\Resource.h	101;"	d
+IDC_BUTTON_STOP	.\Resource.h	44;"	d
+IDC_BUTTON_TEST	.\Resource.h	47;"	d
+IDC_BUTTON_TESTDLG_ON	.\Resource.h	96;"	d
+IDC_BUTTON_TEST_RUn	.\Resource.h	70;"	d
+IDC_BUTTON_TEST_STOP	.\Resource.h	88;"	d
+IDC_CHECK_TEST_ANGLE	.\Resource.h	80;"	d
+IDC_CHECK_TEST_GUN	.\Resource.h	78;"	d
+IDC_CHECK_TEST_THREAD	.\Resource.h	79;"	d
+IDC_CHECK_TEST_X	.\Resource.h	71;"	d
+IDC_CHECK_TEST_Y	.\Resource.h	76;"	d
+IDC_CHECK_TEST_Z	.\Resource.h	77;"	d
+IDC_EDIT7	.\Resource.h	73;"	d
+IDC_EDIT_ACCSESORY_TIME	.\Resource.h	74;"	d
+IDC_EDIT_MOVITE_ANGLE	.\Resource.h	69;"	d
+IDC_EDIT_MOVITE_GUN	.\Resource.h	67;"	d
+IDC_EDIT_MOVITE_THREAD	.\Resource.h	68;"	d
+IDC_EDIT_MOVITE_X	.\Resource.h	64;"	d
+IDC_EDIT_MOVITE_Y	.\Resource.h	65;"	d
+IDC_EDIT_MOVITE_Z	.\Resource.h	66;"	d
+IDC_EDIT_MT_SPEED_ANGLE	.\Resource.h	85;"	d
+IDC_EDIT_MT_SPEED_GUN	.\Resource.h	83;"	d
+IDC_EDIT_MT_SPEED_THREAD	.\Resource.h	84;"	d
+IDC_EDIT_MT_SPEED_X	.\Resource.h	72;"	d
+IDC_EDIT_MT_SPEED_Y	.\Resource.h	81;"	d
+IDC_EDIT_MT_SPEED_Z	.\Resource.h	82;"	d
+IDC_EDIT_RESOLUTIONX	.\Resource.h	40;"	d
+IDC_EDIT_RESOLUTIONY	.\Resource.h	41;"	d
+IDC_EDIT_STANDART_ANGLE	.\Resource.h	93;"	d
+IDC_EDIT_STANDART_GUN	.\Resource.h	95;"	d
+IDC_EDIT_STANDART_THREAD	.\Resource.h	94;"	d
+IDC_EDIT_STANDART_X	.\Resource.h	90;"	d
+IDC_EDIT_STANDART_Y	.\Resource.h	91;"	d
+IDC_EDIT_STANDART_Z	.\Resource.h	92;"	d
+IDC_PROGRESS_PHRASE	.\Resource.h	51;"	d
+IDC_RUNCALC	.\Resource.h	39;"	d
+IDC_STATIC_ALAM_ANGLE	.\Resource.h	63;"	d
+IDC_STATIC_ALAM_GUN	.\Resource.h	61;"	d
+IDC_STATIC_ALAM_THREAD	.\Resource.h	62;"	d
+IDC_STATIC_ALAM_X	.\Resource.h	58;"	d
+IDC_STATIC_ALAM_Y	.\Resource.h	59;"	d
+IDC_STATIC_ALAM_Z	.\Resource.h	60;"	d
+IDC_STATIC_PATHIMAGE	.\Resource.h	50;"	d
+IDC_STATIC_POSITIONV	.\Resource.h	102;"	d
+IDC_STATIC_POSITIONX	.\Resource.h	42;"	d
+IDC_STATIC_POSITIONY	.\Resource.h	43;"	d
+IDC_STATIC_SON_ANGLE	.\Resource.h	57;"	d
+IDC_STATIC_SON_GUN	.\Resource.h	55;"	d
+IDC_STATIC_SON_THREAD	.\Resource.h	56;"	d
+IDC_STATIC_SON_X	.\Resource.h	52;"	d
+IDC_STATIC_SON_Y	.\Resource.h	53;"	d
+IDC_STATIC_SON_Z	.\Resource.h	54;"	d
+IDC_STATIC_V_SPEED	.\Resource.h	105;"	d
+IDD	.\CarpetControl.cpp	/^	enum { IDD = IDD_ABOUTBOX };$/;"	e	enum:CAboutDlg::__anon1	file:
+IDD	.\PhraseFrame.h	/^	enum { IDD = IDD_FORMVIEW_PHRASE };$/;"	e	enum:CPhraseFrame::__anon2
+IDD	.\TestDlgEx.h	/^	enum { IDD = IDD_DIALOG_TEST };$/;"	e	enum:CTestDlgEx::__anon3
+IDD_ABOUTBOX	.\Resource.h	5;"	d
+IDD_DIALOG_TEST	.\Resource.h	37;"	d
+IDD_FORMVIEW_PHRASE	.\Resource.h	7;"	d
+IDP_OLE_INIT_FAILED	.\Resource.h	6;"	d
+IDR_CarpetControlTYPE	.\Resource.h	19;"	d
+IDR_MAINFRAME	.\Resource.h	17;"	d
+IDR_MAINFRAME_256	.\Resource.h	18;"	d
+IDR_POPUP_EDIT	.\Resource.h	9;"	d
+IDR_THEME_MENU	.\Resource.h	21;"	d
+IDS_EDIT_MENU	.\Resource.h	34;"	d
+IDS_PHRASEFRAMESTRING	.\Resource.h	8;"	d
+IDS_STATUS_PANE1	.\Resource.h	12;"	d
+IDS_STATUS_PANE2	.\Resource.h	13;"	d
+IDS_TOOLBAR_CUSTOMIZE	.\Resource.h	15;"	d
+IDS_TOOLBAR_STANDARD	.\Resource.h	14;"	d
+ID_32771	.\Resource.h	112;"	d
+ID_GETSTAT_TIMER	.\PhraseFrame.h	10;"	d
+ID_MAPING_TIMER	.\PhraseFrame.h	9;"	d
+ID_PHRASE_FRAME_MENU	.\Resource.h	113;"	d
+ID_SET_STYLE	.\Resource.h	22;"	d
+ID_STATUSBAR_PANE1	.\Resource.h	10;"	d
+ID_STATUSBAR_PANE2	.\Resource.h	11;"	d
+ID_VIEW_APPLOOK_OFF_2003	.\Resource.h	26;"	d
+ID_VIEW_APPLOOK_OFF_2007_AQUA	.\Resource.h	32;"	d
+ID_VIEW_APPLOOK_OFF_2007_BLACK	.\Resource.h	30;"	d
+ID_VIEW_APPLOOK_OFF_2007_BLUE	.\Resource.h	29;"	d
+ID_VIEW_APPLOOK_OFF_2007_SILVER	.\Resource.h	31;"	d
+ID_VIEW_APPLOOK_OFF_XP	.\Resource.h	24;"	d
+ID_VIEW_APPLOOK_VS_2005	.\Resource.h	27;"	d
+ID_VIEW_APPLOOK_VS_2008	.\Resource.h	28;"	d
+ID_VIEW_APPLOOK_WINDOWS_7	.\Resource.h	33;"	d
+ID_VIEW_APPLOOK_WIN_2000	.\Resource.h	23;"	d
+ID_VIEW_APPLOOK_WIN_XP	.\Resource.h	25;"	d
+ID_VIEW_CUSTOMIZE	.\Resource.h	16;"	d
+ID_WINDOW_MANAGER	.\Resource.h	20;"	d
+INFILL_H	.\infill.h	3;"	d
+INI_EMPTY	.\inifile.h	515;"	d
+INI_EMPTY	.\inifile.h	528;"	d
+INI_EMPTY_ANSI	.\inifile.h	68;"	d
+INI_EMPTY_UNICODE	.\inifile.h	292;"	d
+INI_TOKEN_A	.\inifile.h	513;"	d
+INI_TOKEN_A	.\inifile.h	526;"	d
+INI_TOKEN_A_ANSI	.\inifile.h	66;"	d
+INI_TOKEN_A_UNICODE	.\inifile.h	290;"	d
+INI_TOKEN_B	.\inifile.h	514;"	d
+INI_TOKEN_B	.\inifile.h	527;"	d
+INI_TOKEN_B_ANSI	.\inifile.h	67;"	d
+INI_TOKEN_B_UNICODE	.\inifile.h	291;"	d
+INLINE	.\intpoint.h	10;"	d
+INT_POINT_H	.\intpoint.h	3;"	d
+Index	.\clipper.hpp	/^    unsigned Index; \/\/node index in Parent.Childs$/;"	m	class:ClipperLib::PolyNode
+InitEdge	.\clipper.cpp	/^void InitEdge(TEdge *e, TEdge *eNext,$/;"	f	namespace:ClipperLib
+InitInstance	.\CarpetControl.cpp	/^BOOL CCarpetControlApp::InitInstance()$/;"	f	class:CCarpetControlApp
+InitMotorDirection	.\ControlManager.cpp	/^void InitMotorDirection()$/;"	f
+InitMotorGearRatio	.\ControlManager.cpp	/^void InitMotorGearRatio()$/;"	f
+InitializeSearchContent	.\CarpetControlDoc.cpp	/^void CCarpetControlDoc::InitializeSearchContent()$/;"	f	class:CCarpetControlDoc
+Insert	.\BinaryTree.h	/^	inline TREENODE* Insert(ARG_KEY key, int nID = -1, TREENODE* node = NULL)$/;"	f	class:CBinaryTree
+InsertEdgeIntoAEL	.\clipper.cpp	/^void Clipper::InsertEdgeIntoAEL(TEdge *edge)$/;"	f	class:ClipperLib::Clipper
+InsertIntersectNode	.\clipper.cpp	/^void Clipper::InsertIntersectNode(TEdge *e1, TEdge *e2, const IntPoint &pt)$/;"	f	class:ClipperLib::Clipper
+InsertLeft	.\BinaryTree.h	/^	inline TREENODE* InsertLeft(ARG_KEY key, TREENODE* node)$/;"	f	class:CBinaryTree
+InsertLocalMinima	.\clipper.cpp	/^void ClipperBase::InsertLocalMinima(LocalMinima *newLm)$/;"	f	class:ClipperLib::ClipperBase
+InsertLocalMinimaIntoAEL	.\clipper.cpp	/^void Clipper::InsertLocalMinimaIntoAEL(const long64 botY)$/;"	f	class:ClipperLib::Clipper
+InsertPolyPtBetween	.\clipper.cpp	/^OutPt* InsertPolyPtBetween(OutPt* p1, OutPt* p2, const IntPoint pt)$/;"	f	namespace:ClipperLib
+InsertRight	.\BinaryTree.h	/^	inline TREENODE* InsertRight(ARG_KEY key, TREENODE* node)$/;"	f	class:CBinaryTree
+InsertScanbeam	.\clipper.cpp	/^void Clipper::InsertScanbeam(const long64 Y)$/;"	f	class:ClipperLib::Clipper
+Int128	.\clipper.cpp	/^    Int128(const Int128 &val): lo(val.lo), hi(val.hi){}$/;"	f	class:ClipperLib::Int128
+Int128	.\clipper.cpp	/^    Int128(const long64& _hi, const ulong64& _lo): lo(_lo), hi(_hi){}$/;"	f	class:ClipperLib::Int128
+Int128	.\clipper.cpp	/^    Int128(long64 _lo = 0)$/;"	f	class:ClipperLib::Int128
+Int128	.\clipper.cpp	/^class Int128$/;"	c	namespace:ClipperLib	file:
+Int128Mul	.\clipper.cpp	/^Int128 Int128Mul (long64 lhs, long64 rhs)$/;"	f	namespace:ClipperLib
+IntPoint	.\clipper.hpp	/^  IntPoint(long64 x = 0, long64 y = 0): X(x), Y(y) {};$/;"	f	struct:ClipperLib::IntPoint
+IntPoint	.\clipper.hpp	/^struct IntPoint {$/;"	s	namespace:ClipperLib
+IntPoint	.\intpoint.h	/^class IntPoint {$/;"	c
+IntRect	.\clipper.hpp	/^struct IntRect { long64 left; long64 top; long64 right; long64 bottom; };$/;"	s	namespace:ClipperLib
+IntersectEdges	.\clipper.cpp	/^void Clipper::IntersectEdges(TEdge *e1, TEdge *e2,$/;"	f	class:ClipperLib::Clipper
+IntersectNode	.\clipper.hpp	/^struct IntersectNode {$/;"	s	namespace:ClipperLib
+IntersectPoint	.\clipper.cpp	/^bool IntersectPoint(TEdge &edge1, TEdge &edge2,$/;"	f	namespace:ClipperLib
+IntersectProtects	.\clipper.hpp	/^enum IntersectProtects { ipNone = 0, ipLeft = 1, ipRight = 2, ipBoth = 3 };$/;"	g	namespace:ClipperLib
+IsContributing	.\clipper.cpp	/^bool Clipper::IsContributing(const TEdge& edge) const$/;"	f	class:ClipperLib::Clipper
+IsEmpty	.\BinaryTree.h	/^	inline bool IsEmpty() const	{	return Count == 0;	}$/;"	f	class:CBinaryTree
+IsEvenOddAltFillType	.\clipper.cpp	/^bool Clipper::IsEvenOddAltFillType(const TEdge& edge) const$/;"	f	class:ClipperLib::Clipper
+IsEvenOddFillType	.\clipper.cpp	/^bool Clipper::IsEvenOddFillType(const TEdge& edge) const$/;"	f	class:ClipperLib::Clipper
+IsHole	.\clipper.cpp	/^bool PolyNode::IsHole() const$/;"	f	class:ClipperLib::PolyNode
+IsIntermediate	.\clipper.cpp	/^inline bool IsIntermediate(TEdge *e, const long64 Y)$/;"	f	namespace:ClipperLib
+IsMaxima	.\clipper.cpp	/^inline bool IsMaxima(TEdge *e, const long64 Y)$/;"	f	namespace:ClipperLib
+IsMinima	.\clipper.cpp	/^inline bool IsMinima(TEdge *e)$/;"	f	namespace:ClipperLib
+IsTopHorz	.\clipper.cpp	/^bool Clipper::IsTopHorz(const long64 XPos)$/;"	f	class:ClipperLib::Clipper
+JoinCommonEdges	.\clipper.cpp	/^void Clipper::JoinCommonEdges()$/;"	f	class:ClipperLib::Clipper
+JoinList	.\clipper.hpp	/^typedef std::vector < JoinRec* > JoinList;$/;"	t	namespace:ClipperLib
+JoinPoints	.\clipper.cpp	/^bool Clipper::JoinPoints(const JoinRec *j, OutPt *&p1, OutPt *&p2)$/;"	f	class:ClipperLib::Clipper
+JoinRec	.\clipper.hpp	/^struct JoinRec {$/;"	s	namespace:ClipperLib
+JoinType	.\clipper.hpp	/^enum JoinType { jtSquare, jtRound, jtMiter };$/;"	g	namespace:ClipperLib
+JudgeAngleChange	.\PhraseManager.cpp	/^BOOL JudgeAngleChange(vector<cv::Point2f> &vctPoint, ClipperLib::Polygon& poly, int count)$/;"	f
+Key	.\BinaryTree.h	/^	KEY Key;$/;"	m	class:CBinaryTreeNode
+KeyIndex	.\inifile.h	/^typedef KeyIndexA KeyIndex;$/;"	t
+KeyIndex	.\inifile.h	/^typedef KeyIndexW KeyIndex;$/;"	t
+KeyIndexA	.\inifile.h	/^        typedef std::set<CIniKeyA*,ci_less_a> KeyIndexA;$/;"	t	class:CIniFileA::CIniSectionA
+KeyIndexA	.\inifile.h	/^typedef CIniSectionA::KeyIndexA KeyIndexA;$/;"	t
+KeyIndexW	.\inifile.h	/^        typedef std::set<CIniKeyW*,ci_less_w> KeyIndexW;$/;"	t	class:CIniFileW::CIniSectionW
+KeyIndexW	.\inifile.h	/^typedef CIniSectionW::KeyIndexW KeyIndexW;$/;"	t
+LEFT	.\BinaryTree.h	13;"	d
+LF	.\inifile.cpp	/^const char* const CIniFileA::LF = _CRLFA;$/;"	m	class:CIniFileA	file:
+LF	.\inifile.cpp	/^const wchar_t* const CIniFileW::LF = _CRLFW;$/;"	m	class:CIniFileW	file:
+LF	.\inifile.h	/^    static const char* const LF;$/;"	m	class:CIniFileA
+LF	.\inifile.h	/^    static const wchar_t* const LF;$/;"	m	class:CIniFileW
+LTrim	.\inifile.cpp	/^void LTrim(std::string &str, const std::string& chars = " \\t" )$/;"	f
+LTrim	.\inifile.cpp	/^void LTrim(std::wstring &str, const std::wstring& chars = L" \\t" )$/;"	f
+Load	.\inifile.cpp	/^bool CIniFileA::Load(const std::string& fileName , bool bMerge )$/;"	f	class:CIniFileA
+Load	.\inifile.cpp	/^bool CIniFileW::Load(const std::wstring& fileName , bool bMerge )$/;"	f	class:CIniFileW
+Load	.\inifile.cpp	/^void CIniFileA::Load( std::istream& input , bool bMerge )$/;"	f	class:CIniFileA
+Load	.\inifile.cpp	/^void CIniFileW::Load( std::wistream& input , bool bMerge )$/;"	f	class:CIniFileW
+LoadConfig	.\PhraseFrame.cpp	/^void CPhraseFrame::LoadConfig()$/;"	f	class:CPhraseFrame
+LoadCustomState	.\CarpetControl.cpp	/^void CCarpetControlApp::LoadCustomState()$/;"	f	class:CCarpetControlApp
+LoadFrame	.\MainFrm.cpp	/^BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParentWnd, CCreateContext* pContext) $/;"	f	class:CMainFrame
+LocalMinima	.\clipper.hpp	/^struct LocalMinima {$/;"	s	namespace:ClipperLib
+MARK_DWE	.\PhraseManager.h	21;"	d
+MARK_M1	.\PhraseManager.h	20;"	d
+MARK_M2	.\PhraseManager.h	19;"	d
+Max	.\BinaryTree.h	/^	TREENODE* Max(TREENODE* node) const$/;"	f	class:CBinaryTree
+Min	.\BinaryTree.h	/^	TREENODE* Min(TREENODE* node) const$/;"	f	class:CBinaryTree
+Modified	.\BinaryTree.h	/^	bool Modified;$/;"	m	class:CBinaryTree
+MotionProcess	.\ControlManager.cpp	/^DWORD WINAPI MotionProcess(LPVOID par)$/;"	f
+NEAR_EQUAL	.\clipper.cpp	60;"	d	file:
+NEAR_ZERO	.\clipper.cpp	59;"	d	file:
+NewNode	.\BinaryTree.h	/^	virtual TREENODE* NewNode()$/;"	f	class:CBinaryTree
+Nil	.\BinaryTree.h	/^	TREENODE* Root, * Nil;$/;"	m	class:CBinaryTree
+NoRepeat	.\BinaryTree.h	/^	bool NoRepeat;$/;"	m	class:CBinaryTree
+OffSevOn	.\ControlManager.cpp	/^void OffSevOn()$/;"	f
+OffsetBuilder	.\clipper.cpp	/^OffsetBuilder(const Polygons& in_polys, Polygons& out_polys,$/;"	f	class:ClipperLib::OffsetBuilder
+OffsetBuilder	.\clipper.cpp	/^class OffsetBuilder$/;"	c	namespace:ClipperLib	file:
+OffsetPoint	.\clipper.cpp	/^void OffsetPoint(JoinType jointype, double limit)$/;"	f	class:ClipperLib::OffsetBuilder	file:
+OffsetPolyLines	.\clipper.cpp	/^void OffsetPolyLines(const Polygons &in_lines, Polygons &out_lines,$/;"	f	namespace:ClipperLib
+OffsetPolygons	.\clipper.cpp	/^void OffsetPolygons(const Polygons &in_polys, Polygons &out_polys,$/;"	f	namespace:ClipperLib
+OnAppAbout	.\CarpetControl.cpp	/^void CCarpetControlApp::OnAppAbout()$/;"	f	class:CCarpetControlApp
+OnBnClickedButtonChangespeedV	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonChangespeedV()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonClearRecodePos	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonClearRecodePos()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonImload	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonImload()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonLoaddata	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonLoaddata()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonReloadpos	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonReloadpos()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonRunV	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonRunV()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonShutdown	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonShutdown()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonSrvoff	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonSrvoff()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonSrvon	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonSrvon()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonStandartRun	.\TestDlgEx.cpp	/^void CTestDlgEx::OnBnClickedButtonStandartRun()$/;"	f	class:CTestDlgEx
+OnBnClickedButtonStandartRunAngle	.\TestDlgEx.cpp	/^void CTestDlgEx::OnBnClickedButtonStandartRunAngle()$/;"	f	class:CTestDlgEx
+OnBnClickedButtonStandartRunGun	.\TestDlgEx.cpp	/^void CTestDlgEx::OnBnClickedButtonStandartRunGun()$/;"	f	class:CTestDlgEx
+OnBnClickedButtonStandartRunThread	.\TestDlgEx.cpp	/^void CTestDlgEx::OnBnClickedButtonStandartRunThread()$/;"	f	class:CTestDlgEx
+OnBnClickedButtonStandartRunY	.\TestDlgEx.cpp	/^void CTestDlgEx::OnBnClickedButtonStandartRunY()$/;"	f	class:CTestDlgEx
+OnBnClickedButtonStandartRunZ	.\TestDlgEx.cpp	/^void CTestDlgEx::OnBnClickedButtonStandartRunZ()$/;"	f	class:CTestDlgEx
+OnBnClickedButtonStop	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonStop()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonTest	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonTest()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonTestRun	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonTestRun()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonTestStop	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonTestStop()$/;"	f	class:CPhraseFrame
+OnBnClickedButtonTestdlgOn	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedButtonTestdlgOn()$/;"	f	class:CPhraseFrame
+OnBnClickedCheckTestAngle	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedCheckTestAngle()$/;"	f	class:CPhraseFrame
+OnBnClickedCheckTestGun	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedCheckTestGun()$/;"	f	class:CPhraseFrame
+OnBnClickedCheckTestThread	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedCheckTestThread()$/;"	f	class:CPhraseFrame
+OnBnClickedCheckTestX	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedCheckTestX()$/;"	f	class:CPhraseFrame
+OnBnClickedCheckTestY	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedCheckTestY()$/;"	f	class:CPhraseFrame
+OnBnClickedCheckTestZ	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedCheckTestZ()$/;"	f	class:CPhraseFrame
+OnBnClickedRuncalc	.\PhraseFrame.cpp	/^void CPhraseFrame::OnBnClickedRuncalc()$/;"	f	class:CPhraseFrame
+OnContextMenu	.\CarpetControlView.cpp	/^void CCarpetControlView::OnContextMenu(CWnd* \/* pWnd *\/, CPoint point)$/;"	f	class:CCarpetControlView
+OnCreate	.\MainFrm.cpp	/^int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)$/;"	f	class:CMainFrame
+OnDraw	.\CarpetControlView.cpp	/^void CCarpetControlView::OnDraw(CDC* \/*pDC*\/)$/;"	f	class:CCarpetControlView
+OnDrawThumbnail	.\CarpetControlDoc.cpp	/^void CCarpetControlDoc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)$/;"	f	class:CCarpetControlDoc
+OnInitialUpdate	.\PhraseFrame.cpp	/^void CPhraseFrame::OnInitialUpdate()$/;"	f	class:CPhraseFrame
+OnNewDocument	.\CarpetControlDoc.cpp	/^BOOL CCarpetControlDoc::OnNewDocument()$/;"	f	class:CCarpetControlDoc
+OnPhraseFrameMenu	.\MainFrm.cpp	/^void CMainFrame::OnPhraseFrameMenu()$/;"	f	class:CMainFrame
+OnRButtonUp	.\CarpetControlView.cpp	/^void CCarpetControlView::OnRButtonUp(UINT \/* nFlags *\/, CPoint point)$/;"	f	class:CCarpetControlView
+OnReturnZero	.\ControlManager.cpp	/^void OnReturnZero()$/;"	f
+OnSevOn	.\ControlManager.cpp	/^void OnSevOn()$/;"	f
+OnTimer	.\PhraseFrame.cpp	/^void CPhraseFrame::OnTimer(UINT_PTR nIDEvent)$/;"	f	class:CPhraseFrame
+OnToolbarCreateNew	.\MainFrm.cpp	/^LRESULT CMainFrame::OnToolbarCreateNew(WPARAM wp,LPARAM lp)$/;"	f	class:CMainFrame
+OnViewCustomize	.\MainFrm.cpp	/^void CMainFrame::OnViewCustomize()$/;"	f	class:CMainFrame
+OnWindowManager	.\MainFrm.cpp	/^void CMainFrame::OnWindowManager()$/;"	f	class:CMainFrame
+Orientation	.\clipper.cpp	/^bool Orientation(const Polygon &poly)$/;"	f	namespace:ClipperLib
+OutPt	.\clipper.hpp	/^struct OutPt {$/;"	s	namespace:ClipperLib
+OutRec	.\clipper.hpp	/^struct OutRec {$/;"	s	namespace:ClipperLib
+PATHOPTIMIZER_H	.\pathOptimizer.h	3;"	d
+PCINI	.\inifile.h	/^typedef PCINIA PCINI;$/;"	t
+PCINI	.\inifile.h	/^typedef PCINIW PCINI;$/;"	t
+PCINIA	.\inifile.h	/^typedef CIniFileA* PCINIA;$/;"	t
+PCINIKEY	.\inifile.h	/^typedef PCINIKEYA PCINIKEY;$/;"	t
+PCINIKEY	.\inifile.h	/^typedef PCINIKEYW PCINIKEY;$/;"	t
+PCINIKEYA	.\inifile.h	/^typedef CIniKeyA* PCINIKEYA;$/;"	t
+PCINIKEYW	.\inifile.h	/^typedef CIniKeyW* PCINIKEYW;$/;"	t
+PCINISEC	.\inifile.h	/^typedef PCINISECA PCINISEC;$/;"	t
+PCINISEC	.\inifile.h	/^typedef PCINISECW PCINISEC;$/;"	t
+PCINISECA	.\inifile.h	/^typedef CIniSectionA* PCINISECA;$/;"	t
+PCINISECW	.\inifile.h	/^typedef CIniSectionW* PCINISECW;$/;"	t
+PCINIW	.\inifile.h	/^typedef CIniFileW* PCINIW;$/;"	t
+PHRASE_PROCESS_MSG	.\PhraseManager.h	16;"	d
+PI	.\ControlManager.h	3;"	d
+POLYGON_OPTIMIZER_H	.\polygonOptimizer.h	3;"	d
+Param1RightOfParam2	.\clipper.cpp	/^bool Param1RightOfParam2(OutRec* outRec1, OutRec* outRec2)$/;"	f	namespace:ClipperLib
+Parent	.\BinaryTree.h	/^	TREENODE *Parent, *Childs[2];$/;"	m	class:CBinaryTreeNode
+Parent	.\clipper.hpp	/^    PolyNode* Parent;$/;"	m	class:ClipperLib::PolyNode
+PathOptimizer	.\pathOptimizer.h	/^	PathOptimizer(ClipperLib::IntPoint startPoint)$/;"	f	class:PathOptimizer
+PathOptimizer	.\pathOptimizer.h	/^class PathOptimizer$/;"	c
+PhraseImage	.\PhraseManager.cpp	/^DWORD __stdcall PhraseImage(LPVOID strOPath)$/;"	f
+Point	.\intpoint.h	/^typedef ClipperLib::IntPoint Point;$/;"	t
+Point3	.\intpoint.h	/^    Point3() {}$/;"	f	class:Point3
+Point3	.\intpoint.h	/^    Point3(const int32_t _x, const int32_t _y, const int32_t _z): x(_x), y(_y), z(_z) {}$/;"	f	class:Point3
+Point3	.\intpoint.h	/^class Point3$/;"	c
+PointCount	.\clipper.cpp	/^int PointCount(OutPt *pts)$/;"	f	namespace:ClipperLib
+PointInPolygon	.\clipper.cpp	/^bool PointInPolygon(const IntPoint &pt, OutPt *pp, bool UseFullInt64Range)$/;"	f	namespace:ClipperLib
+PointIsVertex	.\clipper.cpp	/^bool PointIsVertex(const IntPoint &pt, OutPt *pp)$/;"	f	namespace:ClipperLib
+PointMatrix	.\intpoint.h	/^    PointMatrix()$/;"	f	class:PointMatrix
+PointMatrix	.\intpoint.h	/^    PointMatrix(const Point p)$/;"	f	class:PointMatrix
+PointMatrix	.\intpoint.h	/^    PointMatrix(double rotation)$/;"	f	class:PointMatrix
+PointMatrix	.\intpoint.h	/^class PointMatrix$/;"	c
+PointOnLineSegment	.\clipper.cpp	/^bool PointOnLineSegment(const IntPoint pt, $/;"	f	namespace:ClipperLib
+PointOnPolygon	.\clipper.cpp	/^bool PointOnPolygon(const IntPoint pt, OutPt *pp, bool UseFullInt64Range)$/;"	f	namespace:ClipperLib
+PointsAreClose	.\clipper.cpp	/^bool PointsAreClose(IntPoint pt1, IntPoint pt2, double distSqrd)$/;"	f	namespace:ClipperLib
+PointsEqual	.\clipper.cpp	/^inline bool PointsEqual( const IntPoint &pt1, const IntPoint &pt2)$/;"	f	namespace:ClipperLib
+Poly2ContainsPoly1	.\clipper.cpp	/^bool Poly2ContainsPoly1(OutPt* outPt1, OutPt* outPt2, bool UseFullInt64Range)$/;"	f	namespace:ClipperLib
+PolyFillType	.\clipper.hpp	/^enum PolyFillType { pftEvenOdd, pftNonZero, pftPositive, pftNegative };$/;"	g	namespace:ClipperLib
+PolyNode	.\clipper.cpp	/^PolyNode::PolyNode(): Childs(), Parent(0), Index(0)$/;"	f	class:ClipperLib::PolyNode
+PolyNode	.\clipper.hpp	/^class PolyNode $/;"	c	namespace:ClipperLib
+PolyNodes	.\clipper.hpp	/^typedef std::vector< PolyNode* > PolyNodes;$/;"	t	namespace:ClipperLib
+PolyOutList	.\clipper.hpp	/^typedef std::vector < OutRec* > PolyOutList;$/;"	t	namespace:ClipperLib
+PolyTree	.\clipper.hpp	/^class PolyTree: public PolyNode$/;"	c	namespace:ClipperLib
+PolyTreeToPolygons	.\clipper.cpp	/^void PolyTreeToPolygons(const PolyTree& polytree, Polygons& polygons)$/;"	f	namespace:ClipperLib
+PolyType	.\clipper.hpp	/^enum PolyType { ptSubject, ptClip };$/;"	g	namespace:ClipperLib
+Polygon	.\clipper.hpp	/^typedef std::vector< IntPoint > Polygon;$/;"	t	namespace:ClipperLib
+Polygons	.\clipper.hpp	/^typedef std::vector< Polygon > Polygons;$/;"	t	namespace:ClipperLib
+PopLocalMinima	.\clipper.cpp	/^void ClipperBase::PopLocalMinima()$/;"	f	class:ClipperLib::ClipperBase
+PopScanbeam	.\clipper.cpp	/^long64 Clipper::PopScanbeam()$/;"	f	class:ClipperLib::Clipper
+PreCreateWindow	.\CarpetControlView.cpp	/^BOOL CCarpetControlView::PreCreateWindow(CREATESTRUCT& cs)$/;"	f	class:CCarpetControlView
+PreCreateWindow	.\ChildFrm.cpp	/^BOOL CChildFrame::PreCreateWindow(CREATESTRUCT& cs)$/;"	f	class:CChildFrame
+PreCreateWindow	.\MainFrm.cpp	/^BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)$/;"	f	class:CMainFrame
+PreLoadState	.\CarpetControl.cpp	/^void CCarpetControlApp::PreLoadState()$/;"	f	class:CCarpetControlApp
+Predecessor	.\BinaryTree.h	/^	TREENODE* Predecessor(TREENODE* node) const$/;"	f	class:CBinaryTree
+ProcessEdgesAtTopOfScanbeam	.\clipper.cpp	/^void Clipper::ProcessEdgesAtTopOfScanbeam(const long64 topY)$/;"	f	class:ClipperLib::Clipper
+ProcessHorizontal	.\clipper.cpp	/^void Clipper::ProcessHorizontal(TEdge *horzEdge)$/;"	f	class:ClipperLib::Clipper
+ProcessHorizontals	.\clipper.cpp	/^void Clipper::ProcessHorizontals()$/;"	f	class:ClipperLib::Clipper
+ProcessIntersectList	.\clipper.cpp	/^void Clipper::ProcessIntersectList()$/;"	f	class:ClipperLib::Clipper
+ProcessIntersections	.\clipper.cpp	/^bool Clipper::ProcessIntersections(const long64 botY, const long64 topY)$/;"	f	class:ClipperLib::Clipper
+Pt3IsBetweenPt1AndPt2	.\clipper.cpp	/^bool Pt3IsBetweenPt1AndPt2(const IntPoint pt1,$/;"	f	namespace:ClipperLib
+RIGHT	.\BinaryTree.h	14;"	d
+RTrim	.\inifile.cpp	/^void RTrim(std::string &str, const std::string& chars = " \\t")$/;"	f
+RTrim	.\inifile.cpp	/^void RTrim(std::wstring &str, const std::wstring& chars = L" \\t")$/;"	f
+RangeTest	.\clipper.cpp	/^void RangeTest(const IntPoint& pt, long64& maxrange)$/;"	f	namespace:ClipperLib
+ReadM2File	.\PhraseManager.cpp	/^void ReadM2File( CString strPath ) $/;"	f
+RemoveAll	.\BinaryTree.h	/^	void RemoveAll()$/;"	f	class:CBinaryTree
+RemoveAllKeys	.\inifile.cpp	/^void CIniSectionA::RemoveAllKeys()$/;"	f	class:CIniSectionA
+RemoveAllKeys	.\inifile.cpp	/^void CIniSectionW::RemoveAllKeys()$/;"	f	class:CIniSectionW
+RemoveAllSections	.\inifile.cpp	/^void CIniFileA::RemoveAllSections( )$/;"	f	class:CIniFileA
+RemoveAllSections	.\inifile.cpp	/^void CIniFileW::RemoveAllSections( )$/;"	f	class:CIniFileW
+RemoveKey	.\inifile.cpp	/^void CIniSectionA::RemoveKey( CIniKeyA* pKey )$/;"	f	class:CIniSectionA
+RemoveKey	.\inifile.cpp	/^void CIniSectionA::RemoveKey( std::string sKey )$/;"	f	class:CIniSectionA
+RemoveKey	.\inifile.cpp	/^void CIniSectionW::RemoveKey( CIniKeyW* pKey )$/;"	f	class:CIniSectionW
+RemoveKey	.\inifile.cpp	/^void CIniSectionW::RemoveKey( std::wstring sKey )$/;"	f	class:CIniSectionW
+RemoveSection	.\inifile.cpp	/^void CIniFileA::RemoveSection( CIniSectionA* pSection )$/;"	f	class:CIniFileA
+RemoveSection	.\inifile.cpp	/^void CIniFileA::RemoveSection( std::string sSection )$/;"	f	class:CIniFileA
+RemoveSection	.\inifile.cpp	/^void CIniFileW::RemoveSection( CIniSectionW* pSection )$/;"	f	class:CIniFileW
+RemoveSection	.\inifile.cpp	/^void CIniFileW::RemoveSection( std::wstring sSection )$/;"	f	class:CIniFileW
+RenameKey	.\inifile.cpp	/^bool CIniFileA::RenameKey( const std::string& sSectionName  , const std::string& sKeyName , const std::string& sNewKeyName)$/;"	f	class:CIniFileA
+RenameKey	.\inifile.cpp	/^bool CIniFileW::RenameKey( const std::wstring& sSectionName  , const std::wstring& sKeyName , const std::wstring& sNewKeyName)$/;"	f	class:CIniFileW
+RenameSection	.\inifile.cpp	/^bool CIniFileA::RenameSection( const std::string& sSectionName  , const std::string& sNewSectionName )$/;"	f	class:CIniFileA
+RenameSection	.\inifile.cpp	/^bool CIniFileW::RenameSection( const std::wstring& sSectionName  , const std::wstring& sNewSectionName )$/;"	f	class:CIniFileW
+Reset	.\clipper.cpp	/^void Clipper::Reset()$/;"	f	class:ClipperLib::Clipper
+Reset	.\clipper.cpp	/^void ClipperBase::Reset()$/;"	f	class:ClipperLib::ClipperBase
+ReversePolyPtLinks	.\clipper.cpp	/^void ReversePolyPtLinks(OutPt *pp)$/;"	f	namespace:ClipperLib
+ReversePolygon	.\clipper.cpp	/^void ReversePolygon(Polygon& p)$/;"	f	namespace:ClipperLib
+ReversePolygons	.\clipper.cpp	/^void ReversePolygons(Polygons& p)$/;"	f	namespace:ClipperLib
+ReverseSolution	.\clipper.hpp	/^  bool ReverseSolution() {return m_ReverseOutput;};$/;"	f	class:ClipperLib::Clipper
+ReverseSolution	.\clipper.hpp	/^  void ReverseSolution(bool value) {m_ReverseOutput = value;};$/;"	f	class:ClipperLib::Clipper
+Root	.\BinaryTree.h	/^	TREENODE* Root, * Nil;$/;"	m	class:CBinaryTree
+RoteBackProcess	.\ControlManager.cpp	/^DWORD WINAPI RoteBackProcess(LPVOID fDegree)$/;"	f
+RoteProcess	.\ControlManager.cpp	/^DWORD WINAPI RoteProcess(LPVOID fDegree)$/;"	f
+Round	.\clipper.cpp	/^inline long64 Round(double val)$/;"	f	namespace:ClipperLib
+RunCalcPath	.\ControlManager.cpp	/^void RunCalcPath()$/;"	f
+SThreadMsg	.\PhraseManager.h	/^struct SThreadMsg$/;"	s
+Save	.\BinaryTree.h	/^	void Save(vector<int> &nArraySort, bool bAscending = true, bool (* lpfn)(int, int) = NULL)$/;"	f	class:CBinaryTree
+Save	.\inifile.cpp	/^bool CIniFileA::Save( const std::string& fileName )$/;"	f	class:CIniFileA
+Save	.\inifile.cpp	/^bool CIniFileW::Save( const std::wstring& fileName )$/;"	f	class:CIniFileW
+Save	.\inifile.cpp	/^void CIniFileA::Save( std::ostream& output )$/;"	f	class:CIniFileA
+Save	.\inifile.cpp	/^void CIniFileW::Save( std::wostream& output )$/;"	f	class:CIniFileW
+SaveCustomState	.\CarpetControl.cpp	/^void CCarpetControlApp::SaveCustomState()$/;"	f	class:CCarpetControlApp
+SaveNode	.\BinaryTree.h	/^	void SaveNode(TREENODE* node, int*& pArray)$/;"	f	class:CBinaryTree
+Scanbeam	.\clipper.hpp	/^struct Scanbeam {$/;"	s	namespace:ClipperLib
+Search	.\BinaryTree.h	/^	inline TREENODE* Search(ARG_KEY key, TREENODE* node = NULL) const$/;"	f	class:CBinaryTree
+SecIndex	.\inifile.h	/^typedef SecIndexA SecIndex;$/;"	t
+SecIndex	.\inifile.h	/^typedef SecIndexW SecIndex;$/;"	t
+SecIndexA	.\inifile.h	/^    typedef std::set<CIniSectionA*,ci_less_a> SecIndexA;$/;"	t	class:CIniFileA
+SecIndexA	.\inifile.h	/^typedef CIniFileA::SecIndexA SecIndexA;$/;"	t
+SecIndexW	.\inifile.h	/^    typedef std::set<CIniSectionW*,ci_less_w> SecIndexW;$/;"	t	class:CIniFileW
+SecIndexW	.\inifile.h	/^typedef CIniFileW::SecIndexW SecIndexW;$/;"	t
+Serial	.\BinaryTree.h	/^	int Count, Serial;$/;"	m	class:CBinaryTree
+Serialize	.\CarpetControlDoc.cpp	/^void CCarpetControlDoc::Serialize(CArchive& ar)$/;"	f	class:CCarpetControlDoc
+SetDx	.\clipper.cpp	/^void SetDx(TEdge &e)$/;"	f	namespace:ClipperLib
+SetHoleState	.\clipper.cpp	/^void Clipper::SetHoleState(TEdge *e, OutRec *outrec)$/;"	f	class:ClipperLib::Clipper
+SetKeyName	.\inifile.cpp	/^bool CIniKeyA::SetKeyName( std::string sKeyName )$/;"	f	class:CIniKeyA
+SetKeyName	.\inifile.cpp	/^bool CIniKeyW::SetKeyName( std::wstring sKeyName )$/;"	f	class:CIniKeyW
+SetKeyValue	.\inifile.cpp	/^void CIniFileA::SetKeyValue( const std::string& sSection, const std::string& sKey, const std::string& sValue )$/;"	f	class:CIniFileA
+SetKeyValue	.\inifile.cpp	/^void CIniFileW::SetKeyValue( const std::wstring& sSection, const std::wstring& sKey, const std::wstring& sValue )$/;"	f	class:CIniFileW
+SetKeyValue	.\inifile.cpp	/^void CIniSectionA::SetKeyValue( std::string sKey, const std::string& sValue )$/;"	f	class:CIniSectionA
+SetKeyValue	.\inifile.cpp	/^void CIniSectionW::SetKeyValue( std::wstring sKey, const std::wstring& sValue )$/;"	f	class:CIniSectionW
+SetSearchContent	.\CarpetControlDoc.cpp	/^void CCarpetControlDoc::SetSearchContent(const CString& value)$/;"	f	class:CCarpetControlDoc
+SetSectionName	.\inifile.cpp	/^bool CIniSectionA::SetSectionName( std::string sSectionName )$/;"	f	class:CIniSectionA
+SetSectionName	.\inifile.cpp	/^bool CIniSectionW::SetSectionName( std::wstring sSectionName )$/;"	f	class:CIniSectionW
+SetStatusPicture	.\PhraseFrame.cpp	/^void CPhraseFrame::SetStatusPicture(AxisFlg flg, int nIDSrvOn, int nIDRDY)$/;"	f	class:CPhraseFrame
+SetValue	.\inifile.cpp	/^void CIniKeyA::SetValue( const std::string& sValue )$/;"	f	class:CIniKeyA
+SetValue	.\inifile.cpp	/^void CIniKeyW::SetValue( const std::wstring& sValue )$/;"	f	class:CIniKeyW
+SetWindingCount	.\clipper.cpp	/^void Clipper::SetWindingCount(TEdge &edge)$/;"	f	class:ClipperLib::Clipper
+SimplifyPolygon	.\clipper.cpp	/^void SimplifyPolygon(const Polygon &in_poly, Polygons &out_polys, PolyFillType fillType)$/;"	f	namespace:ClipperLib
+SimplifyPolygons	.\clipper.cpp	/^void SimplifyPolygons(Polygons &polys, PolyFillType fillType)$/;"	f	namespace:ClipperLib
+SimplifyPolygons	.\clipper.cpp	/^void SimplifyPolygons(const Polygons &in_polys, Polygons &out_polys, PolyFillType fillType)$/;"	f	namespace:ClipperLib
+SlopesEqual	.\clipper.cpp	/^bool SlopesEqual(const IntPoint pt1, const IntPoint pt2,$/;"	f	namespace:ClipperLib
+SlopesEqual	.\clipper.cpp	/^bool SlopesEqual(const TEdge &e1, const TEdge &e2, bool UseFullInt64Range)$/;"	f	namespace:ClipperLib
+SlopesNearColinear	.\clipper.cpp	/^bool SlopesNearColinear(const IntPoint& pt1, $/;"	f	namespace:ClipperLib
+Stop_decel	.\ControlManager.cpp	/^void Stop_decel()$/;"	f
+Successor	.\BinaryTree.h	/^	TREENODE* Successor(TREENODE* node) const$/;"	f	class:CBinaryTree
+SwapIntersectNodes	.\clipper.cpp	/^void SwapIntersectNodes(IntersectNode &int1, IntersectNode &int2)$/;"	f	namespace:ClipperLib
+SwapPoints	.\clipper.cpp	/^void SwapPoints(IntPoint &pt1, IntPoint &pt2)$/;"	f	namespace:ClipperLib
+SwapPolyIndexes	.\clipper.cpp	/^void SwapPolyIndexes(TEdge &edge1, TEdge &edge2)$/;"	f	namespace:ClipperLib
+SwapPositionsInAEL	.\clipper.cpp	/^void Clipper::SwapPositionsInAEL(TEdge *edge1, TEdge *edge2)$/;"	f	class:ClipperLib::Clipper
+SwapPositionsInSEL	.\clipper.cpp	/^void Clipper::SwapPositionsInSEL(TEdge *edge1, TEdge *edge2)$/;"	f	class:ClipperLib::Clipper
+SwapSides	.\clipper.cpp	/^void SwapSides(TEdge &edge1, TEdge &edge2)$/;"	f	namespace:ClipperLib
+SwapX	.\clipper.cpp	/^inline void SwapX(TEdge &e)$/;"	f	namespace:ClipperLib
+T	.\ControlManager.h	/^	T=4$/;"	e	enum:AxisFlg
+TCHAR	.\tstdlibs.h	/^		typedef wchar_t TCHAR;$/;"	t
+TCHAR	.\tstdlibs.h	/^	    typedef wchar_t TCHAR;$/;"	t
+TEdge	.\clipper.hpp	/^struct TEdge {$/;"	s	namespace:ClipperLib
+TOLERANCE	.\clipper.cpp	58;"	d	file:
+TREENODE	.\BinaryTree.h	12;"	d
+Tacc	.\ControlManager.h	/^	DOUBLE Tacc;$/;"	m	struct:ct_motion
+Tdec	.\ControlManager.h	/^	DOUBLE Tdec;$/;"	m	struct:ct_motion
+TestFindContours	.\PhraseManager.cpp	/^void TestFindContours( vector< cv::Vec4i > hierarchy, cv::Mat dst, vector< vector< cv::Point > > contours, double nmin, double nmax, cv::Mat bkphrone )$/;"	f
+TopX	.\clipper.cpp	/^long64 TopX(TEdge &edge, const long64 currentY)$/;"	f	namespace:ClipperLib
+Total	.\clipper.cpp	/^int PolyTree::Total() const$/;"	f	class:ClipperLib::PolyTree
+TreePlot	.\PhraseManager.cpp	/^void TreePlot( vector< cv::Vec4i > &hierarchy, vector< vector< cv::Point > > &contours, cv::Mat &lines )$/;"	f
+Trim	.\inifile.cpp	/^void Trim( std::string& str , const std::string& chars = " \\t" )$/;"	f
+Trim	.\inifile.cpp	/^void Trim( std::wstring& str , const std::wstring& chars = L" \\t" )$/;"	f
+UpdateBotPt	.\clipper.cpp	/^bool UpdateBotPt(const IntPoint &pt, IntPoint &botPt)$/;"	f	namespace:ClipperLib
+UpdateEdgeIntoAEL	.\clipper.cpp	/^void Clipper::UpdateEdgeIntoAEL(TEdge *&e)$/;"	f	class:ClipperLib::Clipper
+UpdateOutPtIdxs	.\clipper.cpp	/^inline void UpdateOutPtIdxs(OutRec& outrec)$/;"	f	namespace:ClipperLib
+V	.\ControlManager.h	/^	V=5,$/;"	e	enum:AxisFlg
+VC_EXTRALEAN	.\stdafx.h	13;"	d
+WaitingForThread	.\ControlManager.cpp	/^void WaitingForThread(HANDLE hnd)$/;"	f
+WriteM2File	.\PhraseManager.cpp	/^void WriteM2File( CString strTxtOutPath ) $/;"	f
+X	.\clipper.cpp	/^  double X;$/;"	m	struct:ClipperLib::DoublePoint	file:
+X	.\clipper.hpp	/^  long64 X;$/;"	m	struct:ClipperLib::IntPoint
+X	.\intpoint.h	/^    int X, Y;$/;"	m	class:IntPoint
+X1	.\ControlManager.h	/^	X1=6,$/;"	e	enum:AxisFlg
+X2	.\ControlManager.h	/^	X2=-1,$/;"	e	enum:AxisFlg
+Y	.\ControlManager.h	/^	Y=7,$/;"	e	enum:AxisFlg
+Y	.\clipper.cpp	/^  double Y;$/;"	m	struct:ClipperLib::DoublePoint	file:
+Y	.\clipper.hpp	/^  long64        Y;$/;"	m	struct:ClipperLib::LocalMinima
+Y	.\clipper.hpp	/^  long64    Y;$/;"	m	struct:ClipperLib::Scanbeam
+Y	.\clipper.hpp	/^  long64 Y;$/;"	m	struct:ClipperLib::IntPoint
+Y	.\intpoint.h	/^    int X, Y;$/;"	m	class:IntPoint
+Z	.\ControlManager.h	/^	Z=1,$/;"	e	enum:AxisFlg
+_AFX_ALL_WARNINGS	.\stdafx.h	21;"	d
+_APS_NEXT_COMMAND_VALUE	.\Resource.h	120;"	d
+_APS_NEXT_CONTROL_VALUE	.\Resource.h	121;"	d
+_APS_NEXT_RESOURCE_VALUE	.\Resource.h	119;"	d
+_APS_NEXT_SYMED_VALUE	.\Resource.h	122;"	d
+_ATL_CSTRING_EXPLICIT_CONSTRUCTORS	.\stdafx.h	18;"	d
+_CINIFILE_DEBUG	.\inifile.cpp	14;"	d	file:
+_CRLFA	.\inifile.cpp	23;"	d	file:
+_CRLFA	.\inifile.cpp	26;"	d	file:
+_CRLFA	.\inifile.cpp	32;"	d	file:
+_CRLFA	.\inifile.cpp	35;"	d	file:
+_CRLFW	.\inifile.cpp	24;"	d	file:
+_CRLFW	.\inifile.cpp	27;"	d	file:
+_CRLFW	.\inifile.cpp	33;"	d	file:
+_CRLFW	.\inifile.cpp	36;"	d	file:
+_CRT_SECURE_NO_DEPRECATE	.\inifile.h	57;"	d
+_SECURE_ATL	.\stdafx.h	9;"	d
+_T	.\tstdlibs.h	16;"	d
+_T	.\tstdlibs.h	24;"	d
+_TSTDLIBS_H	.\tstdlibs.h	2;"	d
+_TSTR	.\tstdlibs.h	19;"	d
+_TSTR	.\tstdlibs.h	27;"	d
+_USE_MATH_DEFINES	.\intpoint.h	5;"	d
+__CINIFILE_H_	.\inifile.h	49;"	d
+_find_key	.\inifile.cpp	/^KeyIndexA::const_iterator CIniSectionA::_find_key( const std::string& sKey ) const$/;"	f	class:CIniSectionA
+_find_key	.\inifile.cpp	/^KeyIndexA::iterator CIniSectionA::_find_key( const std::string& sKey )$/;"	f	class:CIniSectionA
+_find_key	.\inifile.cpp	/^KeyIndexW::const_iterator CIniSectionW::_find_key( const std::wstring& sKey ) const$/;"	f	class:CIniSectionW
+_find_key	.\inifile.cpp	/^KeyIndexW::iterator CIniSectionW::_find_key( const std::wstring& sKey )$/;"	f	class:CIniSectionW
+_find_sec	.\inifile.cpp	/^SecIndexA::const_iterator CIniFileA::_find_sec( const std::string& sSection ) const$/;"	f	class:CIniFileA
+_find_sec	.\inifile.cpp	/^SecIndexA::iterator CIniFileA::_find_sec( const std::string& sSection )$/;"	f	class:CIniFileA
+_find_sec	.\inifile.cpp	/^SecIndexW::const_iterator CIniFileW::_find_sec( const std::wstring& sSection ) const$/;"	f	class:CIniFileW
+_find_sec	.\inifile.cpp	/^SecIndexW::iterator CIniFileW::_find_sec( const std::wstring& sSection )$/;"	f	class:CIniFileW
+_ini	.\inifile.h	/^        CIniFileA& _ini;$/;"	m	class:CIniFileA::CIniMergeA
+_ini	.\inifile.h	/^        CIniFileW& _ini;$/;"	m	class:CIniFileW::CIniMergeW
+addChildContour	.\PhraseManager.cpp	/^void addChildContour(vector< vector< cv::Point > > contours,$/;"	f
+addPolygon	.\pathOptimizer.h	/^	void addPolygon(ClipperLib::Polygon& polygon)$/;"	f	class:PathOptimizer
+addPolygons	.\pathOptimizer.h	/^	void addPolygons(ClipperLib::Polygons& polygons)$/;"	f	class:PathOptimizer
+apply	.\intpoint.h	/^    Point apply(const Point p) const$/;"	f	class:PointMatrix
+apply	.\intpoint.h	/^    void apply(Polygons& polys) const$/;"	f	class:PointMatrix
+b3DFlag	.\ControlManager.h	/^	BOOL b3DFlag;$/;"	m	struct:s_MotionProcessPra
+bottom	.\clipper.hpp	/^struct IntRect { long64 left; long64 top; long64 right; long64 bottom; };$/;"	m	struct:ClipperLib::IntRect
+bottomPt	.\clipper.hpp	/^  OutPt  *bottomPt;$/;"	m	struct:ClipperLib::OutRec
+buffLength	.\clipper.cpp	/^  static const int buffLength = 128;$/;"	m	class:ClipperLib::OffsetBuilder	file:
+bwithNeedle	.\ControlManager.h	/^	BOOL bwithNeedle;$/;"	m	struct:s_MotionProcessPra
+calculate	.\intpoint.h	/^    void calculate(Polygons polys)$/;"	f	class:AABB
+centerOfMass	.\intpoint.h	/^INLINE Point centerOfMass(const ClipperLib::Polygon& poly)$/;"	f
+ci_less_a	.\inifile.h	/^        struct ci_less_a$/;"	s	class:CIniFileA::CIniSectionA
+ci_less_a	.\inifile.h	/^    struct ci_less_a$/;"	s	class:CIniFileA
+ci_less_w	.\inifile.h	/^        struct ci_less_w$/;"	s	class:CIniFileW::CIniSectionW
+ci_less_w	.\inifile.h	/^    struct ci_less_w$/;"	s	class:CIniFileW
+clipperException	.\clipper.hpp	/^    clipperException(const char* description): m_descr(description) {}$/;"	f	class:ClipperLib::clipperException
+clipperException	.\clipper.hpp	/^class clipperException : public std::exception$/;"	c	namespace:ClipperLib
+clipper_hpp	.\clipper.hpp	35;"	d
+compare	.\BinaryTree.h	/^	int compare(int nKey) $/;"	f	class:CInt
+compare_int64_t	.\infill.cpp	/^int compare_int64_t(const void* a, const void* b)$/;"	f
+coords_range_error	.\clipper.cpp	/^const char coords_range_error[] = "Coordinate exceeds range bounds.";$/;"	m	namespace:ClipperLib	file:
+cross	.\intpoint.h	/^    Point3 cross(const Point3& p)$/;"	f	class:Point3
+crossZ	.\intpoint.h	/^INLINE Point crossZ(const Point& p0)$/;"	f
+ctDifference	.\clipper.hpp	/^enum ClipType { ctIntersection, ctUnion, ctDifference, ctXor };$/;"	e	enum:ClipperLib::ClipType
+ctIntersection	.\clipper.hpp	/^enum ClipType { ctIntersection, ctUnion, ctDifference, ctXor };$/;"	e	enum:ClipperLib::ClipType
+ctUnion	.\clipper.hpp	/^enum ClipType { ctIntersection, ctUnion, ctDifference, ctXor };$/;"	e	enum:ClipperLib::ClipType
+ctXor	.\clipper.hpp	/^enum ClipType { ctIntersection, ctUnion, ctDifference, ctXor };$/;"	e	enum:ClipperLib::ClipType
+ct_motion	.\ControlManager.h	/^struct ct_motion {$/;"	s
+dLeftToRight	.\clipper.cpp	/^enum Direction { dRightToLeft, dLeftToRight };$/;"	e	enum:ClipperLib::Direction	file:
+dRightToLeft	.\clipper.cpp	/^enum Direction { dRightToLeft, dLeftToRight };$/;"	e	enum:ClipperLib::Direction	file:
+deltaX	.\clipper.hpp	/^  long64 deltaX;$/;"	m	struct:ClipperLib::TEdge
+deltaY	.\clipper.hpp	/^  long64 deltaY;$/;"	m	struct:ClipperLib::TEdge
+dist1	.\ControlManager.h	/^	long dist1;$/;"	m	struct:ct_motion
+dist2	.\ControlManager.h	/^	long dist2;$/;"	m	struct:ct_motion
+distanceSquared	.\pathOptimizer.cpp	/^float distanceSquared(const Point& p0, const Point& p1)$/;"	f
+dot	.\intpoint.h	/^INLINE int64_t dot(const Point& p0, const Point& p1)$/;"	f
+dx	.\clipper.hpp	/^  double dx;$/;"	m	struct:ClipperLib::TEdge
+edge	.\clipper.hpp	/^  TEdge    *edge;$/;"	m	struct:ClipperLib::HorzJoinRec
+edge1	.\clipper.hpp	/^  TEdge          *edge1;$/;"	m	struct:ClipperLib::IntersectNode
+edge2	.\clipper.hpp	/^  TEdge          *edge2;$/;"	m	struct:ClipperLib::IntersectNode
+esLeft	.\clipper.hpp	/^enum EdgeSide { esLeft = 1, esRight = 2};$/;"	e	enum:ClipperLib::EdgeSide
+esRight	.\clipper.hpp	/^enum EdgeSide { esLeft = 1, esRight = 2};$/;"	e	enum:ClipperLib::EdgeSide
+etButt	.\clipper.hpp	/^enum EndType { etClosed, etButt, etSquare, etRound};$/;"	e	enum:ClipperLib::EndType
+etClosed	.\clipper.hpp	/^enum EndType { etClosed, etButt, etSquare, etRound};$/;"	e	enum:ClipperLib::EndType
+etRound	.\clipper.hpp	/^enum EndType { etClosed, etButt, etSquare, etRound};$/;"	e	enum:ClipperLib::EndType
+etSquare	.\clipper.hpp	/^enum EndType { etClosed, etButt, etSquare, etRound};$/;"	e	enum:ClipperLib::EndType
+fmax	.\intpoint.h	/^    int32_t fmax()$/;"	f	class:Point3
+from	.\ControlManager.h	/^	cv::Point from;$/;"	m	struct:s_MotionProcessPra
+generateConcentricInfill	.\infill.cpp	/^void generateConcentricInfill(Polygons outline, Polygons& result, int offsets[], int offsetsSize)$/;"	f
+generateLineInfill	.\infill.cpp	/^void generateLineInfill(const Polygons& in_outline, Polygons& result, int extrusionWidth, int lineSpacing, int infillOverlap, double rotation,Polygons &testout)$/;"	f
+hi	.\clipper.cpp	/^    long64 hi;$/;"	m	class:ClipperLib::Int128	file:
+hiRange	.\clipper.cpp	/^static long64 const hiRange = 0x3FFFFFFFFFFFFFFFLL;$/;"	m	namespace:ClipperLib	file:
+hit	.\intpoint.h	/^    bool hit(const AABB& other) const$/;"	f	class:AABB
+iMaxUserToolbars	.\MainFrm.cpp	/^const int  iMaxUserToolbars = 10;$/;"	v
+idx	.\clipper.hpp	/^  int     idx;$/;"	m	struct:ClipperLib::OutPt
+idx	.\clipper.hpp	/^  int     idx;$/;"	m	struct:ClipperLib::OutRec
+indicators	.\MainFrm.cpp	/^static UINT indicators[] =$/;"	v	file:
+ipBoth	.\clipper.hpp	/^enum IntersectProtects { ipNone = 0, ipLeft = 1, ipRight = 2, ipBoth = 3 };$/;"	e	enum:ClipperLib::IntersectProtects
+ipLeft	.\clipper.hpp	/^enum IntersectProtects { ipNone = 0, ipLeft = 1, ipRight = 2, ipBoth = 3 };$/;"	e	enum:ClipperLib::IntersectProtects
+ipNone	.\clipper.hpp	/^enum IntersectProtects { ipNone = 0, ipLeft = 1, ipRight = 2, ipBoth = 3 };$/;"	e	enum:ClipperLib::IntersectProtects
+ipRight	.\clipper.hpp	/^enum IntersectProtects { ipNone = 0, ipLeft = 1, ipRight = 2, ipBoth = 3 };$/;"	e	enum:ClipperLib::IntersectProtects
+isHole	.\clipper.hpp	/^  bool    isHole;$/;"	m	struct:ClipperLib::OutRec
+jtMiter	.\clipper.hpp	/^enum JoinType { jtSquare, jtRound, jtMiter };$/;"	e	enum:ClipperLib::JoinType
+jtRound	.\clipper.hpp	/^enum JoinType { jtSquare, jtRound, jtMiter };$/;"	e	enum:ClipperLib::JoinType
+jtSquare	.\clipper.hpp	/^enum JoinType { jtSquare, jtRound, jtMiter };$/;"	e	enum:ClipperLib::JoinType
+left	.\clipper.hpp	/^struct IntRect { long64 left; long64 top; long64 right; long64 bottom; };$/;"	m	struct:ClipperLib::IntRect
+leftBound	.\clipper.hpp	/^  TEdge        *leftBound;$/;"	m	struct:ClipperLib::LocalMinima
+lo	.\clipper.cpp	/^    ulong64 lo;$/;"	m	class:ClipperLib::Int128	file:
+loRange	.\clipper.cpp	/^static long64 const loRange = 0x3FFFFFFF;$/;"	m	namespace:ClipperLib	file:
+long64	.\clipper.hpp	/^typedef signed long long long64;$/;"	t	namespace:ClipperLib
+m_3DImageData	.\ControlManager.cpp	/^cv::Mat m_3DImageData;$/;"	v
+m_ActiveEdges	.\clipper.hpp	/^  TEdge           *m_ActiveEdges;$/;"	m	class:ClipperLib::Clipper
+m_BST	.\PhraseManager.cpp	/^CBinaryTree<CInt, int, int, int> m_BST;$/;"	v
+m_ClipFillType	.\clipper.hpp	/^  PolyFillType     m_ClipFillType;$/;"	m	class:ClipperLib::Clipper
+m_ClipType	.\clipper.hpp	/^  ClipType          m_ClipType;$/;"	m	class:ClipperLib::Clipper
+m_CurrentLM	.\clipper.hpp	/^  LocalMinima      *m_CurrentLM;$/;"	m	class:ClipperLib::ClipperBase
+m_CurrentThreadPos	.\ControlManager.cpp	/^int m_CurrentThreadPos=0; \/\/记录当前运行状态，给恢复运行使用$/;"	v
+m_DetaSpeed	.\PhraseFrame.h	/^	int m_DetaSpeed;$/;"	m	class:CPhraseFrame
+m_ExecuteLocked	.\clipper.hpp	/^  bool             m_ExecuteLocked;$/;"	m	class:ClipperLib::Clipper
+m_ForceSimple	.\clipper.hpp	/^  bool             m_ForceSimple;$/;"	m	class:ClipperLib::Clipper
+m_HorizJoins	.\clipper.hpp	/^  HorzJoinList      m_HorizJoins;$/;"	m	class:ClipperLib::Clipper
+m_ImageSizeX	.\PhraseManager.cpp	/^int m_ImageSizeX, m_ImageSizeY;$/;"	v
+m_ImageSizeY	.\PhraseManager.cpp	/^int m_ImageSizeX, m_ImageSizeY;$/;"	v
+m_IntersectNodes	.\clipper.hpp	/^  IntersectNode   *m_IntersectNodes;$/;"	m	class:ClipperLib::Clipper
+m_Joins	.\clipper.hpp	/^  JoinList          m_Joins;$/;"	m	class:ClipperLib::Clipper
+m_ListAllPoint	.\PhraseManager.cpp	/^vector<cv::Point2f> m_ListAllPoint;$/;"	v
+m_MinimaList	.\clipper.hpp	/^  LocalMinima      *m_MinimaList;$/;"	m	class:ClipperLib::ClipperBase
+m_MotionPos	.\ControlManager.cpp	/^list<ct_motion> m_MotionPos;$/;"	v
+m_MotorDirection	.\ControlManager.cpp	/^int m_MotorDirection[AXIS_COUNT];\/\/方向$/;"	v
+m_MotorGearRatio	.\ControlManager.cpp	/^float m_MotorGearRatio[AXIS_COUNT];\/\/齿轮比. 电机  分母$/;"	v
+m_MotorPulseCount	.\ControlManager.cpp	/^int m_MotorPulseCount;\/\/ 伺服电机脉冲数$/;"	v
+m_PG	.\PhraseManager.cpp	/^ClipperLib::Polygons m_PG;$/;"	v
+m_PolyOuts	.\clipper.hpp	/^  PolyOutList       m_PolyOuts;$/;"	m	class:ClipperLib::Clipper
+m_ResolutionX	.\PhraseManager.cpp	/^int m_ResolutionX,m_ResolutionY;\/\/ X Y resolution的倍数 $/;"	v
+m_ResolutionY	.\PhraseManager.cpp	/^int m_ResolutionX,m_ResolutionY;\/\/ X Y resolution的倍数 $/;"	v
+m_ReverseOutput	.\clipper.hpp	/^  bool             m_ReverseOutput;$/;"	m	class:ClipperLib::Clipper
+m_Scanbeam	.\clipper.hpp	/^  Scanbeam         *m_Scanbeam;$/;"	m	class:ClipperLib::Clipper
+m_ShowPathMat	.\PhraseManager.cpp	/^cv::Mat m_ShowPathMat;$/;"	v
+m_SortedEdges	.\clipper.hpp	/^  TEdge           *m_SortedEdges;$/;"	m	class:ClipperLib::Clipper
+m_StopRunning	.\ControlManager.cpp	/^BOOL m_StopRunning;$/;"	v
+m_SubjFillType	.\clipper.hpp	/^  PolyFillType     m_SubjFillType;$/;"	m	class:ClipperLib::Clipper
+m_SumAngle	.\ControlManager.cpp	/^double m_SumAngle=0;$/;"	v
+m_SumPosX	.\ControlManager.cpp	/^long m_SumPosX=0;$/;"	v
+m_SumPosY	.\ControlManager.cpp	/^long m_SumPosY=0;$/;"	v
+m_UseFullRange	.\clipper.hpp	/^  bool              m_UseFullRange;$/;"	m	class:ClipperLib::ClipperBase
+m_UsingPolyTree	.\clipper.hpp	/^  bool             m_UsingPolyTree; $/;"	m	class:ClipperLib::Clipper
+m_bHiColorIcons	.\CarpetControl.h	/^	BOOL  m_bHiColorIcons;$/;"	m	class:CCarpetControlApp
+m_bmp1	.\PhraseFrame.h	/^	CBitmap m_bmp1;$/;"	m	class:CPhraseFrame
+m_bmp2	.\PhraseFrame.h	/^	CBitmap m_bmp2;$/;"	m	class:CPhraseFrame
+m_curr_poly	.\clipper.cpp	/^  Polygon* m_curr_poly;$/;"	m	class:ClipperLib::OffsetBuilder	file:
+m_delta	.\clipper.cpp	/^  double m_delta, m_rmin, m_r;$/;"	m	class:ClipperLib::OffsetBuilder	file:
+m_descr	.\clipper.hpp	/^    std::string m_descr;$/;"	m	class:ClipperLib::clipperException
+m_edges	.\clipper.hpp	/^  EdgeList          m_edges;$/;"	m	class:ClipperLib::ClipperBase
+m_fNeedleAngle	.\ControlManager.cpp	/^float m_fNeedleAngle;\/\/ 针角度$/;"	v
+m_i	.\clipper.cpp	/^  size_t m_i, m_j, m_k;$/;"	m	class:ClipperLib::OffsetBuilder	file:
+m_j	.\clipper.cpp	/^  size_t m_i, m_j, m_k;$/;"	m	class:ClipperLib::OffsetBuilder	file:
+m_k	.\clipper.cpp	/^  size_t m_i, m_j, m_k;$/;"	m	class:ClipperLib::OffsetBuilder	file:
+m_keys	.\inifile.h	/^        KeyIndexA m_keys;$/;"	m	class:CIniFileA::CIniSectionA
+m_keys	.\inifile.h	/^        KeyIndexW m_keys;$/;"	m	class:CIniFileW::CIniSectionW
+m_nAppLook	.\CarpetControl.h	/^	UINT  m_nAppLook;$/;"	m	class:CCarpetControlApp
+m_nDensity	.\PhraseManager.cpp	/^int m_nDensity;\/\/ 密度$/;"	v
+m_nKey	.\BinaryTree.h	/^	int m_nKey;$/;"	m	class:CInt
+m_nNumberOfColor	.\PhraseFrame.h	/^	int m_nNumberOfColor;\/\/ 有多少种颜色$/;"	m	class:CPhraseFrame
+m_nSpeed	.\ControlManager.cpp	/^int m_nSpeed;\/\/自动运行速度$/;"	v
+m_nXpos	.\ControlManager.cpp	/^int m_nXpos, m_nYpos;\/\/ X,Y的当前位置$/;"	v
+m_nYpos	.\ControlManager.cpp	/^int m_nXpos, m_nYpos;\/\/ X,Y的当前位置$/;"	v
+m_nZoffset	.\ControlManager.cpp	/^int m_nZoffset;\/\/ 最小的Z.其它的Z在Zoffset之上增加一个值$/;"	v
+m_p	.\clipper.cpp	/^  const Polygons& m_p;$/;"	m	class:ClipperLib::OffsetBuilder	file:
+m_pIniFile	.\inifile.h	/^        CIniFileA* m_pIniFile;$/;"	m	class:CIniFileA::CIniSectionA
+m_pIniFile	.\inifile.h	/^        CIniFileW* m_pIniFile;$/;"	m	class:CIniFileW::CIniSectionW
+m_pSection	.\inifile.h	/^            CIniSectionA* m_pSection;$/;"	m	class:CIniFileA::CIniSectionA::CIniKeyA
+m_pSection	.\inifile.h	/^            CIniSectionW* m_pSection;$/;"	m	class:CIniFileW::CIniSectionW::CIniKeyW
+m_r	.\clipper.cpp	/^  double m_delta, m_rmin, m_r;$/;"	m	class:ClipperLib::OffsetBuilder	file:
+m_rmin	.\clipper.cpp	/^  double m_delta, m_rmin, m_r;$/;"	m	class:ClipperLib::OffsetBuilder	file:
+m_sKeyName	.\inifile.h	/^            std::string m_sKeyName;$/;"	m	class:CIniFileA::CIniSectionA::CIniKeyA
+m_sKeyName	.\inifile.h	/^            std::wstring m_sKeyName;$/;"	m	class:CIniFileW::CIniSectionW::CIniKeyW
+m_sSectionName	.\inifile.h	/^        std::string m_sSectionName;$/;"	m	class:CIniFileA::CIniSectionA
+m_sSectionName	.\inifile.h	/^        std::wstring m_sSectionName;$/;"	m	class:CIniFileW::CIniSectionW
+m_sValue	.\inifile.h	/^            std::string m_sValue;$/;"	m	class:CIniFileA::CIniSectionA::CIniKeyA
+m_sValue	.\inifile.h	/^            std::wstring m_sValue;$/;"	m	class:CIniFileW::CIniSectionW::CIniKeyW
+m_sections	.\inifile.h	/^    SecIndexA m_sections;$/;"	m	class:CIniFileA
+m_sections	.\inifile.h	/^    SecIndexW m_sections;$/;"	m	class:CIniFileW
+m_str3DImagePath	.\ControlManager.cpp	/^CString m_str3DImagePath;$/;"	v
+m_strImagePath	.\PhraseFrame.h	/^	CString m_strImagePath;$/;"	m	class:CPhraseFrame
+m_strSysPath	.\PhraseFrame.h	/^	CString m_strSysPath;$/;"	m	class:CPhraseFrame
+m_wndMenuBar	.\MainFrm.h	/^	CMFCMenuBar       m_wndMenuBar;$/;"	m	class:CMainFrame
+m_wndStatusBar	.\MainFrm.h	/^	CMFCStatusBar     m_wndStatusBar;$/;"	m	class:CMainFrame
+matrix	.\intpoint.h	/^    double matrix[4];$/;"	m	class:PointMatrix
+maxspeed	.\ControlManager.h	/^	long maxspeed;$/;"	m	struct:ct_motion
+minspeed	.\ControlManager.h	/^	long minspeed;$/;"	m	struct:ct_motion
+nHwnd	.\PhraseManager.h	/^	HWND nHwnd;$/;"	m	struct:SThreadMsg
+new	.\CarpetControl.cpp	18;"	d	file:
+new	.\CarpetControlDoc.cpp	17;"	d	file:
+new	.\CarpetControlView.cpp	16;"	d	file:
+new	.\ChildFrm.cpp	11;"	d	file:
+new	.\MainFrm.cpp	11;"	d	file:
+next	.\clipper.hpp	/^  IntersectNode  *next;$/;"	m	struct:ClipperLib::IntersectNode
+next	.\clipper.hpp	/^  LocalMinima  *next;$/;"	m	struct:ClipperLib::LocalMinima
+next	.\clipper.hpp	/^  OutPt   *next;$/;"	m	struct:ClipperLib::OutPt
+next	.\clipper.hpp	/^  Scanbeam *next;$/;"	m	struct:ClipperLib::Scanbeam
+next	.\clipper.hpp	/^  TEdge *next;$/;"	m	struct:ClipperLib::TEdge
+nextInAEL	.\clipper.hpp	/^  TEdge *nextInAEL;$/;"	m	struct:ClipperLib::TEdge
+nextInLML	.\clipper.hpp	/^  TEdge *nextInLML;$/;"	m	struct:ClipperLib::TEdge
+nextInSEL	.\clipper.hpp	/^  TEdge *nextInSEL;$/;"	m	struct:ClipperLib::TEdge
+normal	.\intpoint.h	/^INLINE Point normal(const Point& p0, int32_t len)$/;"	f
+normals	.\clipper.cpp	/^  std::vector<DoublePoint> normals;$/;"	m	class:ClipperLib::OffsetBuilder	file:
+operator !=	.\clipper.cpp	/^    bool operator != (const Int128 &val) const$/;"	f	class:ClipperLib::Int128
+operator !=	.\intpoint.h	/^    bool operator!=(const Point3& p) const { return x!=p.x||y!=p.y||z!=p.z; }$/;"	f	class:Point3
+operator !=	.\intpoint.h	/^INLINE bool operator!=(const Point& p0, const Point& p1) { return p0.X!=p1.X||p0.Y!=p1.Y; }$/;"	f
+operator ()	.\inifile.h	/^            bool operator() (const CIniKeyA* s1, const CIniKeyA* s2) const$/;"	f	struct:CIniFileA::CIniSectionA::ci_less_a
+operator ()	.\inifile.h	/^            bool operator() (const CIniKeyW* s1, const CIniKeyW* s2) const$/;"	f	struct:CIniFileW::CIniSectionW::ci_less_w
+operator ()	.\inifile.h	/^        bool operator() (const CIniSectionA* s1, const CIniSectionA* s2) const$/;"	f	struct:CIniFileA::ci_less_a
+operator ()	.\inifile.h	/^        bool operator() (const CIniSectionW* s1, const CIniSectionW* s2) const$/;"	f	struct:CIniFileW::ci_less_w
+operator ()	.\inifile.h	/^        std::istream &operator()(std::istream& input) const$/;"	f	class:CIniFileA::CIniMergeA
+operator ()	.\inifile.h	/^        std::wistream &operator()(std::wistream& input) const$/;"	f	class:CIniFileW::CIniMergeW
+operator *	.\intpoint.h	/^INLINE Point operator*(const Point& p0, const int32_t i) { return Point(p0.X*i, p0.Y*i); }$/;"	f
+operator +	.\clipper.cpp	/^    Int128 operator + (const Int128 &rhs) const$/;"	f	class:ClipperLib::Int128
+operator +	.\intpoint.h	/^    Point3 operator+(const Point3& p) const { return Point3(x+p.x, y+p.y, z+p.z); }$/;"	f	class:Point3
+operator +	.\intpoint.h	/^INLINE Point operator+(const Point& p0, const Point& p1) { return Point(p0.X+p1.X, p0.Y+p1.Y); }$/;"	f
+operator +=	.\clipper.cpp	/^    Int128& operator += (const Int128 &rhs)$/;"	f	class:ClipperLib::Int128
+operator +=	.\intpoint.h	/^    Point3& operator += (const Point3& p) { x += p.x; y += p.y; z += p.z; return *this; }$/;"	f	class:Point3
+operator -	.\clipper.cpp	/^    Int128 operator - (const Int128 &rhs) const$/;"	f	class:ClipperLib::Int128
+operator -	.\clipper.cpp	/^    Int128 operator-() const \/\/unary negation$/;"	f	class:ClipperLib::Int128
+operator -	.\intpoint.h	/^    Point3 operator-(const Point3& p) const { return Point3(x-p.x, y-p.y, z-p.z); }$/;"	f	class:Point3
+operator -	.\intpoint.h	/^INLINE Point operator-(const Point& p0, const Point& p1) { return Point(p0.X-p1.X, p0.Y-p1.Y); }$/;"	f
+operator -=	.\clipper.cpp	/^    Int128& operator -= (const Int128 &rhs)$/;"	f	class:ClipperLib::Int128
+operator -=	.\intpoint.h	/^    Point3& operator -= (const Point3& p) { x -= p.x; y -= p.y; z -= p.z; return *this; }$/;"	f	class:Point3
+operator /	.\clipper.cpp	/^    Int128 operator\/ (const Int128 &rhs) const$/;"	f	class:ClipperLib::Int128
+operator /	.\intpoint.h	/^    Point3 operator\/(const int32_t i) const { return Point3(x\/i, y\/i, z\/i); }$/;"	f	class:Point3
+operator /	.\intpoint.h	/^INLINE Point operator\/(const Point& p0, const int32_t i) { return Point(p0.X\/i, p0.Y\/i); }$/;"	f
+operator <	.\clipper.cpp	/^    bool operator < (const Int128 &val) const$/;"	f	class:ClipperLib::Int128
+operator <<	.\clipper.cpp	/^std::ostream& operator <<(std::ostream &s, IntPoint& p)$/;"	f	namespace:ClipperLib
+operator <<	.\clipper.cpp	/^std::ostream& operator <<(std::ostream &s, Polygon &p)$/;"	f	namespace:ClipperLib
+operator <<	.\clipper.cpp	/^std::ostream& operator <<(std::ostream &s, Polygons &p)$/;"	f	namespace:ClipperLib
+operator <<	.\inifile.cpp	/^std::ostream& operator<<(std::ostream& output, CIniFileA& obj)$/;"	f
+operator <<	.\inifile.cpp	/^std::wostream& operator<<(std::wostream& output, CIniFileW& obj)$/;"	f
+operator <=	.\clipper.cpp	/^    bool operator <= (const Int128 &val) const$/;"	f	class:ClipperLib::Int128
+operator =	.\BinaryTree.h	/^	const TREENODE& operator=(const TREENODE& node)$/;"	f	class:CBinaryTreeNode
+operator =	.\BinaryTree.h	/^	void operator=(int nKey) { m_nKey = nKey; }$/;"	f	class:CInt
+operator =	.\clipper.cpp	/^    long64 operator = (const long64 &val)$/;"	f	class:ClipperLib::Int128
+operator ==	.\BinaryTree.h	/^	bool operator==(int nKey) { return m_nKey == nKey; } $/;"	f	class:CInt
+operator ==	.\clipper.cpp	/^    bool operator == (const Int128 &val) const$/;"	f	class:ClipperLib::Int128
+operator ==	.\intpoint.h	/^    bool operator==(const Point3& p) const { return x==p.x&&y==p.y&&z==p.z; }$/;"	f	class:Point3
+operator ==	.\intpoint.h	/^INLINE bool operator==(const Point& p0, const Point& p1) { return p0.X==p1.X&&p0.Y==p1.Y; }$/;"	f
+operator >	.\clipper.cpp	/^    bool operator > (const Int128 &val) const$/;"	f	class:ClipperLib::Int128
+operator >=	.\clipper.cpp	/^    bool operator >= (const Int128 &val) const$/;"	f	class:ClipperLib::Int128
+operator >>	.\inifile.cpp	/^std::istream& operator>>(std::istream& input, CIniFileA& obj)$/;"	f
+operator >>	.\inifile.cpp	/^std::istream& operator>>(std::istream& input, CIniMergeA merger)$/;"	f
+operator >>	.\inifile.cpp	/^std::wistream& operator>>(std::wistream& input, CIniFileW& obj)$/;"	f
+operator >>	.\inifile.cpp	/^std::wistream& operator>>(std::wistream& input, CIniMergeW merger)$/;"	f
+optimize	.\pathOptimizer.h	/^	void optimize()$/;"	f	class:PathOptimizer
+optimizePolygon	.\polygonOptimizer.cpp	/^void optimizePolygon(ClipperLib::Polygon& poly)$/;"	f
+optimizePolygon2	.\polygonOptimizer.cpp	/^void optimizePolygon2(ClipperLib::Polygon& poly)$/;"	f
+optimizePolygons	.\polygonOptimizer.cpp	/^void optimizePolygons(Polygons& polys)$/;"	f
+outIdx	.\clipper.hpp	/^  int outIdx;$/;"	m	struct:ClipperLib::TEdge
+p	.\intpoint.h	/^    Point p() { return Point(X, Y); }$/;"	f	class:IntPoint
+pftEvenOdd	.\clipper.hpp	/^enum PolyFillType { pftEvenOdd, pftNonZero, pftPositive, pftNegative };$/;"	e	enum:ClipperLib::PolyFillType
+pftNegative	.\clipper.hpp	/^enum PolyFillType { pftEvenOdd, pftNonZero, pftPositive, pftNegative };$/;"	e	enum:ClipperLib::PolyFillType
+pftNonZero	.\clipper.hpp	/^enum PolyFillType { pftEvenOdd, pftNonZero, pftPositive, pftNegative };$/;"	e	enum:ClipperLib::PolyFillType
+pftPositive	.\clipper.hpp	/^enum PolyFillType { pftEvenOdd, pftNonZero, pftPositive, pftNegative };$/;"	e	enum:ClipperLib::PolyFillType
+pi	.\clipper.cpp	/^static double const pi = 3.141592653589793238;$/;"	m	namespace:ClipperLib	file:
+pmax	.\intpoint.h	/^    Point pmin, pmax;$/;"	m	class:AABB
+pmin	.\intpoint.h	/^    Point pmin, pmax;$/;"	m	class:AABB
+poly1Idx	.\clipper.hpp	/^  int       poly1Idx;$/;"	m	struct:ClipperLib::JoinRec
+poly2Idx	.\clipper.hpp	/^  int       poly2Idx;$/;"	m	struct:ClipperLib::JoinRec
+polyNode	.\clipper.hpp	/^  PolyNode *polyNode;$/;"	m	struct:ClipperLib::OutRec
+polyOrder	.\pathOptimizer.h	/^	std::vector<int> polyOrder;$/;"	m	class:PathOptimizer
+polyStart	.\pathOptimizer.h	/^	std::vector<int> polyStart;$/;"	m	class:PathOptimizer
+polyType	.\clipper.hpp	/^  PolyType polyType;$/;"	m	struct:ClipperLib::TEdge
+polygonLength	.\intpoint.h	/^INLINE int64_t polygonLength(const ClipperLib::Polygon& poly)$/;"	f
+polygons	.\pathOptimizer.h	/^	std::vector<ClipperLib::Polygon*> polygons;$/;"	m	class:PathOptimizer
+prev	.\clipper.hpp	/^  OutPt   *prev;$/;"	m	struct:ClipperLib::OutPt
+prev	.\clipper.hpp	/^  TEdge *prev;$/;"	m	struct:ClipperLib::TEdge
+prevInAEL	.\clipper.hpp	/^  TEdge *prevInAEL;$/;"	m	struct:ClipperLib::TEdge
+prevInSEL	.\clipper.hpp	/^  TEdge *prevInSEL;$/;"	m	struct:ClipperLib::TEdge
+pt	.\clipper.hpp	/^  IntPoint        pt;$/;"	m	struct:ClipperLib::IntersectNode
+pt	.\clipper.hpp	/^  IntPoint pt;$/;"	m	struct:ClipperLib::OutPt
+pt1a	.\clipper.hpp	/^  IntPoint  pt1a;$/;"	m	struct:ClipperLib::JoinRec
+pt1b	.\clipper.hpp	/^  IntPoint  pt1b;$/;"	m	struct:ClipperLib::JoinRec
+pt2a	.\clipper.hpp	/^  IntPoint  pt2a;$/;"	m	struct:ClipperLib::JoinRec
+pt2b	.\clipper.hpp	/^  IntPoint  pt2b;$/;"	m	struct:ClipperLib::JoinRec
+ptClip	.\clipper.hpp	/^enum PolyType { ptSubject, ptClip };$/;"	e	enum:ClipperLib::PolyType
+ptSubject	.\clipper.hpp	/^enum PolyType { ptSubject, ptClip };$/;"	e	enum:ClipperLib::PolyType
+pts	.\clipper.hpp	/^  OutPt  *pts;$/;"	m	struct:ClipperLib::OutRec
+right	.\clipper.hpp	/^struct IntRect { long64 left; long64 top; long64 right; long64 bottom; };$/;"	m	struct:ClipperLib::IntRect
+rightBound	.\clipper.hpp	/^  TEdge        *rightBound;$/;"	m	struct:ClipperLib::LocalMinima
+s_MotionProcessPra	.\ControlManager.h	/^struct s_MotionProcessPra$/;"	s
+savedIdx	.\clipper.hpp	/^  int       savedIdx;$/;"	m	struct:ClipperLib::HorzJoinRec
+shorterThen	.\intpoint.h	/^INLINE bool shorterThen(const Point& p0, int32_t len)$/;"	f
+side	.\clipper.hpp	/^  EdgeSide side;$/;"	m	struct:ClipperLib::TEdge
+startPoint	.\pathOptimizer.h	/^	Point startPoint;$/;"	m	class:PathOptimizer
+strPath	.\PhraseManager.h	/^	CString strPath;$/;"	m	struct:SThreadMsg
+str_to_tstr	.\tstdlibs.h	/^	tstring str_to_tstr(const std::string& arg)$/;"	f	namespace:tstd::__anon4
+str_to_wstr	.\inifile.cpp	/^std::wstring str_to_wstr(const std::string& arg)$/;"	f
+tcerr	.\tstdlibs.h	/^	tostream& tcerr = std::wcerr;$/;"	m	namespace:tstd::__anon4
+tcin	.\tstdlibs.h	/^	tistream& tcin	= std::wcin;$/;"	m	namespace:tstd::__anon4
+tclog	.\tstdlibs.h	/^	tostream& tclog = std::wclog;$/;"	m	namespace:tstd::__anon4
+tcout	.\tstdlibs.h	/^    tostream& tcout = std::wcout;$/;"	m	namespace:tstd::__anon4
+tendl	.\tstdlibs.h	/^    std::wostream& tendl( std::wostream& output )$/;"	f	namespace:tstd::__anon4
+testLength	.\intpoint.h	/^    bool testLength(int32_t len)$/;"	f	class:Point3
+tfilebuf	.\tstdlibs.h	/^	typedef std::wfilebuf			tfilebuf;$/;"	t	namespace:tstd
+tfstream	.\tstdlibs.h	/^	typedef std::wfstream			tfstream;$/;"	t	namespace:tstd
+theApp	.\CarpetControl.cpp	/^CCarpetControlApp theApp;$/;"	v
+tifstream	.\tstdlibs.h	/^	typedef std::wifstream			tifstream;$/;"	t	namespace:tstd
+tios	.\tstdlibs.h	/^	typedef std::wios			    tios;$/;"	t	namespace:tstd
+tiostream	.\tstdlibs.h	/^	typedef std::wiostream			tiostream;$/;"	t	namespace:tstd
+tistream	.\tstdlibs.h	/^	typedef std::wistream			tistream;$/;"	t	namespace:tstd
+tistringstream	.\tstdlibs.h	/^	typedef std::wistringstream		tistringstream;$/;"	t	namespace:tstd
+to	.\ControlManager.h	/^	cv::Point to;$/;"	m	struct:s_MotionProcessPra
+tofstream	.\tstdlibs.h	/^	typedef std::wofstream			tofstream;$/;"	t	namespace:tstd
+top	.\clipper.hpp	/^struct IntRect { long64 left; long64 top; long64 right; long64 bottom; };$/;"	m	struct:ClipperLib::IntRect
+tostream	.\tstdlibs.h	/^	typedef std::wostream			tostream;$/;"	t	namespace:tstd
+tostringstream	.\tstdlibs.h	/^	typedef std::wostringstream		tostringstream;$/;"	t	namespace:tstd
+tstd	.\tstdlibs.h	/^namespace tstd$/;"	n
+tstr_to_str	.\tstdlibs.h	/^	std::string tstr_to_str(const tstring& arg)$/;"	f	namespace:tstd::__anon4
+tstr_to_wstr	.\tstdlibs.h	/^	std::wstring tstr_to_wstr(const tstring& arg)$/;"	f	namespace:tstd::__anon4
+tstreambuf	.\tstdlibs.h	/^	typedef std::wstreambuf			tstreambuf;$/;"	t	namespace:tstd
+tstreampos	.\tstdlibs.h	/^	typedef std::wstreampos			tstreampos;$/;"	t	namespace:tstd
+tstring	.\tstdlibs.h	/^	typedef std::wstring			tstring;$/;"	t	namespace:tstd
+tstringbuf	.\tstdlibs.h	/^	typedef std::wstringbuf			tstringbuf;$/;"	t	namespace:tstd
+tstringstream	.\tstdlibs.h	/^	typedef std::wstringstream		tstringstream;$/;"	t	namespace:tstd
+uiFirstUserToolBarId	.\MainFrm.cpp	/^const UINT uiFirstUserToolBarId = AFX_IDW_CONTROLBAR_FIRST + 40;$/;"	v
+uiLastUserToolBarId	.\MainFrm.cpp	/^const UINT uiLastUserToolBarId = uiFirstUserToolBarId + iMaxUserToolbars - 1;$/;"	v
+ulong64	.\clipper.hpp	/^typedef unsigned long long ulong64;$/;"	t	namespace:ClipperLib
+unapply	.\intpoint.h	/^    Point unapply(const Point p) const$/;"	f	class:PointMatrix
+vSize	.\intpoint.h	/^    int32_t vSize()$/;"	f	class:Point3
+vSize	.\intpoint.h	/^INLINE int32_t vSize(const Point& p0)$/;"	f
+vSize2	.\intpoint.h	/^    int64_t vSize2()$/;"	f	class:Point3
+vSize2	.\intpoint.h	/^INLINE int64_t vSize2(const Point& p0)$/;"	f
+vSizeMM	.\intpoint.h	/^INLINE double vSizeMM(const Point& p0)$/;"	f
+what	.\clipper.hpp	/^    virtual const char* what() const throw() {return m_descr.c_str();}$/;"	f	class:ClipperLib::clipperException
+windCnt	.\clipper.hpp	/^  int windCnt;$/;"	m	struct:ClipperLib::TEdge
+windCnt2	.\clipper.hpp	/^  int windCnt2; \/\/winding count of the opposite polytype$/;"	m	struct:ClipperLib::TEdge
+windDelta	.\clipper.hpp	/^  int windDelta; \/\/1 or -1 depending on winding direction$/;"	m	struct:ClipperLib::TEdge
+wstr_to_str	.\inifile.cpp	/^std::string wstr_to_str(const std::wstring& arg)$/;"	f
+wstr_to_tstr	.\tstdlibs.h	/^	tstring wstr_to_tstr(const std::wstring& arg)$/;"	f	namespace:tstd::__anon4
+x	.\intpoint.h	/^    int32_t x,y,z;$/;"	m	class:Point3
+xbot	.\clipper.hpp	/^  long64 xbot;$/;"	m	struct:ClipperLib::TEdge
+xcurr	.\clipper.hpp	/^  long64 xcurr;$/;"	m	struct:ClipperLib::TEdge
+xtop	.\clipper.hpp	/^  long64 xtop;$/;"	m	struct:ClipperLib::TEdge
+y	.\intpoint.h	/^    int32_t x,y,z;$/;"	m	class:Point3
+ybot	.\clipper.hpp	/^  long64 ybot;$/;"	m	struct:ClipperLib::TEdge
+ycurr	.\clipper.hpp	/^  long64 ycurr;$/;"	m	struct:ClipperLib::TEdge
+ytop	.\clipper.hpp	/^  long64 ytop;$/;"	m	struct:ClipperLib::TEdge
+z	.\intpoint.h	/^    int32_t x,y,z;$/;"	m	class:Point3
+~CBinaryTree	.\BinaryTree.h	/^	~CBinaryTree()$/;"	f	class:CBinaryTree
+~CBinaryTreeNode	.\BinaryTree.h	/^	~CBinaryTreeNode()$/;"	f	class:CBinaryTreeNode
+~CCarpetControlDoc	.\CarpetControlDoc.cpp	/^CCarpetControlDoc::~CCarpetControlDoc()$/;"	f	class:CCarpetControlDoc
+~CCarpetControlView	.\CarpetControlView.cpp	/^CCarpetControlView::~CCarpetControlView()$/;"	f	class:CCarpetControlView
+~CChildFrame	.\ChildFrm.cpp	/^CChildFrame::~CChildFrame()$/;"	f	class:CChildFrame
+~CIniFileA	.\inifile.cpp	/^CIniFileA::~CIniFileA()$/;"	f	class:CIniFileA
+~CIniFileW	.\inifile.cpp	/^CIniFileW::~CIniFileW()$/;"	f	class:CIniFileW
+~CIniKeyA	.\inifile.cpp	/^CIniKeyA::~CIniKeyA()$/;"	f	class:CIniKeyA
+~CIniKeyW	.\inifile.cpp	/^CIniKeyW::~CIniKeyW()$/;"	f	class:CIniKeyW
+~CIniSectionA	.\inifile.cpp	/^CIniSectionA::~CIniSectionA()$/;"	f	class:CIniSectionA
+~CIniSectionW	.\inifile.cpp	/^CIniSectionW::~CIniSectionW()$/;"	f	class:CIniSectionW
+~CMainFrame	.\MainFrm.cpp	/^CMainFrame::~CMainFrame()$/;"	f	class:CMainFrame
+~CPhraseFrame	.\PhraseFrame.cpp	/^CPhraseFrame::~CPhraseFrame()$/;"	f	class:CPhraseFrame
+~CTestDlgEx	.\TestDlgEx.cpp	/^CTestDlgEx::~CTestDlgEx()$/;"	f	class:CTestDlgEx
+~Clipper	.\clipper.cpp	/^Clipper::~Clipper() \/\/destructor$/;"	f	class:ClipperLib::Clipper
+~ClipperBase	.\clipper.cpp	/^ClipperBase::~ClipperBase() \/\/destructor$/;"	f	class:ClipperLib::ClipperBase
+~PolyTree	.\clipper.hpp	/^    ~PolyTree(){Clear();};$/;"	f	class:ClipperLib::PolyTree
+~clipperException	.\clipper.hpp	/^    virtual ~clipperException() throw() {}$/;"	f	class:ClipperLib::clipperException

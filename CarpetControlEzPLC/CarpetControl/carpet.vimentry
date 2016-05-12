@@ -1,0 +1,39 @@
+-- auto-gen settings (DO NOT MODIFY) --
+
+CWD=E:/Work/CarpetControl/CarpetControl
+Version=25
+VimEntryName=carpet
+VimfilesDirName=.vimfiles.carpet
+
+-- ex-plugins File Settings --
+
+LangType=auto
+Project=./.vimfiles.carpet/project_tree.exproject
+FilenameList=./.vimfiles.carpet/filenamelist
+Tag=./.vimfiles.carpet/tags
+ID=./.vimfiles.carpet/ID
+Symbol=./.vimfiles.carpet/symbol
+Macro=./.vimfiles.carpet/macro
+Cscope=./.vimfiles.carpet/cscope.out
+Inherits=./.vimfiles.carpet/inherits
+Bookmarks=./.vimfiles.carpet/bookmarks
+
+vimentryRefs+=
+
+-- ex-plugins Behavior Settings --
+
+RestoreBuffers=false
+AskForRestoration=true
+RestoreInfo=./.vimfiles.carpet/restore_info
+
+-- LookupFile Settings --
+
+LookupFileTag=./.vimfiles.carpet/filenametags
+
+-- Visual Studio Settings --
+
+vsTaskList=./.vimfiles.carpet/vs_task_list
+vsOutput=./.vimfiles.carpet/vs_output
+vsFindResult1=./.vimfiles.carpet/vs_find_results_1
+vsFindResult2=./.vimfiles.carpet/vs_find_results_2
+
