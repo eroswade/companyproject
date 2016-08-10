@@ -621,6 +621,10 @@ void CPhraseFrame::GettingPLCState()
         {
             Item.crBkClr=RGB(255,255,255);
         }
+		if (i==2 && str=='1')
+		{
+			m_MOVEXYFLAG=FALSE;
+		}
         m_Grid.SetItem(&Item);
     }
 
@@ -667,10 +671,6 @@ void CPhraseFrame::GettingPLCState()
 		}
 		m_Grid.SetItem(&Item);
 
-		if (i==2 && str=='1')
-		{
-			m_MOVEXYFLAG=FALSE;
-		}
 	}
 
 	GetDevice("U0\\G2717",nGetting); // µÚRÖá×´Ì¬  md.31
@@ -712,6 +712,12 @@ void CPhraseFrame::OnBnClickedButtonPause()
     Stop_decel_NO();
 }
 
+//// STOP
+//SetDevice("U0\\G30100",1);
+//SetDevice("U0\\G30110",1);
+//SetDevice("U0\\G30120",1);
+//SetDevice("U0\\G30130",1);
+//SetDevice("U0\\G30140",1);
 
 void CPhraseFrame::OnBnClickedButtonContinue()
 {
@@ -737,5 +743,4 @@ void CPhraseFrame::OnBnClickedButtonRstmcode()
 	SetDevice("U0\\G4504",1);// 
 	Sleep(50);
 	SetDevice("U0\\G4504",0);// 
-
 }

@@ -49,6 +49,14 @@ void SetData2(CString strDVName,int nPos,int nLen)
     SetDevice(strBuff,hwd);
 }
 
+void SetData(CString DeviceName,int npos, int DeviceValue)
+{
+    CString strBuff;
+    strBuff.Format("%s%d", DeviceName, npos);
+    SetDevice(strBuff,DeviceValue);
+}
+
+
 BOOL SetDevice(CString DeviceName, int DeviceValue)
 {
     long lValue;
@@ -227,9 +235,9 @@ void RunCalcPath(HWND hwnd, int Obj)
             HANDLE tThread =  CreateThread(NULL,0,DownGunProcess,0,0,NULL);
             WaitingForThread(tThread);
 
-            cv::Point2f pOt1 = m_ListAllPoint[iter+1];
-            cv::Point2f pOt2 = m_ListAllPoint[iter+2];
-            cv::Point2f pOt0 = m_ListAllPoint[iter-1];
+            cv::Point2f pOt1 = m_ListAllPoint[iter+1];//下一个点
+            cv::Point2f pOt2 = m_ListAllPoint[iter+2];// 下两个点
+            cv::Point2f pOt0 = m_ListAllPoint[iter-1];// 上一个点
             float diffdegree;
             diffdegree = GetDiffdegree(pOt2, pOt1);
 
@@ -240,12 +248,12 @@ void RunCalcPath(HWND hwnd, int Obj)
             //m_RunCMD.push_back(PlistObj);
 
             s_MotionProcessPra s;
-            s.from = pOt0;
-            s.to = pOt1;
-            s.bwithNeedle = FALSE;
-            s.b3DFlag = FALSE;
+            s.from = pOt1;
+            s.to = pOt2;
+            s.bwithNeedle = TRUE;
+            s.b3DFlag = TRUE;
             MotionPhrase(&s, TRUE, degreepls);
-            iter++;
+            iter+=2;
         }
         else if (pOt.x == MARK_DWE.x && pOt.y == MARK_DWE.y)// 旋转 DWE + XY  
         {
@@ -410,7 +418,9 @@ DWORD MotionPhrase(s_MotionProcessPra* par, BOOL bRoll, int nRollAngle)
     }
     else
     {
-		//// 因为这里暂时只有M1用到， 所以暂时不需要
+		//// 因为这里暂时只有M1用到， 所以暂时不需要 
+        //// TODO 这里要进一个点. 4*4. 但问题是如果针不动, 这个指令会出错. 
+        //// 但这里又涉及到旋转轴
         //MotionOutput PlistObj;
         //if (bRoll)
         //{
@@ -452,7 +462,7 @@ DWORD WINAPI MoveXY(LPVOID par)
     SetDevice("U0\\G6000",STOPMOVE2);// 一轴 增量 连续 NO.1
     SetData2("U0\\G",6006,distlist[0]);// 定位地址
     SetData2("U0\\G",7006,distlist[1]);// 定位地址
-    SetData2("U0\\G",6003,1);// 插补对象 后3个字节 1个字节为1轴  从0-15 二进制度数表示
+    SetData("U0\\G",6003,1);// 插补对象 后3个字节 1个字节为1轴  从0-15 二进制度数表示
     //SetData2("U0\\G",,distlist[1]);
     SetData2("U0\\G",6004,4194304*4);//指令速度
 
@@ -498,12 +508,22 @@ DWORD WINAPI MotionProcess(LPVOID par)
     //    
     //}
     //return 0;
-
+    int roucount=0;
+    int mxroucount = floor(m_RunCMD.size()/50)-1;
+    if (m_RunCMD.size()%50 != 0)
+    {
+        mxroucount+=1;
+    }
     while (true)
     {
-        if (m_RunCMD.size()-Kout < 100)// 如果剩下的点数少于600个点
+        if (roucount+1 >= mxroucount)// 最后50个
         {
-            for (int i=0; i<m_RunCMD.size()-Kout; i++)
+            int i=0;
+            if (roucount%2 == 1)
+            {
+                i=50;
+            }
+            for (; i<m_RunCMD.size()-Kout; i++)
             {
                 if(i!=m_RunCMD.size()-Kout-1)
                 {
@@ -513,18 +533,39 @@ DWORD WINAPI MotionProcess(LPVOID par)
                 }
             }
 			Kout= m_RunCMD.size();
-            //SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
+
+            if (roucount == 0)
+            {
+                SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
+                Sleep(200);
+                SetDevice("Y12",1); // 轴1 MOV 
+                Sleep(10);
+                SetDevice("Y12",0); // 轴1 MOV 
+            }
 			m_SEWFLAG=TRUE;
         }
         else
         {
             int dd = Kout;
-            for (int i=0; i<100; i++,Kout++)
+            if (roucount%2==0)//1、0进入 5、2进入，变3
             {
-                SettingMotionData4x(dd, i,FALSE);
+                for (int i=0; i<50; i++,Kout++)//第一次放进50个点
+                {
+                    SettingMotionData4x(dd, i,FALSE);
+                }
             }
+
+            if (roucount%2==1)//3、roucount＝1 进入
+            {
+                for (int i=50; i<100; i++,Kout++)//第二次放进50个点
+                {
+                    SettingMotionData4x(dd, i,FALSE);
+                }
+            }
+            
+
             // TODO 启动编号未必是从1开始
-			if (Kout <= 100)
+			if (roucount == 0)
 			{
 				SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
                 Sleep(200);
@@ -533,6 +574,8 @@ DWORD WINAPI MotionProcess(LPVOID par)
                 SetDevice("Y12",0); // 轴1 MOV 
 			}
 			m_SEWFLAG=TRUE;
+            roucount++;
+
         }
         int dreegree ;
         while (m_SEWFLAG)
@@ -544,7 +587,11 @@ DWORD WINAPI MotionProcess(LPVOID par)
             //    m_RollPos.erase(m_RollPos.begin());
             //}
 
-            if (m_CurrentPos == 99)
+            if (m_CurrentPos > 50 && roucount%2==0 && roucount<mxroucount)//4、roucount=2 并且m_CurrentPos>50 break; 
+            {
+                break;
+            }
+            else if (m_CurrentPos<10 && roucount%2==1 && roucount<mxroucount)//2、判断生效果 break。 6、roucount＝3，当后面50－100跑完，进入
             {
                 break;
             }
@@ -687,7 +734,7 @@ void OnReturnZero()
     SetDevice("U0\\G6000",STOPMOVE2);// 一轴 增量 连续 NO.1
     SetData2("U0\\G",6006,distlist[0]);// 定位地址
     SetData2("U0\\G",7006,distlist[1]);// 定位地址
-    SetData2("U0\\G",6003,1);// 插补对象 后3个字节 1个字节为1轴  从0-15 二进制度数表示
+    SetData("U0\\G",6003,1);// 插补对象 后3个字节 1个字节为1轴  从0-15 二进制度数表示
     //SetData2("U0\\G",,distlist[1]);
     SetData2("U0\\G",6004,4194304*4);//指令速度
 
@@ -706,19 +753,11 @@ void SettingMotionData4x( int dd, int i , BOOL RUNMET)
     MotionOutput s=m_RunCMD[dd+i];
     if (s.bRoll)
     {
-        MotionRoll rous;
-        rous.Rollpos = i+1;//+dd
-        rous.rollangle = s.rollangle;
-        SetData2("U0\\G",9006+10*i,rous.rollangle); //旋转轴
-        SetData2("U0\\G",9000+10*i,STOPMOVE);// 运行模式
+        SetData2("U0\\G",9006+10*i,s.rollangle); //旋转轴
+        SetData("U0\\G",9000+10*i,STOPMOVE);// 运行模式
         SetData2("U0\\G",9004+10*i,4194304);// 指令速度
-        //SetDevice("U0\\G4600",1);// 4300+100n 定位轴启动编号 
-        //Sleep(200);
-        //SetDevice("Y13",1); // 
-        //SetDevice("Y13",0); // 
-        SetData2("U0\\G",8001+10*i,i+1); //T轴 MCODE
 
-        //m_RollPos.push_back(rous);
+        SetData("U0\\G",8001+10*i,i+1); //T轴 MCODE
     }
 
 
@@ -728,15 +767,15 @@ void SettingMotionData4x( int dd, int i , BOOL RUNMET)
     SetData2("U0\\G",10006+10*i,s.sewincTV.y);// V轴
     if(!RUNMET)
     {
-        SetData2("U0\\G",8000+10*i,CONTINUEMOVE4);// 运行模式
+        SetData("U0\\G",8000+10*i,CONTINUEMOVE4);// 运行模式
     }
     else
     {
-        SetData2("U0\\G",8000+10*i,STOPMOVE4);// 运行模式
+        SetData("U0\\G",8000+10*i,STOPMOVE4);// 运行模式
     }
-    SetData2("U0\\G",8004+10*i,4194304/2);// 指令速度
+    SetData2("U0\\G",8004+10*i,4194304*3);// 指令速度
 
-    SetData2("U0\\G",8003+10*i,0x014);// 插补对象 后3个字节 1个字节为1轴  从0-15 二进制度数表示
+    SetData("U0\\G",8003+10*i,0x014);// 插补对象 后3个字节 1个字节为1轴  从0-15 二进制度数表示
 
     // M代码输出时机 27+150n
     // M代码 2408+100n

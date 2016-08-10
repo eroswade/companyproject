@@ -154,6 +154,7 @@ extern BOOL InitialCom();
 extern BOOL SetDevice(CString DeviceName, int DeviceValue);
 extern BOOL GetDevice(CString DeviceName, long& lValue);
 extern void SetData2(CString strDVName,int nPos,int nLen);
+extern void SetData(CString DeviceName,int npos, int DeviceValue);
 
 
 extern BOOL m_MOVEXYFLAG;

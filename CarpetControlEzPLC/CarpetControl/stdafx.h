@@ -44,7 +44,7 @@
 using namespace std;
 
 //using namespace cv;
-#define DEBUG_WITHOUT_PLC 0
+#define DEBUG_WITHOUT_PLC 1
 
 
 
