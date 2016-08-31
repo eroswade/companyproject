@@ -134,6 +134,8 @@ extern void RunCalcPath(HWND hwnd, int Obj);
 
 //! 减速停止
 extern void Stop_decel_NO();
+//
+extern void Clear_Stop_Sign();
 //! 初始化各轴的齿轮比
 extern void InitMotorGearRatio();
 
@@ -155,6 +157,7 @@ extern BOOL SetDevice(CString DeviceName, int DeviceValue);
 extern BOOL GetDevice(CString DeviceName, long& lValue);
 extern void SetData2(CString strDVName,int nPos,int nLen);
 extern void SetData(CString DeviceName,int npos, int DeviceValue);
+extern void GetCurrentRunPos();
 
 
 extern BOOL m_MOVEXYFLAG;

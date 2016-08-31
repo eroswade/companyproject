@@ -117,6 +117,9 @@
     <ClInclude Include="GridCtrl_src\MemDC.h">
       <Filter>GridCtrl</Filter>
     </ClInclude>
+    <ClInclude Include="sqlite3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CarpetControl.cpp">
@@ -184,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="GridCtrl_src\GridCell.cpp">
       <Filter>GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite3.c">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

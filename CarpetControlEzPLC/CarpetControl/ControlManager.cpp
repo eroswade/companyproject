@@ -322,6 +322,17 @@ void Stop_decel_NO()
     SetDevice("U0\\G30140",1);
 }
 
+// 清除停止信号
+void Clear_Stop_Sign()
+{
+    SetDevice("U0\\G30100",0);
+    SetDevice("U0\\G30110",0);
+    SetDevice("U0\\G30120",0);
+    SetDevice("U0\\G30130",0);
+    SetDevice("U0\\G30140",0);
+}
+
+
 
 double GetDiffdegree( cv::Point2f pOt2, cv::Point2f pOt1)
 {
@@ -779,4 +790,12 @@ void SettingMotionData4x( int dd, int i , BOOL RUNMET)
 
     // M代码输出时机 27+150n
     // M代码 2408+100n
+}
+
+
+void GetCurrentRunPos()
+{
+    long nGetting=0;
+    GetDevice("U0\\G2437",nGetting); // X轴 最后执行的NO.
+
 }

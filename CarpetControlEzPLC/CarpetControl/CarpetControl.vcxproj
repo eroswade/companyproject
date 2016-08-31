@@ -141,6 +141,7 @@
     <ClInclude Include="PhraseManager.h" />
     <ClInclude Include="polygonOptimizer.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="sqlite3.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="tstdlibs.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="PhraseFrame.cpp" />
     <ClCompile Include="PhraseManager.cpp" />
     <ClCompile Include="polygonOptimizer.cpp" />
+    <ClCompile Include="sqlite3.c" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

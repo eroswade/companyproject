@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "CarpetControl.h"
 #include "PhraseFrame.h"
+#include "sqlite3.h"
 
 // Y0 请求模块准备  X0返回准备完成
 // Y1 轴1定位启动
@@ -390,7 +391,7 @@ void CPhraseFrame::OnBnClickedButtonLoaddata()
         
 		ReadM2File(strPath);
 		DrawM2Path();
-		cv::imshow("MainDispWin",m_ShowPathMat);
+		//cv::imshow("MainDispWin",m_ShowPathMat);
 		//WriteM2File("e:\\work\\test.txt");
 	}
 	
@@ -566,27 +567,34 @@ void CPhraseFrame::OnBnClickedButtonMovey()
 
 void CPhraseFrame::OnBnClickedButtonTestdata()
 {
-	//SetDevice("U0\\G2606",0);// 出错  2406+100n
-	//SetDevice("U0\\G2607",0);// 报警编号复位 2407+100n
-	//SetDevice("U0\\G4502",0);// 轴出错复位 4302+100n
+    SetDevice("U0\\G2406",0);// 出错  2406+100n
+    SetDevice("U0\\G2407",0);// 报警编号复位 2407+100n
+    SetDevice("U0\\G4302",0);// 轴出错复位 4302+100n
 
-    SetData2("U0\\G",8006,4194304);//X轴
-    SetDevice("U0\\G8000",STOPMOVE);// 运行模式
-    SetData2("U0\\G",8004,4194304/2);// 指令速度
+    SetDevice("U0\\G6000",CONTINUEMOVE);// 一轴 增量 连续 NO.1
+    SetData2("U0\\G",6004,4194304/2);// 指令速度
+    SetData2("U0\\G",6006,4194304*2);// 定位地址
 
-	SetDevice("U0\\G8001",1); //R轴 MCODE
+    SetDevice("U0\\G6010",CONTINUEMOVE);// 一轴 增量 连续 NO.1
+    SetData2("U0\\G",6014,4194304/2);// 指令速度
+    SetData2("U0\\G",6016,-4194304*2);// 定位地址
 
-	SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号 
+    SetDevice("U0\\G6020",CONTINUEMOVE);// 一轴 增量 连续 NO.1
+    SetData2("U0\\G",6024,4194304/2);// 指令速度
+    SetData2("U0\\G",6026,4194304*2);// 定位地址
 
-	SetData2("U0\\G",9006,4194304);//X轴
-	SetDevice("U0\\G9000",STOPMOVE);// 运行模式
-	SetData2("U0\\G",9004,4194304/2);// 指令速度
+    SetDevice("U0\\G6030",STOPMOVE);// 一轴 增量 连续 NO.1
+    SetData2("U0\\G",6034,4194304/2);// 指令速度
+    SetData2("U0\\G",6036,-4194304*2);// 定位地址
 
+    // G1500 定位轴启动编号  从第几个NO.1-NO.600  9001 机械原点复位  9002 高速复位 7000-7004块指定 9003 当前值更改  9004 多轴同时启动
+    SetDevice("U0\\G4300",1);// 4300+100n 定位轴启动编号 
+    // 4300 启动编号   4301 块启动编号  4302 出错复位  4303 重启  其中后3个会自动重置为0
     Sleep(200);
 
-    SetDevice("Y12",1); // 轴1 MOV 
+    SetDevice("Y10",1); // 轴1 MOV 
     Sleep(10);
-    SetDevice("Y12",0); // 轴1 MOV 
+    SetDevice("Y10",0); // 轴1 MOV 
 
 }
 
@@ -710,6 +718,9 @@ void CPhraseFrame::OnBnClickedButtonPause()
 {
     //SetDevice("U0\\G30100",1);
     Stop_decel_NO();
+    Sleep(100);
+    Clear_Stop_Sign();
+
 }
 
 //// STOP
@@ -721,13 +732,6 @@ void CPhraseFrame::OnBnClickedButtonPause()
 
 void CPhraseFrame::OnBnClickedButtonContinue()
 {
-    SetDevice("U0\\G30100",0);
-    SetDevice("U0\\G30110",0);
-    SetDevice("U0\\G30120",0);
-    SetDevice("U0\\G30130",0);
-    SetDevice("U0\\G30140",0);
-
-    Sleep(100);
     SetDevice("U0\\G4303",1);// 4303+100n 重启动  重启后会自动设为0
     SetDevice("U0\\G4403",1);// 4303+100n 重启动
     SetDevice("U0\\G4503",1);// 4303+100n 重启动
@@ -740,7 +744,5 @@ void CPhraseFrame::OnBnClickedButtonContinue()
 
 void CPhraseFrame::OnBnClickedButtonRstmcode()
 {
-	SetDevice("U0\\G4504",1);// 
-	Sleep(50);
-	SetDevice("U0\\G4504",0);// 
+
 }
