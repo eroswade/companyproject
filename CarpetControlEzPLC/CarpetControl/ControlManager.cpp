@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "ControlManager.h"
 #include <list>
-
+#include "GlobalFunction.h"
 
 using namespace std;
 BOOL b3DFlag=TRUE;
@@ -470,6 +470,10 @@ DWORD WINAPI MoveXY(LPVOID par)
 
     m_MOVEXYFLAG = TRUE;
 
+    stringstream strstrem;
+    strstrem << "MovXY: X:" << distlist[0] << " Y:" << distlist[1];
+    WriteDebugData(strstrem.str());
+
     SetDevice("U0\\G6000",STOPMOVE2);// 一轴 增量 连续 NO.1
     SetData2("U0\\G",6006,distlist[0]);// 定位地址
     SetData2("U0\\G",7006,distlist[1]);// 定位地址
@@ -520,7 +524,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
     //}
     //return 0;
     int roucount=0;
-    int mxroucount = floor(m_RunCMD.size()/50)-1;
+    int mxroucount = (int)floor(m_RunCMD.size()/50.0)-1;
     if (m_RunCMD.size()%50 != 0)
     {
         mxroucount+=1;
@@ -529,6 +533,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
     {
         if (roucount+1 >= mxroucount)// 最后50个
         {
+            WriteDebugData("最后50个数据的循环");
             int i=0;
             if (roucount%2 == 1)
             {
@@ -560,6 +565,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
             int dd = Kout;
             if (roucount%2==0)//1、0进入 5、2进入，变3
             {
+                WriteDebugData("50个以内");
                 for (int i=0; i<50; i++,Kout++)//第一次放进50个点
                 {
                     SettingMotionData4x(dd, i,FALSE);
@@ -568,6 +574,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
 
             if (roucount%2==1)//3、roucount＝1 进入
             {
+                WriteDebugData("50-100 数据的循环");
                 for (int i=50; i<100; i++,Kout++)//第二次放进50个点
                 {
                     SettingMotionData4x(dd, i,FALSE);
@@ -578,7 +585,8 @@ DWORD WINAPI MotionProcess(LPVOID par)
             // TODO 启动编号未必是从1开始
 			if (roucount == 0)
 			{
-				SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
+                WriteDebugData("开始运行");
+                SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
                 Sleep(200);
                 SetDevice("Y12",1); // 轴1 MOV 
                 Sleep(10);
@@ -600,14 +608,18 @@ DWORD WINAPI MotionProcess(LPVOID par)
 
             if (m_CurrentPos > 50 && roucount%2==0 && roucount<mxroucount)//4、roucount=2 并且m_CurrentPos>50 break; 
             {
+                WriteDebugData("step 4, m_CurrentPos>50 ");
                 break;
             }
             else if (m_CurrentPos<10 && roucount%2==1 && roucount<mxroucount)//2、判断生效果 break。 6、roucount＝3，当后面50－100跑完，进入
             {
+                WriteDebugData("step2, m_CurrentPos<10 ");
                 break;
             }
             if (m_StopRunning)
             {
+                WriteDebugData("stop running ");
+
                 break;
             }
 
@@ -619,6 +631,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
 		}
         if (m_StopRunning)
         {
+            WriteDebugData("stop running ");
             break;
         }
     }
@@ -761,6 +774,10 @@ void OnReturnZero()
 
 void SettingMotionData4x( int dd, int i , BOOL RUNMET)
 {
+
+    stringstream strstrem;
+    
+
     MotionOutput s=m_RunCMD[dd+i];
     if (s.bRoll)
     {
@@ -769,6 +786,10 @@ void SettingMotionData4x( int dd, int i , BOOL RUNMET)
         SetData2("U0\\G",9004+10*i,4194304);// 指令速度
 
         SetData("U0\\G",8001+10*i,i+1); //T轴 MCODE
+
+        strstrem << "SettingMotionData4x: Roll:" << s.rollangle ;
+        WriteDebugData(strstrem.str());
+        strstrem.str("");
     }
 
 
@@ -778,10 +799,18 @@ void SettingMotionData4x( int dd, int i , BOOL RUNMET)
     SetData2("U0\\G",10006+10*i,s.sewincTV.y);// V轴
     if(!RUNMET)
     {
+        strstrem << "SettingMotionData4x: continue X:" << s.movinc.x << " Y:" << s.movinc.y\
+            << " T(master):" << s.sewincTV.x << " V:"<<s.sewincTV.y;
+        WriteDebugData(strstrem.str());
+        strstrem.str("");
         SetData("U0\\G",8000+10*i,CONTINUEMOVE4);// 运行模式
     }
     else
     {
+        strstrem << "SettingMotionData4x: stop X:" << s.movinc.x << " Y:" << s.movinc.y\
+            << " T(master):" << s.sewincTV.x << " V:"<<s.sewincTV.y;
+        WriteDebugData(strstrem.str());
+        strstrem.str("");
         SetData("U0\\G",8000+10*i,STOPMOVE4);// 运行模式
     }
     SetData2("U0\\G",8004+10*i,4194304*3);// 指令速度

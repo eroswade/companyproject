@@ -120,6 +120,9 @@
     <ClInclude Include="sqlite3.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="GlobalFunction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CarpetControl.cpp">
@@ -189,6 +192,9 @@
       <Filter>GridCtrl</Filter>
     </ClCompile>
     <ClCompile Include="sqlite3.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalFunction.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

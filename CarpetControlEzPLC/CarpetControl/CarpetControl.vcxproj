@@ -125,6 +125,7 @@
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="clipper.hpp" />
     <ClInclude Include="ControlManager.h" />
+    <ClInclude Include="GlobalFunction.h" />
     <ClInclude Include="GridCtrl_src\CellRange.h" />
     <ClInclude Include="GridCtrl_src\GridCell.h" />
     <ClInclude Include="GridCtrl_src\GridCellBase.h" />
@@ -155,6 +156,7 @@
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="clipper.cpp" />
     <ClCompile Include="ControlManager.cpp" />
+    <ClCompile Include="GlobalFunction.cpp" />
     <ClCompile Include="GridCtrl_src\GridCell.cpp" />
     <ClCompile Include="GridCtrl_src\GridCellBase.cpp" />
     <ClCompile Include="GridCtrl_src\GridCtrl.cpp" />

@@ -5,6 +5,7 @@
 #include "CarpetControl.h"
 #include "PhraseFrame.h"
 #include "sqlite3.h"
+#include "GlobalFunction.h"
 
 // Y0 请求模块准备  X0返回准备完成
 // Y1 轴1定位启动
@@ -43,6 +44,7 @@ CPhraseFrame::CPhraseFrame()
 
 CPhraseFrame::~CPhraseFrame()
 {
+    DebugFileClose();
 }
 
 void CPhraseFrame::DoDataExchange(CDataExchange* pDX)
@@ -98,6 +100,7 @@ void CPhraseFrame::OnInitialUpdate()
 
     //m_Grid.EnableDragAndDrop(TRUE);
     //m_Grid.GetDefaultCell(FALSE, FALSE)->SetBackClr(RGB(0xFF, 0xFF, 0xE0));
+    DebugFileOpen();
 
     m_Grid.SetRowCount(5);
     m_Grid.SetColumnCount(16);
@@ -391,7 +394,7 @@ void CPhraseFrame::OnBnClickedButtonLoaddata()
         
 		ReadM2File(strPath);
 		DrawM2Path();
-		//cv::imshow("MainDispWin",m_ShowPathMat);
+		cv::imshow("MainDispWin",m_ShowPathMat);
 		//WriteM2File("e:\\work\\test.txt");
 	}
 	
@@ -706,11 +709,12 @@ void CPhraseFrame::GettingPLCState()
 
     // TODO 这里需要获取MD.26  2409+100n 包含运动状态 待机中, 停止中, 插补中, JOG运行中, ....
     //m_CurrentPos MD.44 执行中的定位数据 2435+100n
-    GetDevice("U0\\G2435",nGetting); // 第一轴状态  md.44
+    GetDevice("U0\\G2637",nGetting); // 第一轴状态  md.44 和GetCurrentRunPos里的一样
     m_CurrentPos=nGetting;
+    stringstream strstrem;
+    strstrem << "currentpos:" <<nGetting;
+    WriteDebugData(strstrem.str());
 
-
-    
 }
 
 
