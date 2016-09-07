@@ -529,6 +529,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
     {
         mxroucount+=1;
     }
+    BOOL m_Wait100Needle = FALSE;
     while (true)
     {
         if (roucount+1 >= mxroucount)// 最后50个
@@ -550,7 +551,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
             }
 			Kout= m_RunCMD.size();
 
-            if (roucount == 0)
+            if (roucount%2 == 0)
             {
                 SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
                 Sleep(200);
@@ -577,57 +578,80 @@ DWORD WINAPI MotionProcess(LPVOID par)
                 WriteDebugData("50-100 数据的循环");
                 for (int i=50; i<100; i++,Kout++)//第二次放进50个点
                 {
-                    SettingMotionData4x(dd, i,FALSE);
+                    if (i==99)
+                    {
+                        SettingMotionData4x(dd, i,TRUE);
+                    }
+                    else
+                    {
+                        SettingMotionData4x(dd, i,FALSE);
+                    }
                 }
             }
-            
 
-            // TODO 启动编号未必是从1开始
-			if (roucount == 0)
+            // 
+			if( roucount%2 == 0)
 			{
-                WriteDebugData("开始运行");
-                SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
-                Sleep(200);
-                SetDevice("Y12",1); // 轴1 MOV 
-                Sleep(10);
-                SetDevice("Y12",0); // 轴1 MOV 
+                if (roucount == 0)
+                {
+                    WriteDebugData("开始运行");
+                    SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
+                    Sleep(200);
+                    SetDevice("Y12",1); // 轴1 MOV 
+                    Sleep(10);
+                    SetDevice("Y12",0); // 轴1 MOV 
+                }
+                else
+                {
+                    m_Wait100Needle = TRUE;
+                }
 			}
 			m_SEWFLAG=TRUE;
             roucount++;
-
         }
         int dreegree ;
         while (m_SEWFLAG)
         {
-            //if (m_RollPos[0].Rollpos <= m_CurrentPos)
-            //{
-            //    dreegree = m_RollPos[0].rollangle;
-            //    CreateThread(NULL,0,RoteProcess,(LPVOID)dreegree,0,NULL);
-            //    m_RollPos.erase(m_RollPos.begin());
-            //}
-
+            // BUG 如果mxroucount <= roucount? 会发生什么?
             if (m_CurrentPos > 50 && roucount%2==0 && roucount<mxroucount)//4、roucount=2 并且m_CurrentPos>50 break; 
             {
-                WriteDebugData("step 4, m_CurrentPos>50 ");
+                WriteDebugData("step 4, m_CurrentPos>50 准备放下一组数据");
                 break;
             }
             else if (m_CurrentPos<10 && roucount%2==1 && roucount<mxroucount)//2、判断生效果 break。 6、roucount＝3，当后面50－100跑完，进入
             {
-                WriteDebugData("step2, m_CurrentPos<10 ");
+                WriteDebugData("step2, m_CurrentPos<10  准备放下一组数据");
                 break;
             }
             if (m_StopRunning)
             {
                 WriteDebugData("stop running ");
-
                 break;
             }
-
+            if (m_Wait100Needle)
+            {
+                if (m_CurrentPos == 100)
+                {
+                    WriteDebugData("开始运行 m_Wait100Needle");
+                    SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
+                    Sleep(200);
+                    SetDevice("Y12",1); // 轴1 MOV 
+                    Sleep(10);
+                    SetDevice("Y12",0); // 轴1 MOV 
+                    m_Wait100Needle = FALSE;
+                }
+            }
+            if(roucount*100+m_CurrentPos == m_RunCMD.size())// 一次数据全结束, 跳出   等于下面的Kout == m_RunCMD.size()
+            {
+                WriteDebugData("一组运行结束");
+                break;
+            }
             Sleep(50);
         }
 		if(Kout == m_RunCMD.size())
 		{
-			break;
+            WriteDebugData("一组运行结束 确认!");
+            break;
 		}
         if (m_StopRunning)
         {
