@@ -204,6 +204,10 @@ void RunCalcPath(HWND hwnd, int Obj)
                 HANDLE tThread =  CreateThread(NULL,0,MotionProcess,NULL,0,NULL);
                 WaitingForThread(tThread);
             }
+            if (m_StopRunning)// 如果是停止, 禁止下面的操作
+            {
+                break;
+            }
             HANDLE tThread =  CreateThread(NULL,0,CutProcess,NULL,0,NULL);
             WaitingForThread(tThread);
 
@@ -512,75 +516,48 @@ void SettingMotionData4x( int dd, int i, BOOL RUNMET );
 
 DWORD WINAPI MotionProcess(LPVOID par)
 {
-    int Kout=0; 
-    //for (int i=0; i<m_RunCMD.size(); i++)
-    //{
-    //    if (m_RunCMD[i].sewincTV.x==0)
-    //    {
-    //        Sleep(200);
 
-    //    }
-    //    
-    //}
-    //return 0;
     int roucount=0;
-    int mxroucount = (int)floor(m_RunCMD.size()/50.0)-1;
+    int mxroucount = (int)floor(m_RunCMD.size()/50.0);
     if (m_RunCMD.size()%50 != 0)
     {
         mxroucount+=1;
     }
+
+    stringstream strstrem;
     BOOL m_Wait100Needle = FALSE;
+    int m_Runed=0;
     while (true)
     {
-        if (roucount+1 >= mxroucount)// 最后50个
         {
-            WriteDebugData("最后50个数据的循环");
-            int i=0;
-            if (roucount%2 == 1)
-            {
-                i=50;
-            }
-            for (; i<m_RunCMD.size()-Kout; i++)
-            {
-                if(i!=m_RunCMD.size()-Kout-1)
-                {
-                    SettingMotionData4x(Kout, i, FALSE);
-                }else{
-                    SettingMotionData4x(Kout, i, TRUE);
-                }
-            }
-			Kout= m_RunCMD.size();
-
-            if (roucount%2 == 0)
-            {
-                SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
-                Sleep(200);
-                SetDevice("Y12",1); // 轴1 MOV 
-                Sleep(10);
-                SetDevice("Y12",0); // 轴1 MOV 
-            }
-			m_SEWFLAG=TRUE;
-        }
-        else
-        {
-            int dd = Kout;
+            int dd = floor(roucount/2.0)*100;
             if (roucount%2==0)//1、0进入 5、2进入，变3
             {
-                WriteDebugData("50个以内");
-                for (int i=0; i<50; i++,Kout++)//第一次放进50个点
+                strstrem<<"第" <<roucount<<"组 50数据循环";
+                WriteDebugData(strstrem.str());
+                strstrem.str("");
+                for (int i=0; i<50; i++)//第一次放进50个点
                 {
+                    if (dd+i+1 >= m_RunCMD.size())
+                    {
+                        SettingMotionData4x(dd, i,TRUE);
+                        break;
+                    }
                     SettingMotionData4x(dd, i,FALSE);
                 }
             }
 
             if (roucount%2==1)//3、roucount＝1 进入
             {
-                WriteDebugData("50-100 数据的循环");
-                for (int i=50; i<100; i++,Kout++)//第二次放进50个点
+                strstrem<<"第" <<roucount<<"组 50-100 数据的循环";
+                WriteDebugData(strstrem.str());
+                strstrem.str("");
+                for (int i=50; i<100; i++)//第二次放进50个点
                 {
-                    if (i==99)
+                    if (i==99 || dd+i+1 >= m_RunCMD.size())
                     {
                         SettingMotionData4x(dd, i,TRUE);
+                        break;
                     }
                     else
                     {
@@ -609,18 +586,34 @@ DWORD WINAPI MotionProcess(LPVOID par)
 			m_SEWFLAG=TRUE;
             roucount++;
         }
-        int dreegree ;
         while (m_SEWFLAG)
         {
+#if DEBUG_WITHOUT_PLC
+            if (m_CurrentPos <100)
+            {
+                m_CurrentPos++;
+                strstrem<<"m_CurrentPos" <<m_CurrentPos;
+                WriteDebugData(strstrem.str());
+                strstrem.str("");
+            }
+            else
+            {
+                m_CurrentPos=0;
+            }
+#endif
             // BUG 如果mxroucount <= roucount? 会发生什么?
             if (m_CurrentPos > 50 && roucount%2==0 && roucount<mxroucount)//4、roucount=2 并且m_CurrentPos>50 break; 
             {
-                WriteDebugData("step 4, m_CurrentPos>50 准备放下一组数据");
+                strstrem<<"第" <<roucount<<"组 step 4, m_CurrentPos>50 准备放下一组数据";
+                WriteDebugData(strstrem.str());
+                strstrem.str("");
                 break;
             }
             else if (m_CurrentPos<10 && roucount%2==1 && roucount<mxroucount)//2、判断生效果 break。 6、roucount＝3，当后面50－100跑完，进入
             {
-                WriteDebugData("step2, m_CurrentPos<10  准备放下一组数据");
+                strstrem<<"第" <<roucount<<"组 step2, m_CurrentPos<10  准备放下一组数据";
+                WriteDebugData(strstrem.str());
+                strstrem.str("");
                 break;
             }
             if (m_StopRunning)
@@ -632,25 +625,45 @@ DWORD WINAPI MotionProcess(LPVOID par)
             {
                 if (m_CurrentPos == 100)
                 {
-                    WriteDebugData("开始运行 m_Wait100Needle");
+                    strstrem<<"第" <<roucount<<"组 开始运行 m_Wait100Needle";
+                    WriteDebugData(strstrem.str());
+                    strstrem.str("");
+                    while (true)//有的时候会跑的太快
+                    {
+                        long nGetting=0;
+                        GetDevice("U0\\G2609",nGetting);
+                        if (nGetting == 0 || nGetting ==1)
+                        {
+                            break;
+                        }
+                        Sleep(50);
+#if DEBUG_WITHOUT_PLC
+                        break;
+#endif
+                    }
                     SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
                     Sleep(200);
                     SetDevice("Y12",1); // 轴1 MOV 
                     Sleep(10);
                     SetDevice("Y12",0); // 轴1 MOV 
                     m_Wait100Needle = FALSE;
+                    m_Runed+=100;
                 }
             }
-            if(roucount*100+m_CurrentPos == m_RunCMD.size())// 一次数据全结束, 跳出   等于下面的Kout == m_RunCMD.size()
+            if(m_Runed+m_CurrentPos == m_RunCMD.size())// 一次数据全结束, 跳出   等于下面的Kout == m_RunCMD.size()
             {
-                WriteDebugData("一组运行结束");
+                strstrem<<"第" <<roucount<<"组 一组运行结束";
+                WriteDebugData(strstrem.str());
+                strstrem.str("");
                 break;
             }
             Sleep(50);
         }
-		if(Kout == m_RunCMD.size())
+		if(m_CurrentPos+m_Runed == m_RunCMD.size())
 		{
-            WriteDebugData("一组运行结束 确认!");
+            strstrem<<"第" <<roucount<<"组 一组运行结束 确认!";
+            WriteDebugData(strstrem.str());
+            strstrem.str("");
             break;
 		}
         if (m_StopRunning)
@@ -800,7 +813,6 @@ void SettingMotionData4x( int dd, int i , BOOL RUNMET)
 {
 
     stringstream strstrem;
-    
 
     MotionOutput s=m_RunCMD[dd+i];
     if (s.bRoll)
@@ -823,7 +835,7 @@ void SettingMotionData4x( int dd, int i , BOOL RUNMET)
     SetData2("U0\\G",10006+10*i,s.sewincTV.y);// V轴
     if(!RUNMET)
     {
-        strstrem << "SettingMotionData4x: continue X:" << s.movinc.x << " Y:" << s.movinc.y\
+        strstrem << "SettingMotionData4x: continue count:" <<dd+i <<" X:" << s.movinc.x << " Y:" << s.movinc.y\
             << " T(master):" << s.sewincTV.x << " V:"<<s.sewincTV.y;
         WriteDebugData(strstrem.str());
         strstrem.str("");
@@ -831,7 +843,7 @@ void SettingMotionData4x( int dd, int i , BOOL RUNMET)
     }
     else
     {
-        strstrem << "SettingMotionData4x: stop X:" << s.movinc.x << " Y:" << s.movinc.y\
+        strstrem << "SettingMotionData4x: stop count"<< dd+i <<" X:" << s.movinc.x << " Y:" << s.movinc.y\
             << " T(master):" << s.sewincTV.x << " V:"<<s.sewincTV.y;
         WriteDebugData(strstrem.str());
         strstrem.str("");
