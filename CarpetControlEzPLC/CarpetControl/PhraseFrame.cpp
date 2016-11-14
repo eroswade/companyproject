@@ -715,6 +715,12 @@ void CPhraseFrame::GettingPLCState()
     strstrem << "currentpos:" <<nGetting;
     WriteDebugData(strstrem.str());
 
+	GetDevice("U0\\G2609",nGetting);
+	strstrem.str("");
+	strstrem << "Öá×´Ì¬:" <<nGetting;
+	WriteDebugData(strstrem.str());
+
+
 }
 
 
