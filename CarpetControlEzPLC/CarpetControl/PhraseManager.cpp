@@ -307,42 +307,42 @@ DWORD __stdcall PhraseImage(LPVOID strOPath)
             //generateConcentricInfill(PGtmp,m_PG,offsetlen,1);
 
 #ifdef SHOW_DEBUG_IMAGE
-            for (int ptl=0; ptl<m_PG.size();ptl++)
-            {
-                cv::Point p1,p2;
-                p1.x=m_PG[ptl][0].X/100;
-                p1.y=m_PG[ptl][0].Y/100;
-                p2.x=m_PG[ptl][1].X/100;
-                p2.y=m_PG[ptl][1].Y/100;
-                cv::line(lines,p1,p2,cv::Scalar(100,100,100),2);
-            }
-            imshow("test",lines);
-            cv::waitKey();
-
             //for (int ptl=0; ptl<m_PG.size();ptl++)
             //{
-            //	for (int ttp=0; ttp< m_PG[ptl].size();ttp++)
-            //	{
-            //			cv::Point p1,p2;
-            //			if (ttp < m_PG[ptl].size()-1)
-            //			{
-            //				p1.x=m_PG[ptl][ttp].X/100;
-            //				p1.y=m_PG[ptl][ttp].Y/100;
-            //				p2.x=m_PG[ptl][ttp+1].X/100;
-            //				p2.y=m_PG[ptl][ttp+1].Y/100;
-            //			}
-            //			else
-            //			{
-            //				p1.x=m_PG[ptl][ttp].X/100;
-            //				p1.y=m_PG[ptl][ttp].Y/100;
-            //				p2.x=m_PG[ptl][0].X/100;
-            //				p2.y=m_PG[ptl][0].Y/100;
-            //			}
-            //		cv::line(lines,p1,p2,cv::Scalar(100,100,100),2);
-            //	}
+            //    cv::Point p1,p2;
+            //    p1.x=m_PG[ptl][0].X/100;
+            //    p1.y=m_PG[ptl][0].Y/100;
+            //    p2.x=m_PG[ptl][1].X/100;
+            //    p2.y=m_PG[ptl][1].Y/100;
+            //    cv::line(lines,p1,p2,cv::Scalar(100,100,100),2);
             //}
             //imshow("test",lines);
             //cv::waitKey();
+
+            for (int ptl=0; ptl<m_PG.size();ptl++)
+            {
+            	for (int ttp=0; ttp< m_PG[ptl].size();ttp++)
+            	{
+            			cv::Point p1,p2;
+            			if (ttp < m_PG[ptl].size()-1)
+            			{
+            				p1.x=m_PG[ptl][ttp].X/100;
+            				p1.y=m_PG[ptl][ttp].Y/100;
+            				p2.x=m_PG[ptl][ttp+1].X/100;
+            				p2.y=m_PG[ptl][ttp+1].Y/100;
+            			}
+            			else
+            			{
+            				p1.x=m_PG[ptl][ttp].X/100;
+            				p1.y=m_PG[ptl][ttp].Y/100;
+            				p2.x=m_PG[ptl][0].X/100;
+            				p2.y=m_PG[ptl][0].Y/100;
+            			}
+            		cv::line(lines,p1,p2,cv::Scalar(100,100,100),2);
+            	}
+            }
+            imshow("test",lines);
+            cv::waitKey();
 #endif
 
             // ÅÅÐòinfill

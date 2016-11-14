@@ -12,6 +12,7 @@
 
 
 //#define SHOW_DEBUG_IMAGE
+#define FILL_OUT_EDGE
 
 #define PHRASE_PROCESS_MSG 2012
 #define AXIS_COUNT 5
