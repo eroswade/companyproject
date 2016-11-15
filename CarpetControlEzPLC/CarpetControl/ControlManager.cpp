@@ -59,6 +59,10 @@ void SetData(CString DeviceName,int npos, int DeviceValue)
 
 BOOL SetDevice(CString DeviceName, int DeviceValue)
 {
+#if DEBUG_WITHOUT_PLC
+	return TRUE;
+#endif
+
     long lValue;
     long lRet;
     CString	MsgStr;
@@ -85,6 +89,9 @@ BOOL SetDevice(CString DeviceName, int DeviceValue)
 
 BOOL GetDevice(CString DeviceName, long& lValue)
 {
+#if DEBUG_WITHOUT_PLC
+	return TRUE;
+#endif
     long lRet;
     CString	MsgStr;
     BSTR szDev = NULL;
@@ -230,6 +237,8 @@ void RunCalcPath(HWND hwnd, int Obj)
             s.bwithNeedle = FALSE;
             s.b3DFlag = FALSE;
             //MotionProcess(&s);
+			cv::line(m_ShowPathMat, opOt, pOt, cv::Scalar(0, 0, 255));
+			cv::imshow("MainDispWin", m_ShowPathMat);
             tThread =  CreateThread(NULL,0,MoveXY,&s,0,NULL);
             WaitingForThread(tThread);
             iter++;
@@ -256,7 +265,9 @@ void RunCalcPath(HWND hwnd, int Obj)
             s.to = pOt2;
             s.bwithNeedle = TRUE;
             s.b3DFlag = TRUE;
-            MotionPhrase(&s, TRUE, degreepls);
+			cv::line(m_ShowPathMat, pOt1, pOt2, cv::Scalar(0, 255, 255));
+			cv::imshow("MainDispWin", m_ShowPathMat);
+			MotionPhrase(&s, TRUE, degreepls);
             iter+=2;
         }
         else if (pOt.x == MARK_DWE.x && pOt.y == MARK_DWE.y)// 旋转 DWE + XY  
@@ -276,7 +287,9 @@ void RunCalcPath(HWND hwnd, int Obj)
             s.to = pOt2;
             s.bwithNeedle = TRUE;
             s.b3DFlag = TRUE;
-            MotionPhrase(&s, TRUE, degreepls);
+			cv::line(m_ShowPathMat, pOt1, pOt2, cv::Scalar(0, 255, 255));
+			cv::imshow("MainDispWin", m_ShowPathMat);
+			MotionPhrase(&s, TRUE, degreepls);
 
             iter++;
         }
@@ -289,7 +302,9 @@ void RunCalcPath(HWND hwnd, int Obj)
             s.to = pOt;
             s.bwithNeedle = TRUE;
             s.b3DFlag = TRUE;
-            MotionPhrase(&s);
+			cv::line(m_ShowPathMat, opOt, pOt, cv::Scalar(0, 255, 255));
+			cv::imshow("MainDispWin", m_ShowPathMat);
+			MotionPhrase(&s);
         }
 
         if (m_StopRunning)
@@ -397,7 +412,11 @@ DWORD MotionPhrase(s_MotionProcessPra* par, BOOL bRoll, int nRollAngle)
 
                 int nx = from.y+(nedDownPos.y+0.5);//四舍五入
                 int ny = from.x+(nedDownPos.x+0.5);
+#if DEBUG_WITHOUT_PLC
+				float dt = 0;
+#else
                 float dt= m_3DImageData.at<float>(nx,ny);// 获取针所在位置的3D长度
+#endif
                 MotionOutput PlistObj;
                 if (bRoll)
                 {
@@ -492,9 +511,13 @@ DWORD WINAPI MoveXY(LPVOID par)
     SetDevice("Y10",1); // 轴1 MOV 
     Sleep(10);
     SetDevice("Y10",0); // 轴1 MOV 
+
+	//cv::line(m_ShowPathMat, from, to,RGB(0,0,255));
+	//cv::imshow("MainDispWin", m_ShowPathMat);
+
     while (m_MOVEXYFLAG) // 由ONTIME里的控制位来停止
     {
-#if DEBUG_WITHOUT_PLC==1
+#if DEBUG_WITHOUT_PLC
         if (m_StopRunning == FALSE)//测试的时候用
         {
             //m_SumPosX -= tmpMotion.dist1;
@@ -529,7 +552,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
     int m_Runed=0;
     while (true)
     {
-        {
+        {// 分解路径 每隔50个点运行一次.
             int dd = floor(roucount/2.0)*100;
             if (roucount%2==0)//1、0进入 5、2进入，变3
             {
@@ -580,7 +603,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
                 }
                 else
                 {
-                    m_Wait100Needle = TRUE;
+                    m_Wait100Needle = TRUE;//设置等待, 
                 }
 			}
 			m_SEWFLAG=TRUE;
@@ -589,7 +612,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
         while (m_SEWFLAG)
         {
 #if DEBUG_WITHOUT_PLC
-            if (m_CurrentPos <100)
+            if (m_CurrentPos <=100)
             {
                 m_CurrentPos++;
                 strstrem<<"m_CurrentPos" <<m_CurrentPos;
@@ -621,9 +644,9 @@ DWORD WINAPI MotionProcess(LPVOID par)
                 WriteDebugData("stop running ");
                 break;
             }
-            if (m_Wait100Needle)
+            if (m_Wait100Needle)//如果是在等50-100
             {
-                if (m_CurrentPos == 100)
+                if (m_CurrentPos == 100)//如果跑到100, 要重新开始运行下一组.
                 {
                     strstrem<<"第" <<roucount<<"组 开始运行 m_Wait100Needle";
                     WriteDebugData(strstrem.str());
@@ -631,16 +654,14 @@ DWORD WINAPI MotionProcess(LPVOID par)
                     while (true)//有的时候会跑的太快
                     {
                         long nGetting=0;
-                        GetDevice("U0\\G2609",nGetting);
+                        GetDevice("U0\\G2609",nGetting);//等待轴状态完成 否则会导致系统出错.
                         if (nGetting == 0 || nGetting ==1)
                         {
                             break;
                         }
                         Sleep(50);
-#if DEBUG_WITHOUT_PLC
-                        break;
-#endif
                     }
+					//开始运行下一个100点
                     SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
                     Sleep(200);
                     SetDevice("Y12",1); // 轴1 MOV 

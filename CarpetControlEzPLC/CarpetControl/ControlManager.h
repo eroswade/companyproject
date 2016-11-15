@@ -74,13 +74,23 @@ struct MotionOutput
     int rollangle;
     cv::Point movinc;//X,Y setting by movinc
     cv::Point sewincTV;// for T and V . 
+	int nPosNum;// 记录本次进入,第几针.
+	int nTotalPosNum;// 对全图来说是第几针
+	cv::Point phyMvFrom;// 图上移动, 从哪个位置开始
+	cv::Point phyMvTo;// 图上移动, 到哪个位置
     MotionOutput(){
-        bRoll=FALSE;
-        rollangle=0;
-        movinc.x=0;
-        movinc.y=0;
-        sewincTV.x=0; 
-        sewincTV.y=0;
+        bRoll=FALSE;//是否旋转
+        rollangle=0;// 如果旋转, 旋转的角度多少
+        movinc.x=0;// X移动量
+        movinc.y=0;// Y移动量
+        sewincTV.x=0; //T轴 枪
+        sewincTV.y=0;//V轴 送线
+		phyMvFrom.x = 0;
+		phyMvFrom.y = 0;
+		phyMvTo.x = 0;
+		phyMvTo.y = 0;
+		nPosNum = 0;
+		nTotalPosNum = 0;
     }
 };
 

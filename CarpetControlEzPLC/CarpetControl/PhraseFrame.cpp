@@ -144,18 +144,6 @@ void CPhraseFrame::OnInitialUpdate()
 	m_strSysPath.Format("%s\\%s",strModelPath,"Config.ini");
 	LoadConfig();
 
-
-
-
-    //HRESULT	hr = CoCreateInstance(	CLSID_ActProgType,
-    //    NULL,
-    //    CLSCTX_INPROC_SERVER,
-    //    IID_IActProgType,
-    //    (LPVOID*)&mp_IProgType);
-    //if(!SUCCEEDED(hr)){
-    //    AfxMessageBox("CoCrateInstance() Failed.");
-    //}
-    // ActUtlType Control
     HRESULT hr = CoCreateInstance(	CLSID_ActUtlType,
         NULL,
         CLSCTX_INPROC_SERVER,
@@ -165,20 +153,6 @@ void CPhraseFrame::OnInitialUpdate()
         AfxMessageBox("CoCrateInstance() Failed.");
     }
 
-	//if( d2410_board_init() <= 0 )//控制卡的初始化操作
-	//	MessageBox("初始化DMC2410卡失败！","出错");
-
- //   if (dmc_board_init() <=0 )
- //   {
- //       MessageBox("初始化DMC8410卡失败！","出错");
- //   }
-
-	//for (int i=0; i<AXIS_COUNT; i++)
-	//{
-	//	//d2410_variety_speed_range( i, 1, 9000);
-	//	d2410_set_pulse_outmode(i,5);
-	//	dmc_set_pulse_outmode(0,i,5);
-	//}
 	cvNamedWindow("MainDispWin",CV_WINDOW_NORMAL);// CV_WINDOW_AUTOSIZE
 
 	CWnd* cImageWnd = GetDlgItem(IDC_STATIC_PATHIMAGE);
@@ -192,7 +166,6 @@ void CPhraseFrame::OnInitialUpdate()
 	::SetParent(hWnd_video,GetDlgItem(IDC_STATIC_PATHIMAGE)->m_hWnd);
 	::ShowWindow(hParent, SW_HIDE);  
 
-	//m_ImageList.Create(32,32,ILC_COLOR24|ILC_MASK,0,0);
 	m_bmp1.LoadBitmap(IDB_BITMAP1);
 	
 	m_bmp2.LoadBitmap(IDB_BITMAP2);
@@ -201,11 +174,6 @@ void CPhraseFrame::OnInitialUpdate()
 	// 设置回调函数
 	cv::setMouseCallback("MainDispWin",(CPhraseFrame::CV_On_Mouse),0);
 
-	//SetTimer( ID_GETSTAT_TIMER, 100, NULL );
-	//2410_variety_speed_range( AxisFlg::V, 1, 50000);
-
-
-	//ClearDMPosition();
 }
 
 void CPhraseFrame::OnBnClickedButtonImload()
@@ -229,17 +197,12 @@ void CPhraseFrame::OnBnClickedButtonImload()
             Load3DImage(ScaleLayer, m_MaxHight);
 		}
         
-
-
-		//AfxBeginThread(PhraseImage,(LPVOID)&strFilePath);
 		HANDLE hnd = CreateThread(NULL,0,PhraseImage,&m_strImagePath,0,NULL);
-		//WaitForSingleObject(hnd, INFINITE);
 		DWORD dwRet = 0;  
 		MSG msg;  
 		while (TRUE)  
 		{  
 			//wait for m_hThread to be over，and wait for  
-			//QS_ALLINPUT（Any message is in the queue）  
 			dwRet = MsgWaitForMultipleObjects (1, &hnd,   FALSE, INFINITE, QS_ALLINPUT);  
 			switch(dwRet)  
 			{  
@@ -266,9 +229,6 @@ void CPhraseFrame::OnBnClickedButtonImload()
         strTmp.Format("%d",m_CurrentThreadPos);
         WritePrivateProfileString("CONFIG","CURRENTRUNPOS", strTmp, strConfigFilePath);
 	}
-
-
-	//cv::imshow("MainDispWin",m_ShowPathMat);
 }
 
 
@@ -276,15 +236,12 @@ void CPhraseFrame::OnBnClickedButtonImload()
 // 跑路径
 void CPhraseFrame::OnBnClickedRuncalc()
 {
-	//SetTimer( ID_MAPING_TIMER, 1000, NULL );
 	RunCalcPath(this->m_hWnd,IDC_EDIT_CURRENTRUN);
 }
 
 
 BOOL CPhraseFrame::DestroyWindow()
 {
-	//d2410_board_close();
-	//dmc_board_close();
 	KillTimer(ID_MAPING_TIMER);
 	KillTimer(ID_GETSTAT_TIMER);
 	return CFormView::DestroyWindow();
@@ -300,7 +257,7 @@ void CPhraseFrame::LoadConfig()
 	m_nDensity = GetPrivateProfileInt("CONFIG","DENSITY",1,m_strSysPath);
 	m_nZoffset = GetPrivateProfileInt("CONFIG","ZOFFSET",10,m_strSysPath);
 	m_nSpeed = GetPrivateProfileInt("CONFIG","SPEED",100,m_strSysPath);
-	m_nNumberOfColor = GetPrivateProfileInt("CONFIG","NOCOLOR",16,m_strSysPath);
+	m_nNumberOfColor = GetPrivateProfileInt("CONFIG","NOCOLOR",16,m_strSysPath);//3D分色. 分成16个高度
 	m_MotorPulseCount = GetPrivateProfileInt("CONFIG","MOTORPULSECOUNT",4194304,m_strSysPath);
 	InitMotorGearRatio();
 	InitMotorDirection();
@@ -353,8 +310,6 @@ void CPhraseFrame::OnTimer(UINT_PTR nIDEvent)
 	switch(nIDEvent) {
 	case ID_MAPING_TIMER:
         GettingPLCState();
-
-
         //m_CurrentPos=(m_nXpos-100)/8;
 		break;
 	}
@@ -483,12 +438,6 @@ void CPhraseFrame::OnBnClickedButtonSrvoff()
 {
     //// 单轴控制的时候使用
     //// 关键是SRV OFF后, 不能通过Y1设置全轴SRV ON. 必须先设置为0 再设置Y1为1
-    //SetDevice("U0\\G4351",1);// 单轴SRV OFF 4351+100n 不可以在运行状态. X0信号不会为OFF  
-    //SetDevice("U0\\G4451",1);// 单轴SRV OFF 4351+100n 不可以在运行状态. X0信号不会为OFF  
-    //SetDevice("U0\\G4551",1);// 单轴SRV OFF 4351+100n 不可以在运行状态. X0信号不会为OFF  
-    //SetDevice("U0\\G4651",1);// 单轴SRV OFF 4351+100n 不可以在运行状态. X0信号不会为OFF  
-    //SetDevice("U0\\G4751",1);// 单轴SRV OFF 4351+100n 不可以在运行状态. X0信号不会为OFF  
-
     SetDevice("Y1",0); // ms16的返回数据在MD.31中. MD.31  2417+100n
     SetDevice("Y30",0);// 锁Y轴
 
@@ -730,16 +679,9 @@ void CPhraseFrame::OnBnClickedButtonPause()
     Stop_decel_NO();
     Sleep(100);
     Clear_Stop_Sign();
-
 }
 
 //// STOP
-//SetDevice("U0\\G30100",1);
-//SetDevice("U0\\G30110",1);
-//SetDevice("U0\\G30120",1);
-//SetDevice("U0\\G30130",1);
-//SetDevice("U0\\G30140",1);
-
 void CPhraseFrame::OnBnClickedButtonContinue()
 {
     SetDevice("U0\\G4303",1);// 4303+100n 重启动  重启后会自动设为0

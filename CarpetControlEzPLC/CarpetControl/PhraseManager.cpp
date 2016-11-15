@@ -507,8 +507,8 @@ BOOL JudgeAngleChange(vector<cv::Point2f> &vctPoint, ClipperLib::Polygon& poly, 
             Y=B;
         }
 
-        pt.x = float(X/100.0)*3;//by eros 2016年4月21日 为了加速度考虑, 增加3倍距离
-        pt.y = float(Y/100.0)*3;
+        pt.x = float(X/100.0);
+        pt.y = float(Y/100.0);
         vctPoint.push_back(pt);
         vctPoint.push_back(MARK_M1);
         return FALSE;
