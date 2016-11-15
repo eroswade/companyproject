@@ -21,7 +21,7 @@ float m_fNeedleAngle;// 针角度
 int m_nZoffset;// 最小的Z.其它的Z在Zoffset之上增加一个值
 int m_nSpeed;//自动运行速度
 double m_SumAngle=0;
-static long m_SumPosX=0;
+static long m_SumPosX=0;// 全局回0点用.
 static long m_SumPosY=0;
 CString m_str3DImagePath;
 cv::Mat m_3DImageData;
@@ -156,7 +156,7 @@ void InitMotorDirection()
     m_MotorDirection[AxisFlg::T] = 1;//
 }
 
-DWORD MotionPhrase(s_MotionProcessPra* par, BOOL bRoll=FALSE, int nRollAngle=0);
+DWORD MotionPhrase(s_MotionProcessPra* par,int& nCurrentSubPos, BOOL bRoll=FALSE, int nRollAngle=0);
 DWORD WINAPI MoveXY(LPVOID par);
 DWORD WINAPI MotionProcess(LPVOID par);// cv::Point from, cv::Point to, BOOL bwithNeedle,BOOL b3DFlag=FALSE
 DWORD WINAPI RoteProcess(LPVOID fDegree);
@@ -193,17 +193,17 @@ void RunCalcPath(HWND hwnd, int Obj)
     cv::Point opOt;
     m_StopRunning = FALSE;
     m_RunCMD.clear();
-
+	int nCurrentSubThreadPos = 0;
     //m_CurrentThreadPos = 0; // 恢复用 默认初始化时为0， TODO 这个数据最好保存
     for (int iter=m_CurrentThreadPos; iter<m_ListAllPoint.size(); iter++)  
     {  
         cv::Point pOt = m_ListAllPoint[iter];
-        m_CurrentThreadPos=iter;
-        CString strTmp;
-        strTmp.Format("%d",m_CurrentThreadPos);
-        MotionOutput PlistObj;
-        ::SetDlgItemText(hwnd,Obj,strTmp);
-        if (pOt.x == MARK_M2.x && pOt.y == MARK_M2.y)//切线 M2  程序流程,在CUT之前,如果有数据,就执行数据. 否则开始分析数据
+        //m_CurrentThreadPos=iter;
+        //CString strTmp;
+        //strTmp.Format("%d",m_CurrentThreadPos);//记录当前运行量 全图的运行量
+        //::SetDlgItemText(hwnd,Obj,strTmp);
+		MotionOutput PlistObj;
+		if (pOt.x == MARK_M2.x && pOt.y == MARK_M2.y)//切线 M2  程序流程,在CUT之前,如果有数据,就执行数据. 否则开始分析数据
         {
             //CutProcess(NULL);
             while (m_RunCMD.size()>0)
@@ -215,6 +215,8 @@ void RunCalcPath(HWND hwnd, int Obj)
             {
                 break;
             }
+
+			// 上面的运行完之后, 切线, 提枪
             HANDLE tThread =  CreateThread(NULL,0,CutProcess,NULL,0,NULL);
             WaitingForThread(tThread);
 
@@ -239,6 +241,7 @@ void RunCalcPath(HWND hwnd, int Obj)
             //MotionProcess(&s);
 			cv::line(m_ShowPathMat, opOt, pOt, cv::Scalar(0, 0, 255));
 			cv::imshow("MainDispWin", m_ShowPathMat);
+			nCurrentSubThreadPos++;
             tThread =  CreateThread(NULL,0,MoveXY,&s,0,NULL);
             WaitingForThread(tThread);
             iter++;
@@ -267,7 +270,7 @@ void RunCalcPath(HWND hwnd, int Obj)
             s.b3DFlag = TRUE;
 			cv::line(m_ShowPathMat, pOt1, pOt2, cv::Scalar(0, 255, 255));
 			cv::imshow("MainDispWin", m_ShowPathMat);
-			MotionPhrase(&s, TRUE, degreepls);
+			MotionPhrase(&s, nCurrentSubThreadPos, TRUE, degreepls);
             iter+=2;
         }
         else if (pOt.x == MARK_DWE.x && pOt.y == MARK_DWE.y)// 旋转 DWE + XY  
@@ -289,7 +292,7 @@ void RunCalcPath(HWND hwnd, int Obj)
             s.b3DFlag = TRUE;
 			cv::line(m_ShowPathMat, pOt1, pOt2, cv::Scalar(0, 255, 255));
 			cv::imshow("MainDispWin", m_ShowPathMat);
-			MotionPhrase(&s, TRUE, degreepls);
+			MotionPhrase(&s, nCurrentSubThreadPos, TRUE, degreepls);
 
             iter++;
         }
@@ -304,7 +307,7 @@ void RunCalcPath(HWND hwnd, int Obj)
             s.b3DFlag = TRUE;
 			cv::line(m_ShowPathMat, opOt, pOt, cv::Scalar(0, 255, 255));
 			cv::imshow("MainDispWin", m_ShowPathMat);
-			MotionPhrase(&s);
+			MotionPhrase(&s, nCurrentSubThreadPos);
         }
 
         if (m_StopRunning)
@@ -371,7 +374,7 @@ double GetDiffdegree( cv::Point2f pOt2, cv::Point2f pOt1)
 }
 
 
-DWORD MotionPhrase(s_MotionProcessPra* par, BOOL bRoll, int nRollAngle)
+DWORD MotionPhrase(s_MotionProcessPra* par, int &nCurrentSubPos, BOOL bRoll, int nRollAngle)
 {
     s_MotionProcessPra *s = par;
     cv::Point from = s->from;
@@ -428,6 +431,13 @@ DWORD MotionPhrase(s_MotionProcessPra* par, BOOL bRoll, int nRollAngle)
                 PlistObj.movinc.y = m_MotorDirection[AxisFlg::Y]*(to.y-from.y)/mNeedle *m_MotorPulseCount/m_MotorGearRatio[AxisFlg::Y];
                 PlistObj.sewincTV.x = 1.0/m_MotorGearRatio[AxisFlg::T] * m_MotorPulseCount;
                 PlistObj.sewincTV.y = (needlelen/mNeedle+dt) / m_MotorGearRatio[AxisFlg::V] *m_MotorPulseCount;
+				PlistObj.phyMvFrom.x = from.x + (float((to.x - from.x)) / float(mNeedle) * (nneddl) + 0.5);
+				PlistObj.phyMvFrom.y = from.y + (float((to.y - from.y)) / float(mNeedle) * (nneddl) + 0.5);
+				PlistObj.phyMvTo.x = ny;
+				PlistObj.phyMvTo.y = nx;
+				PlistObj.nTotalPosNum = m_RunCMD.size()==0? 0:m_RunCMD.back().nTotalPosNum + 1;
+				PlistObj.nPosNum = nCurrentSubPos;
+				nCurrentSubPos++;
                 m_RunCMD.push_back(PlistObj);
             }
         }
@@ -446,28 +456,22 @@ DWORD MotionPhrase(s_MotionProcessPra* par, BOOL bRoll, int nRollAngle)
                 PlistObj.movinc.y = m_MotorDirection[AxisFlg::Y]*(to.y-from.y)/mNeedle *m_MotorPulseCount/m_MotorGearRatio[AxisFlg::Y];
                 PlistObj.sewincTV.x = 1.0/m_MotorGearRatio[AxisFlg::T] * m_MotorPulseCount;
                 PlistObj.sewincTV.y = needlelen/mNeedle / m_MotorGearRatio[AxisFlg::V] *m_MotorPulseCount;
-                m_RunCMD.push_back(PlistObj);
+
+				PlistObj.phyMvFrom.x = from.x + (float((to.x - from.x)) / float(mNeedle) * (i)+0.5);
+				PlistObj.phyMvFrom.y = from.y + (float((to.y - from.y)) / float(mNeedle) * (i)+0.5);
+				cv::Point2f nedDownPos;
+				nedDownPos.x = float((to.x - from.x)) / float(mNeedle) * (i + 1);
+				nedDownPos.y = float((to.y - from.y)) / float(mNeedle) * (i + 1);
+				int nx = from.y + (nedDownPos.y + 0.5);//四舍五入
+				int ny = from.x + (nedDownPos.x + 0.5);
+				PlistObj.phyMvTo.x = ny;
+				PlistObj.phyMvTo.y = nx;
+				PlistObj.nTotalPosNum = m_RunCMD.size() == 0 ? 0 : m_RunCMD.back().nTotalPosNum + 1;
+				PlistObj.nPosNum = nCurrentSubPos;
+				nCurrentSubPos++;
+				m_RunCMD.push_back(PlistObj);
             }
         }
-    }
-    else
-    {
-		//// 因为这里暂时只有M1用到， 所以暂时不需要 
-        //// TODO 这里要进一个点. 4*4. 但问题是如果针不动, 这个指令会出错. 
-        //// 但这里又涉及到旋转轴
-        //MotionOutput PlistObj;
-        //if (bRoll)
-        //{
-        //    PlistObj.bRoll = TRUE;
-        //    PlistObj.rollangle = nRollAngle;
-        //    bRoll = FALSE;
-        //}
-        //PlistObj.movinc.x = m_MotorDirection[AxisFlg::X1]*(to.x-from.x)*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::X1];
-        //PlistObj.movinc.y = m_MotorDirection[AxisFlg::Y]*(to.y-from.y) *m_MotorPulseCount/m_MotorGearRatio[AxisFlg::Y];
-        //PlistObj.sewincTV.x = 1.0/m_MotorGearRatio[AxisFlg::T] * m_MotorPulseCount;
-        //PlistObj.sewincTV.y = 0;
-
-        //m_RunCMD.push_back(PlistObj);
     }
     return 0;
 
@@ -484,7 +488,7 @@ DWORD WINAPI MoveXY(LPVOID par)
     ct_motion tmpMotion;
     tmpMotion.dist1=m_MotorDirection[AxisFlg::X1]*(to.x-from.x)*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::X1];
     tmpMotion.dist2=m_MotorDirection[AxisFlg::Y]*(to.y-from.y)*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::Y];
-    m_SumPosX += tmpMotion.dist1;
+    m_SumPosX += tmpMotion.dist1;//用来回0点用
     m_SumPosY += tmpMotion.dist2;
 
     long distlist[2];
@@ -520,8 +524,6 @@ DWORD WINAPI MoveXY(LPVOID par)
 #if DEBUG_WITHOUT_PLC
         if (m_StopRunning == FALSE)//测试的时候用
         {
-            //m_SumPosX -= tmpMotion.dist1;
-            //m_SumPosY -= tmpMotion.dist2;
             break;
         }
 #endif
@@ -618,6 +620,10 @@ DWORD WINAPI MotionProcess(LPVOID par)
                 strstrem<<"m_CurrentPos" <<m_CurrentPos;
                 WriteDebugData(strstrem.str());
                 strstrem.str("");
+
+				MotionOutput s = m_RunCMD[m_CurrentPos + m_Runed-1];
+				cv::line(m_ShowPathMat, s.phyMvFrom, s.phyMvTo, cv::Scalar(0, 255, 0));
+				cv::imshow("MainDispWin", m_ShowPathMat);
             }
             else
             {
