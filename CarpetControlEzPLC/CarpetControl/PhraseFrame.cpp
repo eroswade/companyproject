@@ -236,6 +236,7 @@ void CPhraseFrame::OnBnClickedButtonImload()
 // ÅÜÂ·¾¶
 void CPhraseFrame::OnBnClickedRuncalc()
 {
+	DrawM2Path();
 	RunCalcPath(this->m_hWnd,IDC_EDIT_CURRENTRUN);
 	WriteRunFileConfigFile();
 }
@@ -379,7 +380,8 @@ void CPhraseFrame::redirectPos(int x, int y)
 	CString str;
 	str.Format("x%d,y%d", x, y);
 	SetDlgItemText(IDC_EDIT_CURRENTRUN, str);
-	RunCalcPath(this->m_hWnd, IDC_EDIT_CURRENTRUN);
+	DrawM2Path();
+	RunCalcPath(this->m_hWnd, IDC_EDIT_CURRENTRUN,x,y);
 
 }
 

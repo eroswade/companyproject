@@ -5,6 +5,8 @@
 
 using namespace std;
 BOOL b3DFlag=TRUE;
+BOOL NOTRUN = FALSE;
+
 
 BOOL m_StopRunning;
 int m_CurrentThreadPos=0; //记录当前运行状态，给恢复运行使用
@@ -189,42 +191,42 @@ void WaitingForThread(HANDLE hnd)
 }
 void RunCalcPath(HWND hwnd, int Obj,int x,int y)
 {
-    //OnSevOn();
-	BOOL NOTRUN = FALSE;
-	if (x>0 || m_CurrentThreadPos>0)
+	NOTRUN = FALSE;// 表示正常运行,不快速跑图
+	if (x>0 || m_CurrentThreadPos>0)//
 	{
-		NOTRUN = TRUE;
+		NOTRUN = TRUE; // 表示快速跑图
 	}
+	int tmpnum = m_CurrentThreadPos;
     cv::Point opOt;
     m_StopRunning = FALSE;
     m_RunCMD.clear();
 	int nCurrentSubThreadPos = 0; // 当前这一批m_RunCMD的序列
-    //m_CurrentThreadPos = 0; // 恢复用 默认初始化时为0， TODO 这个数据最好保存
     for (int iter=0; iter<m_ListAllPoint.size(); iter++)  
     {  
         cv::Point pOt = m_ListAllPoint[iter];
-        //m_CurrentThreadPos=iter;
-        //CString strTmp;
-        //strTmp.Format("%d", nCurrentSubThreadPos);//记录当前运行量 全图的运行量
-        //::SetDlgItemText(hwnd,Obj,strTmp);
 		MotionOutput PlistObj;
 		if (pOt.x == MARK_M2.x && pOt.y == MARK_M2.y)//切线 M2  程序流程,在CUT之前,如果有数据,就执行数据. 否则开始分析数据
         {
             //CutProcess(NULL);
+			RunProcessPra pra;
+			pra.hwnd = hwnd;
+			pra.x = x;
+			pra.y = y;
+			pra.runnum = tmpnum;
             while (m_RunCMD.size()>0)
             {
-                HANDLE tThread =  CreateThread(NULL,0,MotionProcess,(LPVOID)hwnd,0,NULL);
+                HANDLE tThread =  CreateThread(NULL,0,MotionProcess,(LPVOID)&pra,0,NULL);
                 WaitingForThread(tThread);
             }
             if (m_StopRunning)// 如果是停止, 禁止下面的操作
             {
                 break;
             }
-
-			if (NOTRUN)
+			HANDLE tThread;
+			if (!NOTRUN)//不执行
 			{
 				// 上面的运行完之后, 切线, 提枪
-				HANDLE tThread =  CreateThread(NULL,0,CutProcess,NULL,0,NULL);
+				tThread =  CreateThread(NULL,0,CutProcess,NULL,0,NULL);
 				WaitingForThread(tThread);
 
 				tThread =  CreateThread(NULL,0,UpGunProcess,NULL,0,NULL);
@@ -250,7 +252,7 @@ void RunCalcPath(HWND hwnd, int Obj,int x,int y)
 			cv::line(m_ShowPathMat, opOt, pOt, cv::Scalar(0, 0, 255));
 			cv::imshow("MainDispWin", m_ShowPathMat);
 			nCurrentSubThreadPos++;
-			if (NOTRUN)
+			if (!NOTRUN)//不执行
 			{
 				tThread = CreateThread(NULL, 0, MoveXY, &s, 0, NULL);
 				WaitingForThread(tThread);
@@ -259,8 +261,11 @@ void RunCalcPath(HWND hwnd, int Obj,int x,int y)
         }
         else if (pOt.x == MARK_M1.x && pOt.y == MARK_M1.y)//下针 M1  只是跳过M1这个标志
         {
+			if (!NOTRUN)//不执行
+			{
             HANDLE tThread =  CreateThread(NULL,0,DownGunProcess,0,0,NULL);
             WaitingForThread(tThread);
+			}
 
             cv::Point2f pOt1 = m_ListAllPoint[iter+1];//下一个点
             cv::Point2f pOt2 = m_ListAllPoint[iter+2];// 下两个点
@@ -552,7 +557,8 @@ void SettingMotionData4x( int dd, int i, BOOL RUNMET );
 
 DWORD WINAPI MotionProcess(LPVOID par)
 {
-	HWND tmpHWND = (HWND)par;
+	RunProcessPra *parb = (RunProcessPra*)par;
+	HWND tmpHWND = parb->hwnd;
     int roucount=0;
     int mxroucount = (int)floor(m_RunCMD.size()/50.0);
     if (m_RunCMD.size()%50 != 0)
@@ -572,48 +578,57 @@ DWORD WINAPI MotionProcess(LPVOID par)
                 strstrem<<"第" <<roucount<<"组 50数据循环";
                 WriteDebugData(strstrem.str());
                 strstrem.str("");
-                for (int i=0; i<50; i++)//第一次放进50个点
-                {
-                    if (dd+i+1 >= m_RunCMD.size())
-                    {
-                        SettingMotionData4x(dd, i,TRUE);
-                        break;
-                    }
-                    SettingMotionData4x(dd, i,FALSE);
-                }
-            }
+				if (!NOTRUN)// 不跑图的时候执行
+				{
+					for (int i = 0; i < 50; i++)//第一次放进50个点
+					{
+						if (dd + i + 1 >= m_RunCMD.size())
+						{
+							SettingMotionData4x(dd, i, TRUE);
+							break;
+						}
+						SettingMotionData4x(dd, i, FALSE);
+					}
+				}
+			}
 
             if (roucount%2==1)//3、roucount＝1 进入
             {
                 strstrem<<"第" <<roucount<<"组 50-100 数据的循环";
                 WriteDebugData(strstrem.str());
                 strstrem.str("");
-                for (int i=50; i<100; i++)//第二次放进50个点
-                {
-                    if (i==99 || dd+i+1 >= m_RunCMD.size())
-                    {
-                        SettingMotionData4x(dd, i,TRUE);
-                        break;
-                    }
-                    else
-                    {
-                        SettingMotionData4x(dd, i,FALSE);
-                    }
-                }
-            }
+				if (!NOTRUN)//不跑图的时候执行
+				{
+					for (int i = 50; i < 100; i++)//第二次放进50个点
+					{
+						if (i == 99 || dd + i + 1 >= m_RunCMD.size())
+						{
+							SettingMotionData4x(dd, i, TRUE);
+							break;
+						}
+						else
+						{
+							SettingMotionData4x(dd, i, FALSE);
+						}
+					}
+				}
+			}
 
             // 
 			if( roucount%2 == 0)
 			{
                 if (roucount == 0)
                 {
-                    WriteDebugData("开始运行");
-                    SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
-                    Sleep(200);
-                    SetDevice("Y12",1); // 轴1 MOV 
-                    Sleep(10);
-                    SetDevice("Y12",0); // 轴1 MOV 
-                }
+					if (!NOTRUN)//不跑图的时候执行
+					{
+						WriteDebugData("开始运行");
+						SetDevice("U0\\G4500", 1);// 4300+100n 定位轴启动编号  
+						Sleep(200);
+						SetDevice("Y12", 1); // 轴1 MOV 
+						Sleep(10);
+						SetDevice("Y12", 0); // 轴1 MOV 
+					}
+				}
                 else
                 {
                     m_Wait100Needle = TRUE;//设置等待, 
@@ -624,26 +639,60 @@ DWORD WINAPI MotionProcess(LPVOID par)
         }
         while (m_SEWFLAG)
         {
-			MotionOutput s = m_RunCMD[m_CurrentPos + m_Runed - 1];
+			MotionOutput s = m_RunCMD[m_CurrentPos + m_Runed];
 			cv::line(m_ShowPathMat, s.phyMvFrom, s.phyMvTo, cv::Scalar(0, 255, 0));
 			cv::imshow("MainDispWin", m_ShowPathMat);
+
+			if (NOTRUN)
+			{
+				if (parb->x >0)
+				{
+					int dx = (parb->x - s.phyMvTo.x);
+					int dy = parb->y - s.phyMvTo.y;
+					if (sqrt(dx*dx + dy*dy) < 3)
+					{
+						m_StopRunning = TRUE;
+						break;
+					}
+				}
+				else if (parb->runnum == s.nTotalPosNum)
+				{
+					m_StopRunning = TRUE;
+					break;
+				}
+				
+			}
 
 			CString strTmp;
 			strTmp.Format("%d/%d", s.nTotalPosNum, s.nPosNum);//记录当前运行量 全图的运行量
 			::SetDlgItemText(tmpHWND, 1068, strTmp);
 			m_CurrentThreadPos = s.nTotalPosNum;
+			if (NOTRUN)//跑图时执行
+			{
+				if (m_CurrentPos < 100)
+				{
+					m_CurrentPos++;
+				}
+				else
+				{
+					m_CurrentPos = 0;
+				}
+			}
 #if DEBUG_WITHOUT_PLC
-            if (m_CurrentPos <100)
-            {
-                m_CurrentPos++;
-                strstrem<<"m_CurrentPos" <<m_CurrentPos;
-                WriteDebugData(strstrem.str());
-                strstrem.str("");
-            }
-            else
-            {
-                m_CurrentPos=0;
-            }
+			if (!NOTRUN)//跑图时执行
+			{
+				if (m_CurrentPos < 100)
+				{
+					m_CurrentPos++;
+					strstrem << "m_CurrentPos" << m_CurrentPos;
+					WriteDebugData(strstrem.str());
+					strstrem.str("");
+				}
+				else
+				{
+					m_CurrentPos = 0;
+				}
+			}
 #endif
             // BUG 如果mxroucount <= roucount? 会发生什么?
             if (m_CurrentPos > 50 && roucount%2==0 && roucount<mxroucount)//4、roucount=2 并且m_CurrentPos>50 break; 
@@ -672,7 +721,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
                     strstrem<<"第" <<roucount<<"组 开始运行 m_Wait100Needle";
                     WriteDebugData(strstrem.str());
                     strstrem.str("");
-                    while (true)//有的时候会跑的太快
+                    while (!NOTRUN)//有的时候会跑的太快 不跑图的时候执行
                     {
                         long nGetting=0;
                         GetDevice("U0\\G2609",nGetting);//等待轴状态完成 否则会导致系统出错.
@@ -680,14 +729,18 @@ DWORD WINAPI MotionProcess(LPVOID par)
                         {
                             break;
                         }
-                        Sleep(50);
+						Sleep(50);
                     }
 					//开始运行下一个100点
-                    SetDevice("U0\\G4500",1);// 4300+100n 定位轴启动编号  
-                    Sleep(200);
-                    SetDevice("Y12",1); // 轴1 MOV 
-                    Sleep(10);
-                    SetDevice("Y12",0); // 轴1 MOV 
+					if (!NOTRUN)//不跑图的时候执行
+					{
+						SetDevice("U0\\G4500", 1);// 4300+100n 定位轴启动编号  
+						Sleep(200);
+						SetDevice("Y12", 1); // 轴1 MOV 
+						Sleep(10);
+						SetDevice("Y12", 0); // 轴1 MOV 
+					}
+
                     m_Wait100Needle = FALSE;
                     m_Runed+=100;
 					m_CurrentPos = 0;// 调试情况下OK. 但正常运行的时候可能会出问题 2016.11.16
@@ -700,7 +753,8 @@ DWORD WINAPI MotionProcess(LPVOID par)
                 strstrem.str("");
                 break;
             }
-            Sleep(50);
+			if (!NOTRUN)//不跑图的时候执行
+				Sleep(50);
         }
 		if(m_CurrentPos+m_Runed == m_RunCMD.size())
 		{
@@ -714,7 +768,6 @@ DWORD WINAPI MotionProcess(LPVOID par)
         {
             WriteDebugData("stop running ");
 			m_Wait100Needle = FALSE;
-			m_Runed += 100;
 			m_CurrentPos = 0;// 调试情况下OK. 但正常运行的时候可能会出问题 2016.11.16
             break;
         }

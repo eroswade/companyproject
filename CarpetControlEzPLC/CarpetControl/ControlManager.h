@@ -68,6 +68,14 @@ struct s_MotionProcessPra
     BOOL b3DFlag;
 };
 
+struct RunProcessPra
+{
+	HWND hwnd;
+	int x;
+	int y;
+	int runnum;
+};
+
 struct MotionOutput
 {
     BOOL bRoll;
