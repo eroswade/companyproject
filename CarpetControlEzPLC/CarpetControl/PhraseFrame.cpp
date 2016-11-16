@@ -274,7 +274,10 @@ void CPhraseFrame::LoadConfig()
 
 void CPhraseFrame::OnBnClickedButtonStop()
 {
-    Stop_decel_NO();
+    //Stop_decel_NO();
+	SetDevice("U0\\4520", 1);//T主轴
+	SetDevice("U0\\4320", 1);//x主轴
+
     m_StopRunning=TRUE;
 }
 
@@ -424,12 +427,15 @@ void CPhraseFrame::Load3DImage( int ScaleLayer, float m_MaxHight )
     m_3DImageData = m_3DImageData * m_MaxHight / (float)ScaleLayer;
 }
 
-
+//clear
 void CPhraseFrame::OnBnClickedButton8()
 {
     m_CurrentThreadPos=0;
     CString  strTmp;
     strTmp.Format("%d",m_CurrentThreadPos);
+	//清X,Y两轴
+	SetData2("U0\\G", 4304, 0);
+	SetData2("U0\\G", 4404, 0);
     SetDlgItemText(IDC_EDIT_CURRENTRUN,strTmp);
 }
 
@@ -700,7 +706,7 @@ void CPhraseFrame::OnBnClickedButtonPause()
     Clear_Stop_Sign();
 }
 
-//// STOP
+//// CONTINUE
 void CPhraseFrame::OnBnClickedButtonContinue()
 {
     SetDevice("U0\\G4303",1);// 4303+100n 重启动  重启后会自动设为0

@@ -23,8 +23,6 @@ float m_fNeedleAngle;// 针角度
 int m_nZoffset;// 最小的Z.其它的Z在Zoffset之上增加一个值
 int m_nSpeed;//自动运行速度
 double m_SumAngle=0;
-static long m_SumPosX=0;// 全局回0点用.
-static long m_SumPosY=0;
 CString m_str3DImagePath;
 cv::Mat m_3DImageData;
 
@@ -350,9 +348,11 @@ void OnSevOn()
     long ret;
 }
 
-// 减速停止 PLC
+// 减速停止 PLC eros. 2016.11.16 这个好像是立即停止 
+//真实的可能是CD.18 连续运行中断请求4320+100n  cd.18会自动重置  cd.18中断后无法重启动。
 void Stop_decel_NO()
 {
+	// cd.180
     SetDevice("U0\\G30100",1);
     SetDevice("U0\\G30110",1);
     SetDevice("U0\\G30120",1);
@@ -401,8 +401,6 @@ DWORD MotionPhrase(s_MotionProcessPra* par, int &nCurrentSubPos, BOOL bRoll, int
     ct_motion tmpMotion;
     tmpMotion.dist1=m_MotorDirection[AxisFlg::X1]*(to.x-from.x)*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::X1];
     tmpMotion.dist2=m_MotorDirection[AxisFlg::Y]*(to.y-from.y)*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::Y];
-    m_SumPosX += tmpMotion.dist1;
-    m_SumPosY += tmpMotion.dist2;
 
     int mNeedle;//总下针数
     double stringlen;// X,Y走的物理总长
@@ -639,9 +637,14 @@ DWORD WINAPI MotionProcess(LPVOID par)
         }
         while (m_SEWFLAG)
         {
+
 			MotionOutput s = m_RunCMD[m_CurrentPos + m_Runed];
 			cv::line(m_ShowPathMat, s.phyMvFrom, s.phyMvTo, cv::Scalar(0, 255, 0));
 			cv::imshow("MainDispWin", m_ShowPathMat);
+			if (s.bRoll == TRUE)// 把旋转的数据统计起来
+			{
+				m_SumAngle += s.rollangle / m_MotorPulseCount * m_MotorGearRatio[AxisFlg::D] / m_MotorDirection[AxisFlg::D];
+			}
 
 			if (NOTRUN)
 			{
@@ -813,9 +816,9 @@ int RotePhrase(float fDegree)
             diffdegree = 360 + diffdegree;
         }
     }
-    m_SumAngle += diffdegree;
+    //m_SumAngle += diffdegree;
 
-    int nPluse = fDegree*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::D] * m_MotorDirection[AxisFlg::D];
+    int nPluse = diffdegree*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::D] * m_MotorDirection[AxisFlg::D];
 
     return nPluse;
 }
@@ -883,13 +886,17 @@ DWORD WINAPI UpGunProcess(LPVOID lpParamter)
 void OnReturnZero()
 {
     CreateThread(NULL,0,CutProcess,0,0,NULL);
+	CreateThread(NULL, 0, UpGunProcess, 0, 0, NULL);
+
     CreateThread(NULL,0,RoteBackProcess,0,0,NULL);
 
-    long x = m_SumPosX ;
-    long y = m_SumPosY;
+	//MD.20
+	long pox, poy;
+	GetDevice("UO\\G2400", pox);
+	GetDevice("UO\\G2410", poy);
+    long x = pox ;
+    long y = poy;
 
-    //dmc_set_vector_profile_multicoor(0,0,500,20000,1,1);
-	WORD axislist[2]={AxisFlg::X1,AxisFlg::Y};//,-x ,-y
 	long distlist[2]={-x,-y};
 
     SetDevice("U0\\G6000",STOPMOVE2);// 一轴 增量 连续 NO.1
@@ -915,11 +922,11 @@ void SettingMotionData4x( int dd, int i , BOOL RUNMET)
     stringstream strstrem;
 
     MotionOutput s=m_RunCMD[dd+i];
-    if (s.bRoll)
+    if (s.bRoll)//有旋转
     {
         SetData2("U0\\G",9006+10*i,s.rollangle); //旋转轴
         SetData("U0\\G",9000+10*i,STOPMOVE);// 运行模式
-        SetData2("U0\\G",9004+10*i,4194304);// 指令速度
+        SetData2("U0\\G",9004+10*i,4194304*3);// 指令速度
 
         SetData("U0\\G",8001+10*i,i+1); //T轴 MCODE
 
