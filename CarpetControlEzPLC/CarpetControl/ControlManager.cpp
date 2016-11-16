@@ -29,7 +29,7 @@ cv::Mat m_3DImageData;
 
 BOOL m_MOVEXYFLAG;
 BOOL m_SEWFLAG;
-int m_CurrentPos;
+int m_CurrentPos; // 当前PLC记录的位置
 
 vector<MotionOutput> m_RunCMD;
 //vector<MotionRoll> m_RollPos;
@@ -187,20 +187,25 @@ void WaitingForThread(HANDLE hnd)
         } 
     } 
 }
-void RunCalcPath(HWND hwnd, int Obj)
+void RunCalcPath(HWND hwnd, int Obj,int x,int y)
 {
     //OnSevOn();
+	BOOL NOTRUN = FALSE;
+	if (x>0 || m_CurrentThreadPos>0)
+	{
+		NOTRUN = TRUE;
+	}
     cv::Point opOt;
     m_StopRunning = FALSE;
     m_RunCMD.clear();
-	int nCurrentSubThreadPos = 0;
+	int nCurrentSubThreadPos = 0; // 当前这一批m_RunCMD的序列
     //m_CurrentThreadPos = 0; // 恢复用 默认初始化时为0， TODO 这个数据最好保存
-    for (int iter=m_CurrentThreadPos; iter<m_ListAllPoint.size(); iter++)  
+    for (int iter=0; iter<m_ListAllPoint.size(); iter++)  
     {  
         cv::Point pOt = m_ListAllPoint[iter];
         //m_CurrentThreadPos=iter;
         //CString strTmp;
-        //strTmp.Format("%d",m_CurrentThreadPos);//记录当前运行量 全图的运行量
+        //strTmp.Format("%d", nCurrentSubThreadPos);//记录当前运行量 全图的运行量
         //::SetDlgItemText(hwnd,Obj,strTmp);
 		MotionOutput PlistObj;
 		if (pOt.x == MARK_M2.x && pOt.y == MARK_M2.y)//切线 M2  程序流程,在CUT之前,如果有数据,就执行数据. 否则开始分析数据
@@ -208,7 +213,7 @@ void RunCalcPath(HWND hwnd, int Obj)
             //CutProcess(NULL);
             while (m_RunCMD.size()>0)
             {
-                HANDLE tThread =  CreateThread(NULL,0,MotionProcess,NULL,0,NULL);
+                HANDLE tThread =  CreateThread(NULL,0,MotionProcess,(LPVOID)hwnd,0,NULL);
                 WaitingForThread(tThread);
             }
             if (m_StopRunning)// 如果是停止, 禁止下面的操作
@@ -216,12 +221,15 @@ void RunCalcPath(HWND hwnd, int Obj)
                 break;
             }
 
-			// 上面的运行完之后, 切线, 提枪
-            HANDLE tThread =  CreateThread(NULL,0,CutProcess,NULL,0,NULL);
-            WaitingForThread(tThread);
+			if (NOTRUN)
+			{
+				// 上面的运行完之后, 切线, 提枪
+				HANDLE tThread =  CreateThread(NULL,0,CutProcess,NULL,0,NULL);
+				WaitingForThread(tThread);
 
-            tThread =  CreateThread(NULL,0,UpGunProcess,NULL,0,NULL);
-            WaitingForThread(tThread);
+				tThread =  CreateThread(NULL,0,UpGunProcess,NULL,0,NULL);
+				WaitingForThread(tThread);
+			}
 
             if (iter == 0)
             {
@@ -242,8 +250,11 @@ void RunCalcPath(HWND hwnd, int Obj)
 			cv::line(m_ShowPathMat, opOt, pOt, cv::Scalar(0, 0, 255));
 			cv::imshow("MainDispWin", m_ShowPathMat);
 			nCurrentSubThreadPos++;
-            tThread =  CreateThread(NULL,0,MoveXY,&s,0,NULL);
-            WaitingForThread(tThread);
+			if (NOTRUN)
+			{
+				tThread = CreateThread(NULL, 0, MoveXY, &s, 0, NULL);
+				WaitingForThread(tThread);
+			}
             iter++;
         }
         else if (pOt.x == MARK_M1.x && pOt.y == MARK_M1.y)//下针 M1  只是跳过M1这个标志
@@ -435,8 +446,8 @@ DWORD MotionPhrase(s_MotionProcessPra* par, int &nCurrentSubPos, BOOL bRoll, int
 				PlistObj.phyMvFrom.y = from.y + (float((to.y - from.y)) / float(mNeedle) * (nneddl) + 0.5);
 				PlistObj.phyMvTo.x = ny;
 				PlistObj.phyMvTo.y = nx;
-				PlistObj.nTotalPosNum = m_RunCMD.size()==0? 0:m_RunCMD.back().nTotalPosNum + 1;
-				PlistObj.nPosNum = nCurrentSubPos;
+				PlistObj.nTotalPosNum =  nCurrentSubPos;
+				PlistObj.nPosNum = m_RunCMD.size() == 0 ? 0 : m_RunCMD.back().nPosNum + 1;
 				nCurrentSubPos++;
                 m_RunCMD.push_back(PlistObj);
             }
@@ -466,8 +477,8 @@ DWORD MotionPhrase(s_MotionProcessPra* par, int &nCurrentSubPos, BOOL bRoll, int
 				int ny = from.x + (nedDownPos.x + 0.5);
 				PlistObj.phyMvTo.x = ny;
 				PlistObj.phyMvTo.y = nx;
-				PlistObj.nTotalPosNum = m_RunCMD.size() == 0 ? 0 : m_RunCMD.back().nTotalPosNum + 1;
-				PlistObj.nPosNum = nCurrentSubPos;
+				PlistObj.nTotalPosNum = nCurrentSubPos;
+				PlistObj.nPosNum = m_RunCMD.size() == 0 ? 0 : m_RunCMD.back().nPosNum + 1;
 				nCurrentSubPos++;
 				m_RunCMD.push_back(PlistObj);
             }
@@ -541,7 +552,7 @@ void SettingMotionData4x( int dd, int i, BOOL RUNMET );
 
 DWORD WINAPI MotionProcess(LPVOID par)
 {
-
+	HWND tmpHWND = (HWND)par;
     int roucount=0;
     int mxroucount = (int)floor(m_RunCMD.size()/50.0);
     if (m_RunCMD.size()%50 != 0)
@@ -613,17 +624,21 @@ DWORD WINAPI MotionProcess(LPVOID par)
         }
         while (m_SEWFLAG)
         {
+			MotionOutput s = m_RunCMD[m_CurrentPos + m_Runed - 1];
+			cv::line(m_ShowPathMat, s.phyMvFrom, s.phyMvTo, cv::Scalar(0, 255, 0));
+			cv::imshow("MainDispWin", m_ShowPathMat);
+
+			CString strTmp;
+			strTmp.Format("%d/%d", s.nTotalPosNum, s.nPosNum);//记录当前运行量 全图的运行量
+			::SetDlgItemText(tmpHWND, 1068, strTmp);
+			m_CurrentThreadPos = s.nTotalPosNum;
 #if DEBUG_WITHOUT_PLC
-            if (m_CurrentPos <=100)
+            if (m_CurrentPos <100)
             {
                 m_CurrentPos++;
                 strstrem<<"m_CurrentPos" <<m_CurrentPos;
                 WriteDebugData(strstrem.str());
                 strstrem.str("");
-
-				MotionOutput s = m_RunCMD[m_CurrentPos + m_Runed-1];
-				cv::line(m_ShowPathMat, s.phyMvFrom, s.phyMvTo, cv::Scalar(0, 255, 0));
-				cv::imshow("MainDispWin", m_ShowPathMat);
             }
             else
             {
@@ -675,7 +690,8 @@ DWORD WINAPI MotionProcess(LPVOID par)
                     SetDevice("Y12",0); // 轴1 MOV 
                     m_Wait100Needle = FALSE;
                     m_Runed+=100;
-                }
+					m_CurrentPos = 0;// 调试情况下OK. 但正常运行的时候可能会出问题 2016.11.16
+				}
             }
             if(m_Runed+m_CurrentPos == m_RunCMD.size())// 一次数据全结束, 跳出   等于下面的Kout == m_RunCMD.size()
             {
@@ -691,11 +707,15 @@ DWORD WINAPI MotionProcess(LPVOID par)
             strstrem<<"第" <<roucount<<"组 一组运行结束 确认!";
             WriteDebugData(strstrem.str());
             strstrem.str("");
+			m_CurrentPos = 0;
             break;
 		}
         if (m_StopRunning)
         {
             WriteDebugData("stop running ");
+			m_Wait100Needle = FALSE;
+			m_Runed += 100;
+			m_CurrentPos = 0;// 调试情况下OK. 但正常运行的时候可能会出问题 2016.11.16
             break;
         }
     }

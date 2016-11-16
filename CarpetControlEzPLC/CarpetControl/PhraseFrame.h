@@ -85,6 +85,8 @@ public:
 	//! 当伺服电机在READY的时候,指示灯改变
 	void SetStatusPicture(AxisFlg flg, int nIDSrvOn, int nIDRDY);
 	void SetStatusPicture5410(AxisFlg flg, int nIDSrvOn, int nIDRDY);
+	void WriteRunFileConfigFile();
+
 
 	afx_msg void OnBnClickedButtonTest();
 
@@ -92,6 +94,8 @@ public:
 	afx_msg void OnBnClickedRuncalc();
 
 	static void CV_On_Mouse(int nevent,int x,int y,int flags,void *ustc);
+	void redirectPos(int x, int y);
+
 
 	afx_msg void OnBnClickedButtonLoaddata();
 

@@ -140,7 +140,7 @@ extern IActProgType*	mp_IProgType;
 //extern float m_MachineGearRatio[AXIS_COUNT];//齿轮比. 机器部分 分子 
 
 //! 运行M2数据
-extern void RunCalcPath(HWND hwnd, int Obj);
+extern void RunCalcPath(HWND hwnd, int Obj,int x=0,int y=0);
 
 //! 减速停止
 extern void Stop_decel_NO();

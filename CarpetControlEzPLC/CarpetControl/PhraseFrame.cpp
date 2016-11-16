@@ -172,7 +172,7 @@ void CPhraseFrame::OnInitialUpdate()
 	//m_bmp1.
 
 	// 设置回调函数
-	cv::setMouseCallback("MainDispWin",(CPhraseFrame::CV_On_Mouse),0);
+	cv::setMouseCallback("MainDispWin",(CPhraseFrame::CV_On_Mouse),this);
 
 }
 
@@ -237,6 +237,7 @@ void CPhraseFrame::OnBnClickedButtonImload()
 void CPhraseFrame::OnBnClickedRuncalc()
 {
 	RunCalcPath(this->m_hWnd,IDC_EDIT_CURRENTRUN);
+	WriteRunFileConfigFile();
 }
 
 
@@ -355,16 +356,32 @@ void CPhraseFrame::OnBnClickedButtonLoaddata()
 	
 }
 
+void CPhraseFrame::WriteRunFileConfigFile()
+{
+	CString strTmp;
+	strTmp.Format("%d", m_CurrentThreadPos);
+	WritePrivateProfileString("CONFIG", "CURRENTRUNPOS", strTmp, m_CurrentDataConfigPath);
+}
+
+
 void CPhraseFrame::CV_On_Mouse(int nevent,int x,int y,int flags,void *ustc) 
 {
 	// CV_EVENT_LBUTTONUP  CV_EVENT_FLAG_LBUTTON CV_EVENT_MOUSEMOVE  CV_EVENT_LBUTTONUP
 	if (nevent == CV_EVENT_LBUTTONDOWN)
 	{
-
+		CPhraseFrame *ts = (CPhraseFrame*)ustc;
+		ts->redirectPos(x, y);
 	}
 }
 
+void CPhraseFrame::redirectPos(int x, int y)
+{
+	CString str;
+	str.Format("x%d,y%d", x, y);
+	SetDlgItemText(IDC_EDIT_CURRENTRUN, str);
+	RunCalcPath(this->m_hWnd, IDC_EDIT_CURRENTRUN);
 
+}
 
 
 void CPhraseFrame::OnBnClickedButtonReloadpos()
