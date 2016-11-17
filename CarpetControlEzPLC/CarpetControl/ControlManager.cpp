@@ -502,8 +502,6 @@ DWORD WINAPI MoveXY(LPVOID par)
     ct_motion tmpMotion;
     tmpMotion.dist1=m_MotorDirection[AxisFlg::X1]*(to.x-from.x)*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::X1];
     tmpMotion.dist2=m_MotorDirection[AxisFlg::Y]*(to.y-from.y)*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::Y];
-    m_SumPosX += tmpMotion.dist1;//用来回0点用
-    m_SumPosY += tmpMotion.dist2;
 
     long distlist[2];
     distlist[0]=tmpMotion.dist1;
@@ -893,7 +891,7 @@ void OnReturnZero()
 	//MD.20
 	long pox, poy;
 	GetDevice("UO\\G2400", pox);
-	GetDevice("UO\\G2410", poy);
+	GetDevice("UO\\G2500", poy);
     long x = pox ;
     long y = poy;
 
