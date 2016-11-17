@@ -139,6 +139,7 @@ extern int m_MotorPulseCount;// 伺服电机脉冲数
 
 extern BOOL m_StopRunning;// 停止运行标记 该标记标记后，有些工作停止才算真的停止
 extern int m_CurrentThreadPos; //记录当前运行状态，给恢复运行使用
+extern double m_SumAngle;
 
 extern CString m_str3DImagePath;
 extern cv::Mat m_3DImageData;

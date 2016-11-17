@@ -431,11 +431,13 @@ void CPhraseFrame::Load3DImage( int ScaleLayer, float m_MaxHight )
 void CPhraseFrame::OnBnClickedButton8()
 {
     m_CurrentThreadPos=0;
-    CString  strTmp;
+	m_SumAngle = 0;
+	CString  strTmp;
     strTmp.Format("%d",m_CurrentThreadPos);
 	//«ÂX,Y¡Ω÷·
 	SetData2("U0\\G", 4304, 0);
 	SetData2("U0\\G", 4404, 0);
+	WriteRunFileConfigFile();
     SetDlgItemText(IDC_EDIT_CURRENTRUN,strTmp);
 }
 

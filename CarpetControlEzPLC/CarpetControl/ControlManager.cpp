@@ -18,11 +18,11 @@ list<ct_motion> m_MotionPos;
 int m_MotorPulseCount;// 伺服电机脉冲数
 int m_nXpos, m_nYpos;// X,Y的当前位置
 
-float m_fNeedleAngle;// 针角度
+float m_fNeedleAngle;// 针角度 计算用
+double m_SumAngle = 0; // 执行时的确定位置
 //int m_nLenX,m_nLenY;// 画布大小
 int m_nZoffset;// 最小的Z.其它的Z在Zoffset之上增加一个值
 int m_nSpeed;//自动运行速度
-double m_SumAngle=0;
 CString m_str3DImagePath;
 cv::Mat m_3DImageData;
 
@@ -195,6 +195,8 @@ void RunCalcPath(HWND hwnd, int Obj,int x,int y)
 		NOTRUN = TRUE; // 表示快速跑图
 	}
 	int tmpnum = m_CurrentThreadPos;
+	m_SumAngle = 0;
+	m_fNeedleAngle = 0;
     cv::Point opOt;
     m_StopRunning = FALSE;
     m_RunCMD.clear();
@@ -246,7 +248,6 @@ void RunCalcPath(HWND hwnd, int Obj,int x,int y)
             s.to = pOt;
             s.bwithNeedle = FALSE;
             s.b3DFlag = FALSE;
-            //MotionProcess(&s);
 			cv::line(m_ShowPathMat, opOt, pOt, cv::Scalar(0, 0, 255));
 			cv::imshow("MainDispWin", m_ShowPathMat);
 			nCurrentSubThreadPos++;
@@ -261,13 +262,12 @@ void RunCalcPath(HWND hwnd, int Obj,int x,int y)
         {
 			if (!NOTRUN)//不执行
 			{
-            HANDLE tThread =  CreateThread(NULL,0,DownGunProcess,0,0,NULL);
-            WaitingForThread(tThread);
+				HANDLE tThread = CreateThread(NULL, 0, DownGunProcess, 0, 0, NULL);
+				WaitingForThread(tThread);
 			}
 
             cv::Point2f pOt1 = m_ListAllPoint[iter+1];//下一个点
             cv::Point2f pOt2 = m_ListAllPoint[iter+2];// 下两个点
-            cv::Point2f pOt0 = m_ListAllPoint[iter-1];// 上一个点
             float diffdegree;
             diffdegree = GetDiffdegree(pOt2, pOt1);
 
@@ -641,16 +641,16 @@ DWORD WINAPI MotionProcess(LPVOID par)
 			cv::imshow("MainDispWin", m_ShowPathMat);
 			if (s.bRoll == TRUE)// 把旋转的数据统计起来
 			{
-				m_SumAngle += s.rollangle / m_MotorPulseCount * m_MotorGearRatio[AxisFlg::D] / m_MotorDirection[AxisFlg::D];
+				m_SumAngle += s.rollangle ;
 			}
 
 			if (NOTRUN)
 			{
 				if (parb->x >0)
 				{
-					int dx = (parb->x - s.phyMvTo.x);
-					int dy = parb->y - s.phyMvTo.y;
-					if (sqrt(dx*dx + dy*dy) < 3)
+					float dx = (parb->x - s.phyMvTo.x);
+					float dy = parb->y - s.phyMvTo.y;
+					if (sqrt(dx*dx + dy*dy) < 3.0)
 					{
 						m_StopRunning = TRUE;
 						break;
@@ -658,14 +658,21 @@ DWORD WINAPI MotionProcess(LPVOID par)
 				}
 				else if (parb->runnum == s.nTotalPosNum)
 				{
-					m_StopRunning = TRUE;
-					break;
+					NOTRUN = FALSE;
+					//m_StopRunning = TRUE;
+					//break;
+
+					//CreateThread(NULL, 0, RoteBackProcess, 0, 0, NULL);
+					//HANDLE tThread = CreateThread(NULL, 0, MoveXY, &s, 0, NULL);
+					//WaitingForThread(tThread);
+					//CreateThread(NULL, 0, UpGunProcess, 0, 0, NULL);
+
 				}
 				
 			}
 
 			CString strTmp;
-			strTmp.Format("%d/%d", s.nTotalPosNum, s.nPosNum);//记录当前运行量 全图的运行量
+			strTmp.Format("%d,%d/%d/%f", m_CurrentPos + m_Runed,s.nTotalPosNum, s.nPosNum,m_SumAngle);//记录当前运行量 全图的运行量
 			::SetDlgItemText(tmpHWND, 1068, strTmp);
 			m_CurrentThreadPos = s.nTotalPosNum;
 			if (NOTRUN)//跑图时执行
