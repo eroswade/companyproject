@@ -641,7 +641,15 @@ DWORD WINAPI MotionProcess(LPVOID par)
 			cv::imshow("MainDispWin", m_ShowPathMat);
 			if (s.bRoll == TRUE)// 把旋转的数据统计起来
 			{
-				m_SumAngle += s.rollangle ;
+				//*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::D] * m_MotorDirection[AxisFlg::D]
+				m_SumAngle += (s.rollangle /(float)m_MotorPulseCount)*m_MotorGearRatio[AxisFlg::D] * m_MotorDirection[AxisFlg::D];
+				if (abs(m_SumAngle)>360)
+				{
+					if (m_SumAngle < 0)
+						m_SumAngle+=360.0;
+					else
+						m_SumAngle-=360.0;
+				}
 			}
 
 			if (NOTRUN)
