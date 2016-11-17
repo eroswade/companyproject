@@ -650,6 +650,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
 					else
 						m_SumAngle-=360.0;
 				}
+
 			}
 
 			if (NOTRUN)
@@ -664,16 +665,20 @@ DWORD WINAPI MotionProcess(LPVOID par)
 						break;
 					}
 				}
-				else if (parb->runnum == s.nTotalPosNum)
+				else if (parb->runnum == s.nTotalPosNum)//¼ÌÐøÔËÐÐ
 				{
 					NOTRUN = FALSE;
-					//m_StopRunning = TRUE;
-					//break;
-
-					//CreateThread(NULL, 0, RoteBackProcess, 0, 0, NULL);
-					//HANDLE tThread = CreateThread(NULL, 0, MoveXY, &s, 0, NULL);
-					//WaitingForThread(tThread);
-					//CreateThread(NULL, 0, UpGunProcess, 0, 0, NULL);
+					int ro = RotePhrase(m_SumAngle);
+					CreateThread(NULL, 0, RoteProcess, (LPVOID)&ro, 0, NULL);
+					s_MotionProcessPra ts;
+					ts.from.x = 0;
+					ts.from.y = 0;
+					ts.to = s.phyMvTo;
+					ts.bwithNeedle = FALSE;
+					ts.b3DFlag = FALSE;
+					HANDLE tThread = CreateThread(NULL, 0, MoveXY, &ts, 0, NULL);
+					WaitingForThread(tThread);
+					CreateThread(NULL, 0, DownGunProcess, 0, 0, NULL);
 
 				}
 				

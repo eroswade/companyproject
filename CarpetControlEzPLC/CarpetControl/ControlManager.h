@@ -131,7 +131,7 @@ enum AxisFlg
 
 extern int m_nXpos, m_nYpos;// X,Y的当前位置
 
-extern float m_fNeedleAngle;// 针角度
+extern float m_fNeedleAngle;// 针角度 计算时使用
 //extern int m_nLenX,m_nLenY;// 画布大小
 extern int m_nZoffset;// 最小的Z.其它的Z在Zoffset之上增加一个值
 extern int m_nSpeed;//自动运行速度
@@ -139,7 +139,7 @@ extern int m_MotorPulseCount;// 伺服电机脉冲数
 
 extern BOOL m_StopRunning;// 停止运行标记 该标记标记后，有些工作停止才算真的停止
 extern int m_CurrentThreadPos; //记录当前运行状态，给恢复运行使用
-extern double m_SumAngle;
+extern double m_SumAngle;//// 执行时的确定位置
 
 extern CString m_str3DImagePath;
 extern cv::Mat m_3DImageData;
