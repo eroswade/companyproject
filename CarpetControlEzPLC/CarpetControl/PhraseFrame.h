@@ -114,6 +114,8 @@ public:
     afx_msg void OnBnClickedButtonContinue();
 	afx_msg void OnBnClickedButtonMovey();
 	afx_msg void OnBnClickedButtonRstmcode();
+	afx_msg void OnBnClickedButtonGetxPos();
+	afx_msg void OnBnClickedButtonRoutetest();
 };
 
 

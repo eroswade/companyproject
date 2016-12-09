@@ -177,8 +177,10 @@ extern BOOL GetDevice(CString DeviceName, long& lValue);
 extern void SetData2(CString strDVName,int nPos,int nLen);
 extern void SetData(CString DeviceName,int npos, int DeviceValue);
 extern void GetCurrentRunPos();
+extern void TestRoute();
 
 
 extern BOOL m_MOVEXYFLAG;
 extern BOOL m_SEWFLAG;
 extern int m_CurrentPos;
+extern BOOL NOTRUN;

@@ -87,6 +87,13 @@ BOOL SetDevice(CString DeviceName, int DeviceValue)
     return lRet;
 }
 
+//BOOL GetDevice2(CString DEVNAME,long &value)
+//{
+//	long llv=0,hhv=0;
+//	GetDevice(DEVNAME,llv);
+//	GetDevice(DEVNAME,hhv);
+//}
+
 BOOL GetDevice(CString DeviceName, long& lValue)
 {
 #if DEBUG_WITHOUT_PLC
@@ -565,6 +572,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
     stringstream strstrem;
     BOOL m_Wait100Needle = FALSE;
     int m_Runed=0;
+	int m_LastRund = -1;
     while (true)
     {
         {// 分解路径 每隔50个点运行一次.
@@ -574,7 +582,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
                 strstrem<<"第" <<roucount<<"组 50数据循环";
                 WriteDebugData(strstrem.str());
                 strstrem.str("");
-				if (!NOTRUN)// 不跑图的时候执行
+				//if (!NOTRUN)// 不跑图的时候执行
 				{
 					for (int i = 0; i < 50; i++)//第一次放进50个点
 					{
@@ -593,7 +601,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
                 strstrem<<"第" <<roucount<<"组 50-100 数据的循环";
                 WriteDebugData(strstrem.str());
                 strstrem.str("");
-				if (!NOTRUN)//不跑图的时候执行
+				//if (!NOTRUN)//不跑图的时候执行
 				{
 					for (int i = 50; i < 100; i++)//第二次放进50个点
 					{
@@ -635,26 +643,32 @@ DWORD WINAPI MotionProcess(LPVOID par)
         }
         while (m_SEWFLAG)
         {
-
-			MotionOutput s = m_RunCMD[m_CurrentPos + m_Runed];
-			cv::line(m_ShowPathMat, s.phyMvFrom, s.phyMvTo, cv::Scalar(0, 255, 0));
-			cv::imshow("MainDispWin", m_ShowPathMat);
-			if (s.bRoll == TRUE)// 把旋转的数据统计起来
+			MotionOutput s;
+			if (m_CurrentPos + m_Runed < m_RunCMD.size())
 			{
-				//*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::D] * m_MotorDirection[AxisFlg::D]
-				m_SumAngle += (s.rollangle /(float)m_MotorPulseCount)*m_MotorGearRatio[AxisFlg::D] * m_MotorDirection[AxisFlg::D];
-				if (abs(m_SumAngle)>360)
-				{
-					if (m_SumAngle < 0)
-						m_SumAngle+=360.0;
-					else
-						m_SumAngle-=360.0;
-				}
-
+				s = m_RunCMD[m_CurrentPos + m_Runed];// 正常运行的时候，它是从1开始到100，而不是从0开始到99
+				cv::line(m_ShowPathMat, s.phyMvFrom, s.phyMvTo, cv::Scalar(0, 255, 0));
+				cv::imshow("MainDispWin", m_ShowPathMat);
 			}
+			else
+				s = m_RunCMD[m_CurrentPos + m_Runed-1];
+
 
 			if (NOTRUN)
 			{
+				if (s.bRoll == TRUE)// 把旋转的数据统计起来  by eros 2016.11.18 多次进入，有BUG  BUG2：再次进入的时候，缺少启动项
+				{
+					//*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::D] * m_MotorDirection[AxisFlg::D]
+					m_SumAngle += (s.rollangle /(float)m_MotorPulseCount)*m_MotorGearRatio[AxisFlg::D] * m_MotorDirection[AxisFlg::D];
+					if (abs(m_SumAngle)>360)
+					{
+						if (m_SumAngle < 0)
+							m_SumAngle+=360.0;
+						else
+							m_SumAngle-=360.0;
+					}
+
+				}
 				if (parb->x >0)
 				{
 					float dx = (parb->x - s.phyMvTo.x);
@@ -665,11 +679,11 @@ DWORD WINAPI MotionProcess(LPVOID par)
 						break;
 					}
 				}
-				else if (parb->runnum == s.nTotalPosNum)//继续运行
+				else if (parb->runnum == s.nTotalPosNum)// 继续运行  再次运行
 				{
 					NOTRUN = FALSE;
 					int ro = RotePhrase(m_SumAngle);
-					CreateThread(NULL, 0, RoteProcess, (LPVOID)&ro, 0, NULL);
+					CreateThread(NULL, 0, RoteProcess, (LPVOID)ro, 0, NULL);
 					s_MotionProcessPra ts;
 					ts.from.x = 0;
 					ts.from.y = 0;
@@ -679,7 +693,24 @@ DWORD WINAPI MotionProcess(LPVOID par)
 					HANDLE tThread = CreateThread(NULL, 0, MoveXY, &ts, 0, NULL);
 					WaitingForThread(tThread);
 					CreateThread(NULL, 0, DownGunProcess, 0, 0, NULL);
+					int nTmppos = m_CurrentPos;
+					SetDevice("U0\\G4500", m_CurrentPos);// 4300+100n 定位轴启动编号  
+					Sleep(200);
+					SetDevice("Y12", 1); // 轴1 MOV 
+					Sleep(10);
+					SetDevice("Y12", 0); // 轴1 MOV 
 
+					// 重新启动之后，如果直接走， m_CurrentPos读取数据，会导致系统出错。
+					while(1)
+					{
+						long nGetting;
+						GetDevice("U0\\G2637",nGetting); // 第一轴状态  md.44 和GetCurrentRunPos里的一样
+						if (nGetting == nTmppos)
+						{
+							break;
+						}
+						Sleep(200);
+					}
 				}
 				
 			}
@@ -700,7 +731,7 @@ DWORD WINAPI MotionProcess(LPVOID par)
 				}
 			}
 #if DEBUG_WITHOUT_PLC
-			if (!NOTRUN)//跑图时执行
+			if (!NOTRUN)//不跑图时执行
 			{
 				if (m_CurrentPos < 100)
 				{
@@ -856,9 +887,9 @@ DWORD WINAPI RoteBackProcess(LPVOID fDegree)
         {
             m_SumAngle = 360 + m_SumAngle;
         }
+		//m_SumAngle = -m_SumAngle;
     }
-	else
-		m_SumAngle = -m_SumAngle;
+	m_SumAngle = -m_SumAngle;
 
     int nPluse = m_SumAngle*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::D] * m_MotorDirection[AxisFlg::D];
     SetDevice("U0\\G9000",STOPMOVE);// 5轴 增量 连续 NO.1  NO.2 6010       6000+1000n n轴
@@ -906,17 +937,27 @@ void OnReturnZero()
     CreateThread(NULL,0,CutProcess,0,0,NULL);
 	CreateThread(NULL, 0, UpGunProcess, 0, 0, NULL);
 
+	// 
+	long LApox=0,HApox=0;
+	GetDevice("U0\\G2700", LApox);
+	GetDevice("U0\\G2701", HApox);
+	int Angle = MAKELONG(LApox,HApox);
+	m_SumAngle += (Angle /(float)m_MotorPulseCount)*m_MotorGearRatio[AxisFlg::D] * m_MotorDirection[AxisFlg::D];
     CreateThread(NULL,0,RoteBackProcess,0,0,NULL);
 
 	//MD.20
-	long pox, poy;
-	GetDevice("UO\\G2400", pox);
-	GetDevice("UO\\G2500", poy);
-    long x = pox ;
-    long y = poy;
+	long Lpox=0,Hpox=0, Lpoy=0,Hpoy=0;
+
+	// 
+	GetDevice("U0\\G2400", Lpox);
+	GetDevice("U0\\G2401", Hpox);
+	
+	GetDevice("U0\\G2500", Lpoy);
+	GetDevice("U0\\G2501", Hpoy);
+    long x = MAKELONG(Lpox,Hpox);
+    long y = MAKELONG(Lpoy,Hpoy);
 
 	long distlist[2]={-x,-y};
-
     SetDevice("U0\\G6000",STOPMOVE2);// 一轴 增量 连续 NO.1
     SetData2("U0\\G",6006,distlist[0]);// 定位地址
     SetData2("U0\\G",7006,distlist[1]);// 定位地址
@@ -952,6 +993,10 @@ void SettingMotionData4x( int dd, int i , BOOL RUNMET)
         WriteDebugData(strstrem.str());
         strstrem.str("");
     }
+	else
+	{
+		SetData("U0\\G",8001+10*i,0); //T轴 MCODE
+	}
 
 
     SetData2("U0\\G",6006+10*i,s.movinc.x);//X轴
@@ -988,4 +1033,11 @@ void GetCurrentRunPos()
     long nGetting=0;
     GetDevice("U0\\G2437",nGetting); // X轴 最后执行的NO.
 
+}
+
+void TestRoute()
+{
+	float diffdegree = 720;
+	int nPluse = diffdegree*m_MotorPulseCount/m_MotorGearRatio[AxisFlg::D] * m_MotorDirection[AxisFlg::D];
+	RoteProcess((LPVOID)nPluse);
 }

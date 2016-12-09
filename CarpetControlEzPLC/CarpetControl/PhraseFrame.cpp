@@ -70,6 +70,8 @@ BEGIN_MESSAGE_MAP(CPhraseFrame, CFormView)
     ON_BN_CLICKED(IDC_BUTTON_CONTINUE, &CPhraseFrame::OnBnClickedButtonContinue)
 	ON_BN_CLICKED(IDC_BUTTON_MOVEY, &CPhraseFrame::OnBnClickedButtonMovey)
 	ON_BN_CLICKED(IDC_BUTTON_RSTMCODE, &CPhraseFrame::OnBnClickedButtonRstmcode)
+	ON_BN_CLICKED(IDC_BUTTON_GETX_POS, &CPhraseFrame::OnBnClickedButtonGetxPos)
+	ON_BN_CLICKED(IDC_BUTTON_ROUTETEST, &CPhraseFrame::OnBnClickedButtonRoutetest)
 END_MESSAGE_MAP()
 
 
@@ -275,8 +277,7 @@ void CPhraseFrame::LoadConfig()
 void CPhraseFrame::OnBnClickedButtonStop()
 {
     //Stop_decel_NO();
-	SetDevice("U0\\4520", 1);//T主轴
-	SetDevice("U0\\4320", 1);//x主轴
+	SetDevice("U0\\G4520", 1);//T主轴
 
     m_StopRunning=TRUE;
 }
@@ -434,9 +435,34 @@ void CPhraseFrame::OnBnClickedButton8()
 	m_SumAngle = 0;
 	CString  strTmp;
     strTmp.Format("%d",m_CurrentThreadPos);
-	//清X,Y两轴
-	SetData2("U0\\G", 4304, 0);
-	SetData2("U0\\G", 4404, 0);
+	////清X,Y两轴
+	//SetData2("U0\\G", 4334, 0);
+	//SetData2("U0\\G", 4434, 0);
+	SetDevice("U0\\G6000",0x8100);// 
+	SetData2("U0\\G",6006,0);// 定位地址
+	SetDevice("U0\\G4300",1);// 4300+100n 定位轴启动编号 
+	Sleep(200);
+	SetDevice("Y10",1); // 轴1 MOV 
+	Sleep(10);
+	SetDevice("Y10",0); // 轴1 MOV 
+
+
+	SetDevice("U0\\G7000",0x8100);// 
+	SetData2("U0\\G",7006,0);// 定位地址
+	SetDevice("U0\\G4400",1);// 4300+100n 定位轴启动编号 
+	Sleep(200);
+	SetDevice("Y11",1); // 轴2 MOV 
+	Sleep(10);
+	SetDevice("Y11",0); // 轴2 MOV 
+
+	SetDevice("U0\\G9000",0x8100);// 
+	SetData2("U0\\G",9006,0);// 定位地址
+	SetDevice("U0\\G4600",1);// 4300+100n 定位轴启动编号 
+	Sleep(200);
+	SetDevice("Y13",1); // 轴4 MOV 
+	Sleep(10);
+	SetDevice("Y13",0); // 轴4 MOV 
+
 	WriteRunFileConfigFile();
     SetDlgItemText(IDC_EDIT_CURRENTRUN,strTmp);
 }
@@ -495,7 +521,7 @@ void CPhraseFrame::OnBnClickedButtonMovex()
 
     SetDevice("U0\\G6000",STOPMOVE);// 一轴 增量 连续 NO.1
     //SetDevice("U0\\G6003",0x203);// 插补对象轴编号
-    SetData2("U0\\G",6004,4194304);// 指令速度
+    SetData2("U0\\G",6004,4194304*4);// 指令速度
     SetData2("U0\\G",6006,4194304*nRoll);// 定位地址
 
     // G1500 定位轴启动编号  从第几个NO.1-NO.600  9001 机械原点复位  9002 高速复位 7000-7004块指定 9003 当前值更改  9004 多轴同时启动
@@ -530,7 +556,7 @@ void CPhraseFrame::OnBnClickedButtonMovey()
 
     SetDevice("U0\\G7000",STOPMOVE);// 一轴 增量 连续 NO.1
     //SetDevice("U0\\G6003",0x203);// 插补对象轴编号
-    SetData2("U0\\G",7004,4194304);// 指令速度
+    SetData2("U0\\G",7004,4194304*4);// 指令速度
     SetData2("U0\\G",7006,4194304*nRoll);// 定位地址
 
     // G1500 定位轴启动编号  从第几个NO.1-NO.600  9001 机械原点复位  9002 高速复位 7000-7004块指定 9003 当前值更改  9004 多轴同时启动
@@ -551,20 +577,20 @@ void CPhraseFrame::OnBnClickedButtonTestdata()
     SetDevice("U0\\G4302",0);// 轴出错复位 4302+100n
 
     SetDevice("U0\\G6000",CONTINUEMOVE);// 一轴 增量 连续 NO.1
-    SetData2("U0\\G",6004,4194304/2);// 指令速度
-    SetData2("U0\\G",6006,4194304*2);// 定位地址
+    SetData2("U0\\G",6004,4194304);// 指令速度
+    SetData2("U0\\G",6006,4194304*4);// 定位地址
 
     SetDevice("U0\\G6010",CONTINUEMOVE);// 一轴 增量 连续 NO.1
-    SetData2("U0\\G",6014,4194304/2);// 指令速度
-    SetData2("U0\\G",6016,-4194304*2);// 定位地址
+    SetData2("U0\\G",6014,4194304);// 指令速度
+    SetData2("U0\\G",6016,-4194304*4);// 定位地址
 
     SetDevice("U0\\G6020",CONTINUEMOVE);// 一轴 增量 连续 NO.1
-    SetData2("U0\\G",6024,4194304/2);// 指令速度
-    SetData2("U0\\G",6026,4194304*2);// 定位地址
+    SetData2("U0\\G",6024,4194304);// 指令速度
+    SetData2("U0\\G",6026,4194304*4);// 定位地址
 
     SetDevice("U0\\G6030",STOPMOVE);// 一轴 增量 连续 NO.1
-    SetData2("U0\\G",6034,4194304/2);// 指令速度
-    SetData2("U0\\G",6036,-4194304*2);// 定位地址
+    SetData2("U0\\G",6034,4194304);// 指令速度
+    SetData2("U0\\G",6036,-4194304*4);// 定位地址
 
     // G1500 定位轴启动编号  从第几个NO.1-NO.600  9001 机械原点复位  9002 高速复位 7000-7004块指定 9003 当前值更改  9004 多轴同时启动
     SetDevice("U0\\G4300",1);// 4300+100n 定位轴启动编号 
@@ -683,14 +709,18 @@ void CPhraseFrame::GettingPLCState()
 	}
     m_Grid.Refresh();
 
+
+
+	stringstream strstrem;
     // TODO 这里需要获取MD.26  2409+100n 包含运动状态 待机中, 停止中, 插补中, JOG运行中, ....
     //m_CurrentPos MD.44 执行中的定位数据 2435+100n
-    GetDevice("U0\\G2637",nGetting); // 第一轴状态  md.44 和GetCurrentRunPos里的一样
-    m_CurrentPos=nGetting;
-    stringstream strstrem;
-    strstrem << "currentpos:" <<nGetting;
-    WriteDebugData(strstrem.str());
-
+	if (!NOTRUN)//不跑图时执行
+	{
+		GetDevice("U0\\G2637",nGetting); // 第一轴状态  md.44 和GetCurrentRunPos里的一样
+		m_CurrentPos=nGetting;
+		strstrem << "currentpos:" <<nGetting;
+		WriteDebugData(strstrem.str());
+	}
 	GetDevice("U0\\G2609",nGetting);
 	strstrem.str("");
 	strstrem << "轴状态:" <<nGetting;
@@ -723,5 +753,25 @@ void CPhraseFrame::OnBnClickedButtonContinue()
 
 void CPhraseFrame::OnBnClickedButtonRstmcode()
 {
+	//中断X轴 cd.18
+	SetDevice("U0\\G4320", 1);//x主轴  
+	m_StopRunning=TRUE;
 
+	//中断运行有一个很重要的问题。 如果别的轴不在运行（不知道哪个轴运行）， 
+	//设置中断， 中断回不运行。
+}
+
+
+void CPhraseFrame::OnBnClickedButtonGetxPos()
+{
+	//MD.20
+	long pox=0, poy=0;
+	GetDevice("U0\\G2400", pox);
+	GetDevice("U0\\G2401", pox);
+}
+
+
+void CPhraseFrame::OnBnClickedButtonRoutetest()
+{
+	TestRoute();
 }
